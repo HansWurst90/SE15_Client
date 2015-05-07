@@ -1,5 +1,6 @@
 package com.example.jalt.se15_client;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,5 +36,12 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onSettingsClick(MenuItem item) {
+
+        Intent getSettingsIntent = new Intent(this, SettingsActivity.class);
+
+        startActivity(getSettingsIntent);
     }
 }
