@@ -4,4 +4,14 @@
     <string name="hello_world">Dies wird die bosshafte Startseite.</string>
     <string name="action_settings">Settings</string>
     <string name="SV_Title">Fachansicht</string>
+
+    //subject_view
+    <string name="fach">Fach:</string>
+    <string name="teacher">Lehrer:</string>
+    <string name="von">Von</string>
+    <string name="bis">Bis</string>
+    <string name="Veranstaltung">Veranstaltung</string>
+    <string name="homework">Hausaufgaben</string>
+
+
 </resources>
