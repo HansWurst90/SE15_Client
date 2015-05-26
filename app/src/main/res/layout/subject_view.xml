@@ -9,11 +9,14 @@
         >
         <TextView
             android:text="@string/subject"
-            android:textSize="40sp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="20sp"
+            android:paddingBottom="10sp"
+            android:paddingRight="20sp"/>
         <TextView
             android:text="#################"
-            android:textSize="40sp"
+            android:textSize="45sp"
             android:layout_weight="1"
             android:paddingLeft="20dp"
             android:ellipsize="end"
@@ -25,11 +28,14 @@
         >
         <TextView
             android:text="@string/teacher"
-            android:textSize="40sp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="20sp"
+            android:paddingRight="20sp"/>
         <TextView
             android:text="#################"
-            android:textSize="40sp"
+            android:textSize="45sp"
             android:layout_weight="1"
             android:paddingLeft="20dp"
             android:ellipsize="end"
@@ -43,20 +49,28 @@
     <TableRow>
         <TextView
             android:text="@string/from"
-            android:textSize="40sp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:paddingRight="20sp"/>
         <TextView
             android:text="###"
-            android:textSize="40sp"/>
+            android:textSize="45sp"
+            android:paddingLeft="20dp"/>
     </TableRow>
     <TableRow>
         <TextView
             android:text="@string/to"
-            android:textSize="40sp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:paddingRight="20sp"/>
         <TextView
             android:text="###"
-            android:textSize="40sp"/>
+            android:textSize="45sp"
+            android:paddingLeft="20dp"/>
     </TableRow>
 
     <View
@@ -66,8 +80,11 @@
 
     <TextView
         android:text="@string/homework"
-        android:textSize="40sp"
-        android:padding="30dp"/>
+        android:textSize="45sp"
+        android:paddingLeft="30sp"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
+        android:paddingRight="20sp"/>
     <TextView
         android:text="########################################################################################"
         android:textSize="40sp"
