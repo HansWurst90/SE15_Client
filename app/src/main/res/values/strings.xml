@@ -6,11 +6,11 @@
     <string name="SV_Title">Fachansicht</string>
 
     //subject_view
-    <string name="fach">Fach:</string>
+    <string name="subject">Fach:</string>
     <string name="teacher">Lehrer:</string>
-    <string name="von">Von</string>
-    <string name="bis">Bis</string>
-    <string name="Veranstaltung">Veranstaltung</string>
+    <string name="from">Von</string>
+    <string name="to">Bis</string>
+    <string name="event">Veranstaltung</string>
     <string name="homework">Hausaufgaben</string>
 
 
