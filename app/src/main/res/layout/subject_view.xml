@@ -12,8 +12,13 @@
             android:textSize="40sp"
             android:padding="30dp"/>
         <TextView
-            android:text="###"
-            android:textSize="40sp"/>
+            android:text="#################"
+            android:textSize="40sp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"/>
     </TableRow>
     <TableRow
         android:background="@color/bordeauxrot"
@@ -23,8 +28,13 @@
             android:textSize="40sp"
             android:padding="30dp"/>
         <TextView
-            android:text="###"
-            android:textSize="40dp"/>
+            android:text="#################"
+            android:textSize="40sp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"/>
     </TableRow>
     <View
         android:layout_height="10dip"
@@ -33,31 +43,38 @@
     <TableRow>
         <TextView
             android:text="@string/from"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:padding="30dp"/>
         <TextView
             android:text="###"
-            android:textSize="40dp"/>
+            android:textSize="40sp"/>
     </TableRow>
     <TableRow>
         <TextView
             android:text="@string/to"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:padding="30dp"/>
         <TextView
             android:text="###"
-            android:textSize="40dp"/>
+            android:textSize="40sp"/>
     </TableRow>
 
     <View
         android:layout_height="10dip"
         android:background="@color/schwarz"/>
 
-    <TableRow>
+
     <TextView
         android:text="@string/homework"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:padding="30dp"/>
-    </TableRow>
+    <TextView
+        android:text="########################################################################################"
+        android:textSize="40sp"
+        android:layout_weight="1"
+        android:padding="30dp"
+        android:ellipsize="end"
+        android:maxLines="4"
+        />
 
 </TableLayout>
