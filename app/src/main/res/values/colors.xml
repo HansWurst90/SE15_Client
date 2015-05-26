@@ -2,4 +2,5 @@
 <resources>
     <color name="bordeauxrot">#80800032</color>
     <color name="blau">#220000f4</color>
+    <color name="schwarz">#ff000000</color>
 </resources>

@@ -12,9 +12,11 @@
             android:textSize="40sp"
             android:padding="30dp"/>
         <TextView
+            android:paddingLeft="150dp"
             android:text="###"
             android:textSize="40sp"/>
     </TableRow>
+
     <TableRow
         android:background="@color/bordeauxrot"
         >
@@ -23,9 +25,11 @@
             android:textSize="40sp"
             android:padding="30dp"/>
         <TextView
+            android:paddingLeft="150sp"
             android:text="###"
             android:textSize="40dp"/>
     </TableRow>
+
     <View
         android:layout_height="10dip"
         android:background="@color/schwarz"/>
@@ -36,15 +40,18 @@
             android:textSize="40dp"
             android:padding="30dp"/>
         <TextView
+            android:paddingLeft="150dp"
             android:text="###"
             android:textSize="40dp"/>
     </TableRow>
+
     <TableRow>
         <TextView
             android:text="@string/to"
             android:textSize="40dp"
             android:padding="30dp"/>
         <TextView
+            android:paddingLeft="150dp"
             android:text="###"
             android:textSize="40dp"/>
     </TableRow>
@@ -54,10 +61,28 @@
         android:background="@color/schwarz"/>
 
     <TableRow>
-    <TextView
-        android:text="@string/homework"
-        android:textSize="40dp"
-        android:padding="30dp"/>
+        <TextView
+            android:text="@string/homework"
+            android:textSize="40dp"
+            android:padding="30dp"/>
+
+
+
+    </TableRow>
+    <TableRow
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:maxLines="4"
+            android:text="Hausaufgadafsfdadsfadsfssfdasdfsdf"
+            android:textSize="40sp"
+            android:padding="30dp"
+            />
+
     </TableRow>
 
 </TableLayout>
