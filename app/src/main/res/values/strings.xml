@@ -13,5 +13,7 @@
     <string name="event">Veranstaltung:</string>
     <string name="homework">Hausaufgaben:</string>
 
-
+    <string name="username">Benutzername:</string>
+    <string name="passwort">Passwort:</string>
+    <string name="submit">Abschicken</string>
 </resources>
