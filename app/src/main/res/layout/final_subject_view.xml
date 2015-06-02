@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="4">
-
+    android:stretchColumns="4"
+    android:orientation="vertical">
+    <TableLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
     <TableRow
         android:background="@color/bordeauxrot"
         >
         <TextView
             android:text="@string/subject"
-            android:textSize="40sp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="20sp"
+            android:paddingBottom="10sp"
+            android:paddingRight="20sp"/>
         <TextView
-            android:paddingLeft="150dp"
-            android:text="###"
-            android:textSize="40sp"/>
+            android:text="#################"
+            android:textSize="45sp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"/>
     </TableRow>
-
     <TableRow
         android:background="@color/bordeauxrot"
         >
         <TextView
             android:text="@string/teacher"
-            android:textSize="40sp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="20sp"
+            android:paddingRight="20sp"/>
         <TextView
-            android:paddingLeft="150sp"
-            android:text="###"
-            android:textSize="40dp"/>
+            android:text="#################"
+            android:textSize="45sp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"/>
     </TableRow>
-
     <View
         android:layout_height="10dip"
         android:background="@color/schwarz"/>
@@ -37,52 +53,60 @@
     <TableRow>
         <TextView
             android:text="@string/from"
-            android:textSize="40dp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:paddingRight="20sp"/>
         <TextView
-            android:paddingLeft="150dp"
-            android:text="###"
-            android:textSize="40dp"/>
+            android:text="######################"
+            android:textSize="45sp"
+            android:paddingLeft="20dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            />
     </TableRow>
-
     <TableRow>
         <TextView
             android:text="@string/to"
-            android:textSize="40dp"
-            android:padding="30dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="30sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:paddingRight="20sp"/>
         <TextView
-            android:paddingLeft="150dp"
             android:text="###"
-            android:textSize="40dp"/>
+            android:textSize="45sp"
+            android:paddingLeft="20dp"
+            android:layout_weight="1"
+            android:maxLines="1"/>
     </TableRow>
 
     <View
         android:layout_height="10dip"
         android:background="@color/schwarz"/>
 
-    <TableRow>
-        <TextView
-            android:text="@string/homework"
-            android:textSize="40dp"
-            android:padding="30dp"/>
+    </TableLayout>
+    
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/homework"
+        android:textSize="45sp"
+        android:paddingLeft="30sp"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
+        android:paddingRight="20sp"/>
 
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="########################################################################################"
+        android:textSize="40sp"
+        android:layout_weight="1"
+        android:padding="30dp"
+        android:ellipsize="end"
+        android:maxLines="4"
+        />
 
-
-    </TableRow>
-    <TableRow
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_height="fill_parent"
-            android:layout_width="wrap_content"
-            android:maxLines="4"
-            android:text="Hausaufgadafsfdadsfadsfssfdasdfsdf"
-            android:textSize="40sp"
-            android:padding="30dp"
-            />
-
-    </TableRow>
-
-</TableLayout>
+</LinearLayout>
