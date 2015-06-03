@@ -52,7 +52,8 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:id="@+id/scrollView"
+        android:nestedScrollingEnabled="false">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -74,14 +75,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="08:30"
-                        android:id="@+id/textView" />
+                        android:id="@+id/textView"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Herr Mußenbrock"
                         android:id="@+id/textView18"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
 
                 </TableRow>
 
@@ -100,7 +103,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Englisch"
                         android:id="@+id/textView7"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/subject_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -112,14 +116,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="09:15"
-                        android:id="@+id/textView3" />
+                        android:id="@+id/textView3"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="D 404"
                         android:id="@+id/textView22"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
             </TableLayout>
 
@@ -137,14 +143,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="09:15"
-                        android:id="@+id/textView14" />
+                        android:id="@+id/textView14"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Herr Erfkämper"
                         android:id="@+id/textView19"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -162,7 +170,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Mathe"
                         android:id="@+id/textView16"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/subject_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -174,14 +183,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10:00"
-                        android:id="@+id/textView17" />
+                        android:id="@+id/textView17"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="P 3.14"
                         android:id="@+id/textView23"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
             </TableLayout>
 
@@ -211,14 +222,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10:15"
-                        android:id="@+id/textView10" />
+                        android:id="@+id/textView10"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Herr Prischep"
                         android:id="@+id/textView20"
-                        android:layout_column="6" />
+                        android:layout_column="6"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -236,7 +249,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Deutsch"
                         android:id="@+id/textView12"
-                        android:layout_column="6" />
+                        android:layout_column="6"
+                        android:textSize="@dimen/subject_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -248,14 +262,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11:00"
-                        android:id="@+id/textView13" />
+                        android:id="@+id/textView13"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="A 101"
                         android:id="@+id/textView24"
-                        android:layout_column="6" />
+                        android:layout_column="6"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
             </TableLayout>
 
@@ -273,14 +289,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11.00"
-                        android:id="@+id/textView4" />
+                        android:id="@+id/textView4"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Herr Riegel"
                         android:id="@+id/textView21"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -298,7 +316,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Sport"
                         android:id="@+id/textView8"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/subject_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -310,14 +329,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11:45"
-                        android:id="@+id/textView6" />
+                        android:id="@+id/textView6"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sporthalle"
                         android:id="@+id/textView25"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
             </TableLayout>
 
@@ -346,14 +367,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12:00"
-                        android:id="@+id/textView26" />
+                        android:id="@+id/textView26"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Herr Einstein"
                         android:id="@+id/textView27"
-                        android:layout_column="6" />
+                        android:layout_column="6"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -371,7 +394,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Physik"
                         android:id="@+id/textView28"
-                        android:layout_column="6" />
+                        android:layout_column="6"
+                        android:textSize="@dimen/subject_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -383,14 +407,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12:45"
-                        android:id="@+id/textView29" />
+                        android:id="@+id/textView29"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="EMC.2"
                         android:id="@+id/textView30"
-                        android:layout_column="6" />
+                        android:layout_column="6"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
             </TableLayout>
 
@@ -408,14 +434,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12:45"
-                        android:id="@+id/textView26" />
+                        android:id="@+id/textView26"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Herr Turing"
                         android:id="@+id/textView27"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -433,7 +461,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Informatik"
                         android:id="@+id/textView28"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/subject_text_size" />
                 </TableRow>
 
                 <TableRow
@@ -445,14 +474,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="13:00"
-                        android:id="@+id/textView29" />
+                        android:id="@+id/textView29"
+                        android:textSize="@dimen/info_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1001110"
                         android:id="@+id/textView30"
-                        android:layout_column="4" />
+                        android:layout_column="4"
+                        android:textSize="@dimen/info_text_size" />
                 </TableRow>
             </TableLayout>
 
