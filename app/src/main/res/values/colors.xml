@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bordeauxrot">#80800032</color>
-    <color name="blau">#220000f4</color>
-    <color name="schwarz">#ff000000</color>
+    <color name="bordeaux">#80800032</color>
+    <color name="blue">#ff000def</color>
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="green">#ff00ff00</color>
+    <color name="yellow">#fffffd00</color>
 </resources>
