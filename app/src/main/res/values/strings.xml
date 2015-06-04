@@ -2,7 +2,7 @@
     <string name="app_name">Studeasy</string>
 
     <string name="hello_world">Dies wird die bosshafte Startseite.</string>
-    <string name="action_settings">Settings</string>
+    <string name="login">Anmelden</string>
     <string name="SV_Title">Fachansicht</string>
 
     //subject_view
@@ -13,7 +13,18 @@
     <string name="event">Veranstaltung:</string>
     <string name="homework">Hausaufgaben:</string>
 
+    //Logging
     <string name="username">Benutzername:</string>
     <string name="password">Passwort:</string>
     <string name="submit">Abschicken</string>
+    <string name="welcome">Willkommen</string>
+
+    //days
+    <string name="monday">Montag</string>
+    <string name="tuesday">Dienstag</string>
+    <string name="wednesday">Mittwoch</string>
+    <string name="thursday">Donnerstags</string>
+    <string name="friday">Freitag</string>
+
+
 </resources>

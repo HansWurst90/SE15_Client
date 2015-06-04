@@ -7,7 +7,7 @@
     <TableLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:background="@color/bordeauxrot">
+        android:background="@color/bordeaux">
     <TableRow>
         <TextView
             android:text="@string/subject"
@@ -44,7 +44,7 @@
     </TableRow>
     <View
         android:layout_height="@dimen/bar_size"
-        android:background="@color/schwarz"/>
+        android:background="@color/black"/>
     </TableLayout>
     <TableLayout
         android:layout_width="wrap_content"
