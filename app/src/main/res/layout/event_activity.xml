@@ -2,15 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="4"
     android:orientation="vertical">
 
     <TableLayout
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-    <TableRow
-        android:background="@color/bordeauxrot"
-        >
+        android:layout_width="wrap_content"
+        android:background="@color/bordeauxrot">
+    <TableRow>
         <TextView
             android:text="@string/subject"
             android:textSize="@dimen/textview_size"
@@ -27,9 +25,7 @@
             android:maxLines="1"
             android:singleLine="true"/>
     </TableRow>
-    <TableRow
-        android:background="@color/bordeauxrot"
-        >
+    <TableRow>
         <TextView
             android:text="@string/teacher"
             android:textSize="@dimen/textview_size"

@@ -7,10 +7,10 @@
     android:orientation="vertical">
     <TableLayout
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        android:layout_width="wrap_content"
+        >
         <TableRow
-            android:background="@color/bordeauxrot"
-            >
+            android:background="@color/bordeauxrot">
             <TextView
                 android:text="@string/subject"
                 android:textSize="@dimen/textview_size"
@@ -28,8 +28,7 @@
                 android:singleLine="true"/>
         </TableRow>
         <TableRow
-            android:background="@color/bordeauxrot"
-            >
+            android:background="@color/bordeauxrot">
             <TextView
                 android:text="@string/teacher"
                 android:textSize="@dimen/textview_size"
