@@ -25,6 +25,16 @@
     <string name="wednesday">Mittwoch</string>
     <string name="thursday">Donnerstags</string>
     <string name="friday">Freitag</string>
-
-
+    <string name="from_1">08:30</string>
+    <string name="to_1">09:15</string>
+    <string name="from_2">09:15</string>
+    <string name="to_2">10:00</string>
+    <string name="from_3">10:15</string>
+    <string name="to_3">11:00</string>
+    <string name="from_4">11.00</string>
+    <string name="to_4">11:45</string>
+    <string name="from_5">12:00</string>
+    <string name="to_5">12:45</string>
+    <string name="from_6">12:45</string>
+    <string name="to_6">13:00</string>
 </resources>
