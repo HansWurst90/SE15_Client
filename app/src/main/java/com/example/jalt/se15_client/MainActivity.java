@@ -50,6 +50,10 @@ public class MainActivity extends ActionBarActivity {
 
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
 
+        String SubjectName = "Englischyüah!";
+
+        getSubjectIntent.putExtra("SubjectName", SubjectName);
+
         startActivity(getSubjectIntent);
     }
 }

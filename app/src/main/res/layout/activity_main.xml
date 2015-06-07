@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:orientation="vertical">
 
@@ -101,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Englisch"
+                        android:text="@string/subject_1"
                         android:id="@+id/textView7"
                         android:layout_column="4"
                         android:textSize="@dimen/subject_text_size" />
@@ -132,7 +133,8 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/Indigo">
+                android:background="@color/Indigo"
+                android:onClick="onSubjectClick">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -168,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Mathe"
+                        android:text="@string/subject_2"
                         android:id="@+id/textView16"
                         android:layout_column="4"
                         android:textSize="@dimen/subject_text_size" />
@@ -211,7 +213,8 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/Light_Green">
+                android:background="@color/Light_Green"
+                android:onClick="onSubjectClick">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -247,7 +250,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Deutsch"
+                        android:text="@string/subject_3"
                         android:id="@+id/textView12"
                         android:layout_column="6"
                         android:textSize="@dimen/subject_text_size" />
@@ -278,7 +281,8 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/Purple">
+                android:background="@color/Purple"
+                android:onClick="onSubjectClick">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -314,7 +318,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Sport"
+                        android:text="@string/subject_6"
                         android:id="@+id/textView8"
                         android:layout_column="4"
                         android:textSize="@dimen/subject_text_size" />
@@ -356,7 +360,8 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/Light_Blue" >
+                android:background="@color/Light_Blue"
+                android:onClick="onSubjectClick">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -392,7 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Physik"
+                        android:text="@string/subject_5"
                         android:id="@+id/textView28"
                         android:layout_column="6"
                         android:textSize="@dimen/subject_text_size" />
@@ -423,7 +428,8 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/Orange" >
+                android:background="@color/Orange"
+                android:onClick="onSubjectClick">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -459,7 +465,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Informatik"
+                        android:text="@string/subject_4"
                         android:id="@+id/textView28"
                         android:layout_column="4"
                         android:textSize="@dimen/subject_text_size" />
