@@ -19,13 +19,14 @@
                 android:paddingBottom="@dimen/padding_bottom"
                 android:paddingRight="@dimen/padding_right"/>
             <TextView
-                android:text="###### ##"
                 android:textSize="@dimen/textview_size"
                 android:layout_weight="1"
                 android:paddingLeft="20dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:id="@+id/subject_name"
+                android:text="@string/subject_name" />
         </TableRow>
         <TableRow
             android:background="@color/bordeaux">
