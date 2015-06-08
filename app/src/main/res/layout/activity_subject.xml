@@ -23,7 +23,7 @@
                 <TableRow
                     android:background="@color/bordeaux">
                     <TextView
-                        android:text="@string/subject"
+                        android:text="@string/subject_label"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingTop="@dimen/padding_top"
@@ -37,19 +37,19 @@
                         android:maxLines="1"
                         android:singleLine="true"
                         android:id="@+id/subject_name"
-                        android:text="@string/subject_name" />
+                        android:text="@string/subject_value"/>
                 </TableRow>
                 <TableRow
                     android:background="@color/bordeaux">
                     <TextView
-                        android:text="@string/teacher"
+                        android:text="@string/teacher_label"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingTop="@dimen/padding_top"
                         android:paddingBottom="@dimen/padding_bottom"
                         android:paddingRight="@dimen/padding_right"/>
                     <TextView
-                        android:text="#### #####"
+                        android:text="@string/teacher_value"
                         android:textSize="@dimen/textview_size"
                         android:layout_weight="1"
                         android:paddingLeft="20dp"
@@ -63,14 +63,14 @@
 
                 <TableRow>
                     <TextView
-                        android:text="@string/from"
+                        android:text="@string/from_label"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingTop="@dimen/padding_top"
                         android:paddingBottom="@dimen/padding_bottom"
                         android:paddingRight="@dimen/padding_right"/>
                     <TextView
-                        android:text="##:##"
+                        android:text="@string/from_value"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="20dp"
                         android:layout_weight="1"
@@ -79,14 +79,14 @@
                 </TableRow>
                 <TableRow>
                     <TextView
-                        android:text="@string/to"
+                        android:text="@string/to_label"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingTop="@dimen/padding_top"
                         android:paddingBottom="@dimen/padding_bottom"
                         android:paddingRight="@dimen/padding_right"/>
                     <TextView
-                        android:text="##:##"
+                        android:text="@string/to_value"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="20dp"
                         android:layout_weight="1"
@@ -106,7 +106,7 @@
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="@string/event"
+                        android:text="@string/event_label"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingTop="@dimen/padding_top"
@@ -114,7 +114,7 @@
                         android:paddingRight="@dimen/padding_right"/>
 
                     <TextView
-                        android:text="#/##"
+                        android:text="@string/event_value"
                         android:textSize="@dimen/textview_size"
                         android:paddingLeft="20dp"
                         android:layout_weight="1"
@@ -134,7 +134,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="@string/homework"
+                    android:text="@string/homework_label"
                     android:textSize="@dimen/textview_size"
                     android:paddingLeft="@dimen/padding_left"
                     android:paddingTop="@dimen/padding_top"
@@ -151,7 +151,7 @@
             <TextView
                 android:layout_height="0dp"
                 android:layout_width="wrap_content"
-                android:text="########################################################################################"
+                android:text="@string/homework_value"
                 android:textSize="@dimen/textview_size"
                 android:layout_weight="1"
                 android:padding="15dp"

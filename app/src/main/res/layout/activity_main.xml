@@ -64,9 +64,8 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/red"
+                android:background="@color/Red"
                 android:onClick="onSubjectClick"
-
                 android:id="@+id/dayclass1">
 
                 <TableRow
@@ -260,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/subject_3"
-                        android:id="@+id/dayclass3r2subject"
+                        android:id="@+id/textView12"
                         android:layout_column="6"
                         android:textSize="@dimen/subject_text_size" />
                 </TableRow>

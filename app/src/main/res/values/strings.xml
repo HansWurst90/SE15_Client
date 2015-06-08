@@ -7,13 +7,21 @@
 
     <!--subject_activity -->
     <string name="title_activity_subject">Fachansicht</string>
-    <string name="subject_name">Platzhalter</string>
-    <string name="subject">Fach:</string>
-    <string name="teacher">Lehrer:</string>
-    <string name="from">Von:</string>
-    <string name="to">Bis:</string>
-    <string name="event">Veranstaltung:</string>
-    <string name="homework">Hausaufgaben:</string>
+    <string name="subject_value">Fachplatzhalter</string>
+    <string name="subject_label">Fach:</string>
+    <string name="teacher_label">Lehrer:</string>
+    <string name="teacher_value">Lehrerplatzhalter</string>
+    <string name="from_label">Von:</string>
+    <string name="from_value">##:##</string>
+    <string name="to_label">Bis:</string>
+    <string name="to_value">##:##</string>
+    <string name="event_label">Veranstaltung:</string>
+    <string name="event_value">#/##</string>
+    <string name="homework_label">Hausaufgaben:</string>
+    <string name="homework_value">Hier kommen später eine Menge Hausaufgaben rein. Lesen und Rechnen und so ein Kram.</string>
+
+
+
 
     <!--Logging -->
     <string name="username">Benutzername:</string>

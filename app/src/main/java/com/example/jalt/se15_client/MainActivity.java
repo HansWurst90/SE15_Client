@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Date;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -14,6 +16,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Date today = new Date();
+        // Abfrage: Welche Fächer gibt es am heutigen Tag?
+        //Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
+
     }
 
 
