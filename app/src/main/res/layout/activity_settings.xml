@@ -4,44 +4,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <ImageView
+        android:layout_width="176dp"
+        android:layout_height="176dp"
+        android:background="@drawable/calendar_icon"/>
 
     <TableLayout
+        android:paddingTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TableRow>
-           <TextView
-               android:text="@string/username"
-               android:textSize="@dimen/textview_size"
-               android:paddingLeft="@dimen/padding_left"
-               android:paddingTop="20dp"
-               android:paddingBottom="@dimen/padding_bottom"
-               android:paddingRight="@dimen/padding_right"/>
+
+        <TableRow
+            android:layout_gravity="center">
             <EditText
-                android:layout_width="185dp"
-                android:layout_height="wrap_content"
+                android:background="@drawable/roundcorners"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:hint="@string/username"
                 android:inputType="text"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:gravity="center" />
         </TableRow>
         <TableRow>
-            <TextView
-                android:text="@string/password"
-                android:textSize="@dimen/textview_size"
-                android:paddingLeft="@dimen/padding_left"
-                android:paddingTop="@dimen/padding_top"
-                android:paddingBottom="@dimen/padding_bottom"
-                android:paddingRight="@dimen/padding_right"/>
 
             <EditText
-                android:layout_width="185dp"
-                android:layout_height="wrap_content"
+                android:background="@drawable/roundcorners"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
                 android:inputType="textPassword"
+                android:hint="@string/password"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:gravity="center" />
         </TableRow>
     </TableLayout>
     <LinearLayout
@@ -52,8 +54,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/submit"
-            android:onClick="exampleMethod"/>
+            android:text="@string/submit"/>
+            <!-- android:onClick="exampleMethod" -->
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

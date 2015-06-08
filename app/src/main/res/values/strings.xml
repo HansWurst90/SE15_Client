@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Studeasy</string>
-
-    <string name="hello_world">Dies wird die bosshafte Startseite.</string>
     <string name="login">Anmelden</string>
     <string name="SV_Title">Fachansicht</string>
     <string name="daytoday">dd.mm.yy</string>
@@ -25,9 +23,9 @@
 
 
     <!--Logging -->
-    <string name="username">Benutzername:</string>
-    <string name="password">Passwort:</string>
-    <string name="submit">Abschicken</string>
+    <string name="username">Benutzername</string>
+    <string name="password">Passwort</string>
+    <string name="submit">Einloggen</string>
     <string name="welcome">Willkommen</string>
 
     <!--days -->
