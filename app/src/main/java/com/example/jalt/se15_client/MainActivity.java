@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,6 +19,18 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //Es muss ein Datum empfamgbar sein. Wenn dieses NULL ist wird das aktuelle Datum verwendet
+        Date today = new Date();
+        // Abfrage: Welche Fächer gibt es am heutigen Tag?
+        //Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
+
+
+        // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
+        DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
+        final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
+        textViewToChange.setText(dfmt.format(today).toString());
     }
 
 
@@ -50,7 +67,8 @@ public class MainActivity extends ActionBarActivity {
 
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
 
-        String SubjectName = "Englischyüah!";
+        int SubjectId = view.getId();
+        String SubjectName = getResources().getResourceEntryName(SubjectId);
 
         getSubjectIntent.putExtra("SubjectName", SubjectName);
 
