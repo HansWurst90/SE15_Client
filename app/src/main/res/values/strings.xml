@@ -5,7 +5,7 @@
     <string name="login">Anmelden</string>
     <string name="SV_Title">Fachansicht</string>
 
-    //subject_view
+    <!--subject_view -->
     <string name="subject">Fach:</string>
     <string name="teacher">Lehrer:</string>
     <string name="from">Von:</string>
@@ -13,24 +13,27 @@
     <string name="event">Veranstaltung:</string>
     <string name="homework">Hausaufgaben:</string>
 
-    //Logging
+    <!--Logging -->
     <string name="username">Benutzername:</string>
     <string name="password">Passwort:</string>
     <string name="submit">Abschicken</string>
     <string name="welcome">Willkommen</string>
 
-    //days
+    <!--days -->
     <string name="monday">Montag</string>
     <string name="tuesday">Dienstag</string>
     <string name="wednesday">Mittwoch</string>
     <string name="thursday">Donnerstag</string>
     <string name="friday">Freitag</string>
-    //days shortcut
+
+    <!--days shortcut -->
     <string name="monday_shortcut">Mo</string>
     <string name="tuesday_shortcut">Di</string>
     <string name="wednesday_shortcut">Mi</string>
     <string name="thursday_shortcut">Do</string>
     <string name="friday_shortcut">Fr</string>
+
+    <!-- time -->
     <string name="from_1">08:30</string>
     <string name="to_1">09:15</string>
     <string name="from_2">09:15</string>
