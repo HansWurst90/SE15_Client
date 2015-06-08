@@ -313,7 +313,7 @@
                 <TableRow
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:background="@color/red">
+                    android:background="@color/Red">
 
                     <TextView
                         android:text="@string/monday_shortcut"
@@ -359,7 +359,7 @@
                 <TableRow
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:background="@color/red">
+                    android:background="@color/Red">
 
                     <TextView
                         android:text="@string/monday_shortcut"
