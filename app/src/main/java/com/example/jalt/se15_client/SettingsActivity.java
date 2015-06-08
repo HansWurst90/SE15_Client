@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by Jan on 07.05.15.
+ *
+ * @author Mußenbrock
  */
+
 public class SettingsActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {

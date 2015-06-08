@@ -2,8 +2,8 @@ package com.example.jalt.se15_client;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,8 +11,17 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import common.ILesson;
+import common.IStudeasyScheduleService;
+
+/**
+ *
+ * @author Mußenbrock
+ */
 
 public class MainActivity extends ActionBarActivity {
 
@@ -22,10 +31,19 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-        //Es muss ein Datum empfamgbar sein. Wenn dieses NULL ist wird das aktuelle Datum verwendet
+        // Es muss ein Datum empfangbar sein. Wenn dieses NULL ist wird das aktuelle Datum verwendet
         Date today = new Date();
+
+
         // Abfrage: Welche Fächer gibt es am heutigen Tag?
-        //Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
+        // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
+
+        //List<ILesson> lessionList = new ArrayList<ILesson>();
+        // lessionList = IStudeasyScheduleService.getLessonsByDate(1, today);
+
+
+
+
 
 
         // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
