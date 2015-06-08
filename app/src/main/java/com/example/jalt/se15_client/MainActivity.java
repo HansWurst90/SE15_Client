@@ -20,6 +20,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //Es muss ein Datum empfamgbar sein. Wenn dieses NULL ist wird das aktuelle Datum verwendet
         Date today = new Date();
         // Abfrage: Welche Fächer gibt es am heutigen Tag?
         //Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
