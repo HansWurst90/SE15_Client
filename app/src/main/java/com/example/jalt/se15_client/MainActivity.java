@@ -1,6 +1,7 @@
 package com.example.jalt.se15_client;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,9 +29,11 @@ public class MainActivity extends ActionBarActivity {
 
 
         // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
-        DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
-        final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
-        textViewToChange.setText(dfmt.format(today).toString());
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
+            final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
+            textViewToChange.setText(dfmt.format(today).toString());
+        }
     }
 
 
