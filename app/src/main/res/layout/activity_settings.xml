@@ -32,6 +32,11 @@
                 android:gravity="center" />
         </TableRow>
         <TableRow>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="7dp" />
+        </TableRow>
+        <TableRow>
 
             <EditText
                 android:background="@drawable/roundcorners"

@@ -130,14 +130,20 @@
             android:paddingLeft="@dimen/padding_left"
             android:paddingTop="@dimen/padding_top"
             android:paddingBottom="@dimen/padding_bottom"
-            android:paddingRight="80dp"/>
+            android:paddingRight="80dp"
+            android:layout_gravity="center"/>
         <CheckBox
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/checkbox"
             android:button="@null"
+            android:id="@+id/homework_checkbutton"
+            android:onClick="homeworkToast"
             />
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -146,7 +152,9 @@
             android:layout_width="wrap_content"
             android:text="@string/homework_value"
             android:textSize="@dimen/textview_size"
-            android:padding="15dp"
+            android:paddingLeft="@dimen/padding_left"
+            android:paddingRight="@dimen/padding_right"
+            android:paddingTop="@dimen/padding_top"
             />
     </ScrollView>
 
