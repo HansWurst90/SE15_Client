@@ -1,4 +1,4 @@
-package common;
+package studeasy.common;
 
 public class NoSessionException extends StudeasyException {
 
