@@ -1,5 +1,7 @@
 package com.example.jalt.se15_client;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,9 +59,8 @@ public class SubjectActivity extends ActionBarActivity {
         int thisLessonHour = thisLesson.getLessonHour();
         // thisLesson.getHomeworks();
 
-        // Testcases für 2 Testfächer
-        int subjectId = 2;
 
+        int subjectId = 2;
 
         // Abhängig der FachId wird eine Farbe gewählt
         int thisLessonColor;
@@ -163,67 +164,29 @@ public class SubjectActivity extends ActionBarActivity {
     }
 
 
-
         public void homeworkToast(View view) {
         final CheckBox homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
         boolean checked = homeworkButton.isChecked();
         if (checked) {
-           Toast.makeText(this, R.string.homeworkDone, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.homeworkDone, Toast.LENGTH_SHORT).show();
         }
         else {
-           Toast.makeText(this, R.string.homeworkUndone, Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    /*@Override
-    public void onPause()
-    {
-
-        super.onPause();
-        save(itemChecked);
-    }
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        checkOld = load();
-
-        for (int i = 0 ; i < checkOld.length; i++)
-        {
-            notes.ctv.get(i).setChecked(checkOld[i]);
-        }
-    }
-    @Override
-    public void onRestart()
-    {
-        super.onResume();
-        checkOld = load();
-
-        for (int i = 0 ; i < checkOld.length; i++)
-        {
-            notes.ctv.get(i).setChecked(checkOld[i]);
+            Toast.makeText(this, R.string.homeworkUndone, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void save(final boolean[] isChecked) {
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        insertState();
-        for (Integer i = 0; i < isChecked.length; i++) {
-            editor.putBoolean(i.toString(), isChecked[i]);
-        }
-    }
     @Override
     public void onPause() {
+        final CheckBox homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
         super.onPause();
-        save(mCheckBox.isChecked());
+        save(homeworkButton.isChecked());
     }
 
     @Override
     public void onResume() {
+        final CheckBox homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
         super.onResume();
-        mCheckBox.setChecked(load());
+        homeworkButton.setChecked(load());
     }
 
     private void save(final boolean isChecked) {
@@ -237,6 +200,6 @@ public class SubjectActivity extends ActionBarActivity {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean("check", false);
     }
-*/
+
 
 }
