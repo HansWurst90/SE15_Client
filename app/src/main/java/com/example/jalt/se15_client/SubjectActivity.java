@@ -1,21 +1,16 @@
 package com.example.jalt.se15_client;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.TwoStatePreference;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-import common.ILesson;
-import common.ISubject;
-import common.ITeacher;
+
+import java.util.Date;
+
+import studeasy.entities.Lesson;
 
 /**
  *
@@ -37,7 +32,6 @@ public class SubjectActivity extends ActionBarActivity {
 
         // Intent whichSubjectId = getIntent();
         // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
-        // ILesson thisLesson = findLessonById(subjectId);
         // String thisLessonDescription = thisLesson.getSubject().getDescription();
         // String thisLessonTeacher = thisLesson.getTeacher().getName();
         // int thisLessonHour = thisLesson.getLessonHour();
