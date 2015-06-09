@@ -54,7 +54,27 @@
         <View
             android:layout_height="@dimen/bar_size"
             android:background="@color/black"/>
+        <TableRow>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/room_label"
+                android:textSize="@dimen/textview_size"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingTop="@dimen/padding_top"
+                android:paddingBottom="@dimen/padding_bottom"
+                android:paddingRight="@dimen/padding_right"/>
 
+            <TextView
+                android:text="@string/room_value"
+                android:textSize="@dimen/textview_size"
+                android:paddingLeft="20dp"
+                android:layout_weight="1"
+                android:maxLines="1"/>
+        </TableRow>
+        <View
+            android:layout_height="@dimen/bar_size"
+            android:background="@color/black"/>
         <TableRow>
             <TextView
                 android:text="@string/from_label"
@@ -93,35 +113,6 @@
             android:background="@color/black"/>
 
     </TableLayout>
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/event_label"
-                android:textSize="@dimen/textview_size"
-                android:paddingLeft="@dimen/padding_left"
-                android:paddingTop="@dimen/padding_top"
-                android:paddingBottom="@dimen/padding_bottom"
-                android:paddingRight="@dimen/padding_right"/>
-
-            <TextView
-                android:text="@string/event_value"
-                android:textSize="@dimen/textview_size"
-                android:paddingLeft="20dp"
-                android:layout_weight="1"
-                android:maxLines="1"/>
-        </TableRow>
-    </TableLayout>
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/bar_size"
-        android:background="@color/black"/>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

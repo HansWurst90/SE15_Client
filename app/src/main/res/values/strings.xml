@@ -14,8 +14,8 @@
     <string name="from_value">##:##</string>
     <string name="to_label">Bis:</string>
     <string name="to_value">##:##</string>
-    <string name="event_label">Veranstaltung:</string>
-    <string name="event_value">#/##</string>
+    <string name="room_label">Raum:</string>
+    <string name="room_value">####</string>
     <string name="homework_label">Hausaufgaben:</string>
     <string name="homeworkDone">Sehr gut</string>
     <string name="homeworkUndone">Schade</string>

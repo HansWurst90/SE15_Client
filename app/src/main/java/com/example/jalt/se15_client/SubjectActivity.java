@@ -44,7 +44,7 @@ public class SubjectActivity extends ActionBarActivity {
         // thisLesson.getHomeworks();
 
         // Testcases für 2 Testfächer
-        int subjectId = 2;
+        int subjectId = 1;
         switch (subjectId) {
             case 1:
                 thisLessonDescription = "Hauswirtschaft";
