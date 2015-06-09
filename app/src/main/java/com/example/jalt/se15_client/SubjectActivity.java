@@ -1,21 +1,21 @@
 package com.example.jalt.se15_client;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.TwoStatePreference;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-import common.ILesson;
-import common.ISubject;
-import common.ITeacher;
+
+import java.util.Date;
+
+import studeasy.common.ILesson;
+import studeasy.entities.Course;
+import studeasy.entities.Lesson;
+import studeasy.entities.Room;
+import studeasy.entities.Subject;
+import studeasy.entities.Teacher;
 
 /**
  *
@@ -29,36 +29,40 @@ public class SubjectActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
-
-        String thisLessonDescription = null;
-        String thisLessonTeacher = null;
-        int thisLessonHour = 0;
-        int thisLessonColor = R.color.white;
-
         // Intent whichSubjectId = getIntent();
         // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
-        // ILesson thisLesson = findLessonById(subjectId);
-        // String thisLessonDescription = thisLesson.getSubject().getDescription();
-        // String thisLessonTeacher = thisLesson.getTeacher().getName();
-        // int thisLessonHour = thisLesson.getLessonHour();
+
+
+        ILesson thisLesson = new Lesson();
+        // Date für diese Ansicht nicht wichtig
+        thisLesson.setDate(new Date());
+            Subject subject = new Subject();
+            subject.setDescription("English");
+            subject.setSubjectID(2);
+        thisLesson.setSubject(subject);
+            Teacher teacher = new Teacher();
+            teacher.setName("Mußenbrock");
+            teacher.setGender('m');
+        thisLesson.setTeacher(teacher);
+        thisLesson.setLessonHour(1);
+            Room room = new Room();
+            room.setRoomID("D422");
+        thisLesson.setRoom(new Room());
+        // Date für diese Ansicht nicht wichtig
+        thisLesson.setCourse(new Course());
+
+        String thisLessonDescription = thisLesson.getSubject().getDescription();
+        String thisLessonTeacherName = thisLesson.getTeacher().getName();
+        char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
+        int thisLessonHour = thisLesson.getLessonHour();
         // thisLesson.getHomeworks();
 
         // Testcases für 2 Testfächer
         int subjectId = 2;
-        switch (subjectId) {
-            case 1:
-                thisLessonDescription = "Hauswirtschaft";
-                thisLessonTeacher = "Hans Wurst";
-                thisLessonHour = 1;
-                break;
-            case 2:
-                thisLessonDescription = "Maschinenbau";
-                thisLessonTeacher = "Hans Druckluft";
-                thisLessonHour = 2;
-                break;
-        }
+
 
         // Abhängig der FachId wird eine Farbe gewählt
+        int thisLessonColor;
         switch (subjectId) {
             default:
                 thisLessonColor = R.color.white;
@@ -93,6 +97,21 @@ public class SubjectActivity extends ActionBarActivity {
             // 10. Farbe festlegen
             case 10:
                 thisLessonColor = R.color.SuperLight_Blue;
+                break;
+        }
+
+        //Abhängig des Geschlechts wird die Anrede gesetzt
+
+        String thisLessonTeacherTitle = null;
+        switch (thisLessonTeacherGender) {
+            default:
+                thisLessonTeacherTitle = "Error";
+                break;
+            case 'm':
+                thisLessonTeacherTitle = "Herr";
+                break;
+            case 'w':
+                thisLessonTeacherTitle = "Frau";
                 break;
         }
 
@@ -136,12 +155,13 @@ public class SubjectActivity extends ActionBarActivity {
         final TextView descriptionTextView = (TextView) findViewById(R.id.description_value);
         descriptionTextView.setText(thisLessonDescription);
         final TextView teacherTextView = (TextView) findViewById(R.id.teacher_value);
-        teacherTextView.setText(thisLessonTeacher);
+        teacherTextView.setText(thisLessonTeacherTitle + " " + thisLessonTeacherName);
         final TextView fromTexView = (TextView) findViewById(R.id.from_value);
         fromTexView.setText(from);
         final TextView toTexView = (TextView) findViewById(R.id.to_value);
         toTexView.setText(to);
     }
+
 
 
         public void homeworkToast(View view) {

@@ -1,4 +1,4 @@
-package common;
+package studeasy.common;
 
 import java.io.Serializable;
 

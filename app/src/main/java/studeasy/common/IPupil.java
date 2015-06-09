@@ -1,4 +1,4 @@
-package common;
+package studeasy.common;
 
 public interface IPupil extends IPerson {
 	public ICourse getCourse();
