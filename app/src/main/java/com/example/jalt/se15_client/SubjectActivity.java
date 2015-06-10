@@ -57,64 +57,13 @@ public class SubjectActivity extends ActionBarActivity {
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
         char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
         int thisLessonHour = thisLesson.getLessonHour();
+        int thisLessonColor = ColorChooser.getColorFromId(thisLesson.getSubject().getSubjectID());
         // thisLesson.getHomeworks();
 
 
-        int subjectId = 2;
-
-        // Abhängig der FachId wird eine Farbe gewählt
-        int thisLessonColor;
-        switch (subjectId) {
-            default:
-                thisLessonColor = R.color.white;
-                break;
-            case 1:
-                thisLessonColor = R.color.Red;
-                break;
-            case 2:
-                thisLessonColor = R.color.Orange;
-                break;
-            case 3:
-                thisLessonColor = R.color.Purple;
-                break;
-            case 4:
-                thisLessonColor = R.color.Indigo;
-                break;
-            case 5:
-                thisLessonColor = R.color.Light_Blue;
-                break;
-            case 6:
-                thisLessonColor = R.color.Teal;
-                break;
-            case 7:
-                thisLessonColor = R.color.Light_Green;
-                break;
-            case 8:
-                thisLessonColor = R.color.Yellow;
-                break;
-            case 9:
-                thisLessonColor = R.color.SuperLight_Blue;
-                break;
-            // 10. Farbe festlegen
-            case 10:
-                thisLessonColor = R.color.SuperLight_Blue;
-                break;
-        }
 
         //Abhängig des Geschlechts wird die Anrede gesetzt
-
-        String thisLessonTeacherTitle = null;
-        switch (thisLessonTeacherGender) {
-            default:
-                thisLessonTeacherTitle = "Error";
-                break;
-            case 'm':
-                thisLessonTeacherTitle = "Herr";
-                break;
-            case 'w':
-                thisLessonTeacherTitle = "Frau";
-                break;
-        }
+        String thisLessonTeacherTitle = GenderChooser.getTitleByGender(thisLessonTeacherGender);
 
         //Abhängig der Stunde werdne die Star- und Endzeiten gewählt
         String from = null;
