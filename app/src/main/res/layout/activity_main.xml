@@ -65,7 +65,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:onClick="onSubjectClick"
-                android:id="@+id/dayclass1">
+                android:id="@+id/dayclass1"
+                android:background="@color/Shade">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -134,7 +135,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:onClick="onSubjectClick"
-                android:id="@+id/dayclass2">
+                android:id="@+id/dayclass2"
+                android:background="@color/Shade">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -214,7 +216,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:onClick="onSubjectClick"
-                android:id="@+id/dayclass3">
+                android:id="@+id/dayclass3"
+                android:background="@color/Shade">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -281,7 +284,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:onClick="onSubjectClick"
-                android:id="@+id/dayclass4">
+                android:id="@+id/dayclass4"
+                android:background="@color/Shade">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -359,7 +363,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:onClick="onSubjectClick"
-                android:id="@+id/dayclass5">
+                android:id="@+id/dayclass5"
+                android:background="@color/Shade">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -425,7 +430,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:onClick="onSubjectClick"
-                android:id="@+id/dayclass6">
+                android:id="@+id/dayclass6"
+                android:background="@color/Shade">
 
                 <TableRow
                     android:layout_width="match_parent"

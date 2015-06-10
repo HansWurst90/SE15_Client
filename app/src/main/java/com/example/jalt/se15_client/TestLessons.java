@@ -61,7 +61,7 @@ public class TestLessons {
             teacher2.setName("Prischep");
             teacher2.setGender('m');
         lesson2.setTeacher(teacher2);
-        lesson2.setLessonHour(2);
+        lesson2.setLessonHour(3);
             Room room2 = new Room();
             room2.setRoomID("A004");
         lesson2.setRoom(room2);
@@ -73,14 +73,14 @@ public class TestLessons {
         //Lesson 3
         lesson3.setDate(new Date());
             Subject subject3 = new Subject();
-            subject3.setDescription("Mathematik");
+            subject3.setDescription("Mathe");
             subject3.setSubjectID(3);
         lesson3.setSubject(subject3);
             Teacher teacher3 = new Teacher();
             teacher3.setName("Erfkämper");
             teacher3.setGender('m');
         lesson3.setTeacher(teacher3);
-        lesson3.setLessonHour(3);
+        lesson3.setLessonHour(2);
             Room room3 = new Room();
             room3.setRoomID("D422");
         lesson3.setRoom(room3);
@@ -130,7 +130,7 @@ public class TestLessons {
         //Lesson 6
         lesson6.setDate(new Date());
             Subject subject6 = new Subject();
-            subject6.setDescription("Informatik");
+            subject6.setDescription("Info");
             subject6.setSubjectID(6);
         lesson6.setSubject(subject6);
             Teacher teacher6 = new Teacher();
