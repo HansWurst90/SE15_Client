@@ -63,19 +63,7 @@ public class SubjectActivity extends ActionBarActivity {
 
 
         //Abhängig des Geschlechts wird die Anrede gesetzt
-
-        String thisLessonTeacherTitle = null;
-        switch (thisLessonTeacherGender) {
-            default:
-                thisLessonTeacherTitle = "Error";
-                break;
-            case 'm':
-                thisLessonTeacherTitle = "Herr";
-                break;
-            case 'w':
-                thisLessonTeacherTitle = "Frau";
-                break;
-        }
+        String thisLessonTeacherTitle = GenderChooser.getTitleByGender(thisLessonTeacherGender);
 
         //Abhängig der Stunde werdne die Star- und Endzeiten gewählt
         String from = null;
