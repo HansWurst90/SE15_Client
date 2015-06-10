@@ -15,7 +15,7 @@
     <string name="to_label">Bis:</string>
     <string name="to_value">##:##</string>
     <string name="room_label">Raum:</string>
-    <string name="room_value">####</string>
+    <string name="room_value">Raum ####</string>
     <string name="homework_label">Hausaufgaben:</string>
     <string name="homeworkDone">Sehr gut</string>
     <string name="homeworkUndone">Schade</string>
@@ -72,11 +72,6 @@
     <string name="to_6">13:00</string>
 
     <!-- subjects -->
-    <string name="subject_1">Englisch</string>
-    <string name="subject_2">Mathe</string>
-    <string name="subject_3">Deutsch</string>
-    <string name="subject_4">Informatik</string>
-    <string name="subject_5">Physik</string>
-    <string name="subject_6">Sport</string>
+
 
 </resources>
