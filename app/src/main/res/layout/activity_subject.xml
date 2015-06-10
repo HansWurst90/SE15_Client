@@ -70,7 +70,8 @@
                 android:textSize="@dimen/textview_size"
                 android:paddingLeft="20dp"
                 android:layout_weight="1"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:id="@+id/room_value" />
         </TableRow>
         <View
             android:layout_height="@dimen/bar_size"
@@ -150,6 +151,7 @@
             android:paddingLeft="@dimen/padding_left"
             android:paddingRight="@dimen/padding_right"
             android:paddingTop="@dimen/padding_top"
+            android:id="@+id/homework_value"
             />
     </ScrollView>
 

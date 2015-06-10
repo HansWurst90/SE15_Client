@@ -19,10 +19,12 @@ public interface ILesson extends Serializable {
 	public void setSubject(ISubject subject);
 	public IRoom getRoom();
 	public void setRoom(IRoom room);
-	public ArrayList<IHomework> getHomeworks();
-	public void setHomeworks(ArrayList<IHomework> homework);
+	public IHomework getHomework();
+	public void setHomework(IHomework homework);
 	public ICourse getCourse();
 	public void setCourse(ICourse course);
-	public void addHomework(String description);
-	public boolean removeHomework(int homeworkID);
+
 }
+	/** public boolean removeHomework(int homeworkID);
+	 * public void addHomework(String description); */
+
