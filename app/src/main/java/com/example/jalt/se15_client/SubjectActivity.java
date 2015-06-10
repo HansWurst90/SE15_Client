@@ -14,6 +14,7 @@ import java.util.Date;
 
 import studeasy.common.ILesson;
 import studeasy.entities.Course;
+import studeasy.entities.Homework;
 import studeasy.entities.Lesson;
 import studeasy.entities.Room;
 import studeasy.entities.Subject;
@@ -49,15 +50,19 @@ public class SubjectActivity extends ActionBarActivity {
         thisLesson.setLessonHour(1);
             Room room = new Room();
             room.setRoomID("D422");
-        thisLesson.setRoom(new Room());
+        thisLesson.setRoom(room);
         // Date für diese Ansicht nicht wichtig
         thisLesson.setCourse(new Course());
+            Homework homework = new Homework();
+            homework.setDescription("Test Hausaufgaben");
+        thisLesson.setHomework(homework);
 
         String thisLessonDescription = thisLesson.getSubject().getDescription();
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
         char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
         int thisLessonHour = thisLesson.getLessonHour();
-        // thisLesson.getHomeworks();
+        String thisLessonRoom = thisLesson.getRoom().getRoomID();
+        String thisLessonHomework = thisLesson.getHomework().getDescription();
 
 
         int subjectId = 2;
@@ -149,6 +154,8 @@ public class SubjectActivity extends ActionBarActivity {
                 to = "13:30";
                 break;
         }
+
+
         final TableRow headerRow1 = (TableRow) findViewById(R.id.headerRow1);
         final TableRow headerRow2 = (TableRow) findViewById(R.id.headerRow2);
         headerRow1.setBackgroundResource(thisLessonColor);
@@ -161,6 +168,10 @@ public class SubjectActivity extends ActionBarActivity {
         fromTexView.setText(from);
         final TextView toTexView = (TextView) findViewById(R.id.to_value);
         toTexView.setText(to);
+        final TextView roomTextView = (TextView) findViewById(R.id.room_value);
+        roomTextView.setText(thisLessonRoom);
+        final TextView homeworkTextView = (TextView) findViewById(R.id.homework_value);
+        homeworkTextView.setText(thisLessonHomework);
     }
 
 
