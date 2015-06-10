@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import studeasy.common.ILesson;
 import studeasy.entities.Course;
@@ -23,7 +25,7 @@ public class TestLessons {
     private Lesson lesson5 = new Lesson();
     private Lesson lesson6 = new Lesson();
 
-    private Lesson[] lessons = new Lesson[5];
+    private List<Lesson> lessons = new ArrayList<Lesson>();
 
     public TestLessons()
     {
@@ -150,11 +152,12 @@ public class TestLessons {
 
     private void fill()
     {
-        lessons[0]=lesson1;
-        lessons[1]=lesson2;
-        lessons[2]=lesson3;
-        lessons[3]=lesson4;
-        lessons[4]=lesson5;
-        lessons[5]=lesson6;
+        lessons.add(lesson1);
+        lessons.add(lesson2);
+        lessons.add(lesson3);
+        lessons.add(lesson4);
+        lessons.add(lesson5);
+        lessons.add(lesson6);
+
     }
 }
