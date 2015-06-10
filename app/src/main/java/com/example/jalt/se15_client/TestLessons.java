@@ -1,3 +1,5 @@
+package com.example.jalt.se15_client;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
