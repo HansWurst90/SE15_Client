@@ -6,6 +6,7 @@
 
     <!--subject_activity -->
     <string name="title_activity_subject">Fachansicht</string>
+    <string name="free_lesson_value">Freistunde</string>
     <string name="subject_value">Fachplatzhalter</string>
     <string name="subject_label">Fach:</string>
     <string name="teacher_label">Lehrer:</string>

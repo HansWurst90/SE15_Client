@@ -7,11 +7,22 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import studeasy.common.ILesson;
+import studeasy.entities.Course;
+import studeasy.entities.Lesson;
+import studeasy.entities.Room;
+import studeasy.entities.Subject;
+import studeasy.entities.Teacher;
 
 /**
  *
@@ -25,16 +36,48 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // Es muss ein Datum empfangbar sein. Wenn dieses NULL ist wird das aktuelle Datum verwendet
         Date today = new Date();
 
 
         // Abfrage: Welche Fächer gibt es am heutigen Tag?
         // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
-
         //List<ILesson> lessionList = new ArrayList<ILesson>();
-        // lessionList = IStudeasyScheduleService.getLessonsByDate(1, today);
+        // lessonList = IStudeasyScheduleService.getLessonsByDate(1, today);
+
+                            Lesson thisLesson = new Lesson();
+                            // Date für diese Ansicht nicht wichtig
+                            thisLesson.setDate(new Date());
+                            Subject subject = new Subject();
+                            subject.setDescription("English");
+                            subject.setSubjectID(2);
+                            thisLesson.setSubject(subject);
+                            Teacher teacher = new Teacher();
+                            teacher.setName("Mußenbrock");
+                            teacher.setGender('m');
+                            thisLesson.setTeacher(teacher);
+                            thisLesson.setLessonHour(1);
+                            Room room = new Room();
+                            room.setRoomID("D422");
+                            thisLesson.setRoom(new Room());
+                            // Date für diese Ansicht nicht wichtig
+                            thisLesson.setCourse(new Course());
+
+
+                            List<Lesson> lessionList = new ArrayList<Lesson>();
+                            lessionList.add(thisLesson);
+
+        final TableLayout color1 = (TableLayout) findViewById(R.id.dayclass1);
+        final TextView teacher1 = (TextView) findViewById(R.id.dayclass1teacher);
+        final TextView subject1 = (TextView) findViewById(R.id.dayclass1subject);
+        final TextView room1 = (TextView) findViewById(R.id.dayclass1room);
+
+        for (Lesson lesson: lessionList)
+                if (lesson.getLessonHour() == 1)
+                {
+                    color1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    subject1.setText(lesson.getSubject().getDescription());
+                }
 
 
 
