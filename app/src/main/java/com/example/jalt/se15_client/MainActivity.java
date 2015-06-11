@@ -1,8 +1,10 @@
 package com.example.jalt.se15_client;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,6 +38,10 @@ public class MainActivity extends ActionBarActivity {
         // Es muss ein Datum empfangbar sein. Wenn dieses NULL ist wird das aktuelle Datum verwendet
         Date today = new Date();
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String savedUser = sharedPreferences.getString("USER", "");
+
+        Toast.makeText(this, savedUser, Toast.LENGTH_SHORT).show();
 
         // AB HIER NUR PORTRAIT LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
