@@ -4,27 +4,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import studeasy.common.ILesson;
-import studeasy.entities.Course;
-import studeasy.entities.Homework;
-import studeasy.entities.Lesson;
-import studeasy.entities.Room;
-import studeasy.entities.Subject;
-import studeasy.entities.Teacher;
+import common.LessonTO;
+import common.TeacherTO;
 
 /**
  * Created by ErfiMac on 10.06.15.
  */
 public class TestLessons {
 
-    static List<Lesson> lessons = new ArrayList<Lesson>();
+    static List<LessonTO> lessons = new ArrayList<LessonTO>();
 
-    static List<Lesson> getLessons(){
+    static List<LessonTO> getLessons(){
     {
          Date date;
          String subject;
-         Teacher teacher;
-         Room room;
+         TeacherTO teacher;
+         RoomTO room;
          Lesson lesson1 = new Lesson();
          Lesson lesson2 = new Lesson();
          Lesson lesson3 = new Lesson();

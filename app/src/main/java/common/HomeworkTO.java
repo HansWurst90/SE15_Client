@@ -1,22 +1,25 @@
-package studeasy.entities;
+package common;
 
 import java.io.Serializable;
 
+/**
+ * Homework-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
 
+public class HomeworkTO implements Serializable {
 
-import studeasy.common.*;
+	
 
-
-public class Homework implements Serializable, IHomework {
-
-	private static final long serialVersionUID = 9153525651671974891L;
-
+	private static final long serialVersionUID = -2470062635073768944L;
+	
 	private int homeworkID;
 	private String description;
-
-	private ILesson lesson;
 	
-	public Homework() {}
+	
+	private LessonTO lesson;
+	
 	
 	public int getHomeworkID() {
 		return homeworkID;
@@ -30,10 +33,10 @@ public class Homework implements Serializable, IHomework {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public ILesson getLesson() {
+	public LessonTO getLesson() {
 		return lesson;
 	}
-	public void setLesson(ILesson lesson) {
+	public void setLesson(LessonTO lesson) {
 		this.lesson = lesson;
 	}
 }
