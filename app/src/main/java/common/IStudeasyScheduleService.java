@@ -2,7 +2,7 @@ package common;
 
 import java.util.Date;
 
-import de.studeasy.systeminterfaces.InvalidLoginException;
+// import de.studeasy.systeminterfaces.InvalidLoginException;
 
 
 
@@ -21,8 +21,8 @@ public interface IStudeasyScheduleService {
 	 * Operation zum Einloggen mit Username und Password.
 	 * @param personID
 	 * @param password
-	 * @return boolean successful 
-	 * @throws InvalidLoginException 
+	 * @return boolean successful
+	 * @throws InvalidLoginException
 	 */
 	public UserLoginResponse login(int personID, String password) ;
 	

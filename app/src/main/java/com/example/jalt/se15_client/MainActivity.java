@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -32,12 +34,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Es muss ein Datum empfangbar sein. Wenn dieses NULL ist wird das aktuelle Datum verwendet
-        Date today = new Date();
-
-
         // AB HIER NUR PORTRAIT LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+            Calendar dateTo = Calendar.getInstance();
 
             // Abfrage: Welche Fächer gibt es am heutigen Tag?
             // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
             // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
             DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
             final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
-            textViewToChange.setText(dfmt.format(today).toString());
+            textViewToChange.setText(dfmt.format(dateTo.getTime()g).toString());
 
             final TableLayout color1 = (TableLayout) findViewById(R.id.dayclass1);
             final TextView teacher1 = (TextView) findViewById(R.id.dayclass1teacher);
@@ -113,8 +113,27 @@ public class MainActivity extends ActionBarActivity {
         // AB HIER NUR LANDSCAPE LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
+            Calendar dateTo = Calendar.getInstance();
+
+            Calendar dateMo = Calendar.getInstance();
+            dateMo.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            Calendar dateTu = Calendar.getInstance();
+            dateTu.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+            Calendar dateWe = Calendar.getInstance();
+            dateWe.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+            Calendar dateTh = Calendar.getInstance();
+            dateTh.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+            Calendar dateFr = Calendar.getInstance();
+            dateFr.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+
+            List<LessonTO> lessonListMo = TestLessons.getLessons();
+            List<LessonTO> lessonListTu = TestLessons.getLessons();
+            List<LessonTO> lessonListWe = TestLessons.getLessons();
+            List<LessonTO> lessonListTh = TestLessons.getLessons();
+            List<LessonTO> lessonListFr = TestLessons.getLessons();
+
             //Montag
-            List<LessonTO> lessonList = TestLessons.getLessons();
+            final TextView mo0 = (TextView) findViewById(R.id.mo0);
             final TextView mo1 = (TextView) findViewById(R.id.mo1);
             final TextView mo2 = (TextView) findViewById(R.id.mo2);
             final TextView mo3 = (TextView) findViewById(R.id.mo3);
@@ -122,7 +141,11 @@ public class MainActivity extends ActionBarActivity {
             final TextView mo5 = (TextView) findViewById(R.id.mo5);
             final TextView mo6 = (TextView) findViewById(R.id.mo6);
 
-            for (LessonTO lesson : lessonList) {
+            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
+                mo0.setBackgroundResource(R.color.Light_Blue);
+            }
+
+            for (LessonTO lesson : lessonListMo) {
                 if (lesson.getLessonHour() == 1) {
                     mo1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     mo1.setText(lesson.getSubject().getDescription());
@@ -145,6 +168,8 @@ public class MainActivity extends ActionBarActivity {
             }
 
             //Dienstag
+
+            final TextView tu0 = (TextView) findViewById(R.id.tu0);
             final TextView tu1 = (TextView) findViewById(R.id.tu1);
             final TextView tu2 = (TextView) findViewById(R.id.tu2);
             final TextView tu3 = (TextView) findViewById(R.id.tu3);
@@ -152,7 +177,11 @@ public class MainActivity extends ActionBarActivity {
             final TextView tu5 = (TextView) findViewById(R.id.tu5);
             final TextView tu6 = (TextView) findViewById(R.id.tu6);
 
-            for (LessonTO lesson : lessonList) {
+            if (dateTu.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
+                tu0.setBackgroundResource(R.color.Light_Blue);
+            }
+
+            for (LessonTO lesson : lessonListTu) {
                 if (lesson.getLessonHour() == 1) {
                     tu1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     tu1.setText(lesson.getSubject().getDescription());
@@ -175,20 +204,77 @@ public class MainActivity extends ActionBarActivity {
             }
             
             //Mittwoch
+            final TextView we0 = (TextView) findViewById(R.id.we0);
             final TextView we1 = (TextView) findViewById(R.id.we1);
             final TextView we2 = (TextView) findViewById(R.id.we2);
             final TextView we3 = (TextView) findViewById(R.id.we3);
             final TextView we4 = (TextView) findViewById(R.id.we4);
             final TextView we5 = (TextView) findViewById(R.id.we5);
             final TextView we6 = (TextView) findViewById(R.id.we6);
+
+            if (dateWe.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
+                we0.setBackgroundResource(R.color.Light_Blue);
+            }
+
+            for (LessonTO lesson : lessonListWe) {
+                if (lesson.getLessonHour() == 1) {
+                    we1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    we1.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 2) {
+                    we2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    we2.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 3) {
+                    we3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    we3.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 4) {
+                    we4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    we4.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 5) {
+                    we5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    we5.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 6) {
+                    we6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    we6.setText(lesson.getSubject().getDescription());
+                }
+            }
+
             //Donnerstag
+            final TextView th0 = (TextView) findViewById(R.id.th0);
             final TextView th1 = (TextView) findViewById(R.id.th1);
             final TextView th2 = (TextView) findViewById(R.id.th2);
             final TextView th3 = (TextView) findViewById(R.id.th3);
             final TextView th4 = (TextView) findViewById(R.id.th4);
             final TextView th5 = (TextView) findViewById(R.id.th5);
             final TextView th6 = (TextView) findViewById(R.id.th6);
+
+            if (dateTh.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
+                th0.setBackgroundResource(R.color.Light_Blue);
+            }
+
+            for (LessonTO lesson : lessonListTh) {
+                if (lesson.getLessonHour() == 1) {
+                    th1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    th1.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 2) {
+                    th2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    th2.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 3) {
+                    th3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    th3.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 4) {
+                    th4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    th4.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 5) {
+                    th5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    th5.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 6) {
+                    th6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    th6.setText(lesson.getSubject().getDescription());
+                }
+            }
+
             //Freitag
+            final TextView fr0 = (TextView) findViewById(R.id.fr0);
             final TextView fr1 = (TextView) findViewById(R.id.fr1);
             final TextView fr2 = (TextView) findViewById(R.id.fr2);
             final TextView fr3 = (TextView) findViewById(R.id.fr3);
@@ -196,10 +282,31 @@ public class MainActivity extends ActionBarActivity {
             final TextView fr5 = (TextView) findViewById(R.id.fr5);
             final TextView fr6 = (TextView) findViewById(R.id.fr6);
 
+            if (dateFr.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
+                fr0.setBackgroundResource(R.color.Light_Blue);
+            }
 
-
-
-
+            for (LessonTO lesson : lessonListFr) {
+                if (lesson.getLessonHour() == 1) {
+                    fr1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    fr1.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 2) {
+                    fr2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    fr2.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 3) {
+                    fr3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    fr3.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 4) {
+                    fr4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    fr4.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 5) {
+                    fr5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    fr5.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 6) {
+                    fr6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    fr6.setText(lesson.getSubject().getDescription());
+                }
+            }
 
         }
     }
@@ -245,5 +352,9 @@ public class MainActivity extends ActionBarActivity {
         getSubjectIntent.putExtra("SubjectName", SubjectName);
 
         startActivity(getSubjectIntent);
+    }
+    public void onNextClick(View view){
+        Intent getNextIntent = new Intent(this, MainActivity.class);
+
     }
 }
