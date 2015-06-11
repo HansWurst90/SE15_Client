@@ -41,32 +41,23 @@ public class MainActivity extends ActionBarActivity {
 
         dateTo = Calendar.getInstance();
 
-        Intent dateIntent = getIntent();
-        if (dateIntent.getExtras() != null)
+        Intent intent = getIntent();
+        if (intent.getExtras() != null)
         {
-            if (dateIntent.getExtras().getString("origin").equals("main_portrait"))
+            if (intent.getExtras().getString("origin").equals("main_portrait"))
             {
                 Calendar date = Calendar.getInstance();
-                dateInMillis = dateIntent.getExtras().getLong("dateInMillis");
+                dateInMillis = intent.getExtras().getLong("dateInMillis");
                 date.setTimeInMillis(dateInMillis);
                 date.add(Calendar.DATE, 1);
                 dateTo = date;
             }
-            if (dateIntent.getExtras().getString("origin").equals("settings"))
+            if(intent.getExtras().getString("origin").equals("settings"))
             {
-                //Lukas Toast
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String savedUser = sharedPreferences.getString("USER", "");
+                Toast.makeText(this, R.string.welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
             }
-        }
-
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String savedUser = sharedPreferences.getString("USER", "");
-
-
-        Intent settingsIntent = getIntent();
-        if(settingsIntent.getExtras().getString("origin").equals("settings"))
-        {
-            Toast.makeText(this, R.string.welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
         }
 
 
