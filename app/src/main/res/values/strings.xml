@@ -39,7 +39,7 @@
 
 
     <!--Logging -->
-    <string name="username">Benutzername</string>
+    <string name="username">Benutzerkennung</string>
     <string name="password">Passwort</string>
     <string name="submit">Einloggen</string>
     <string name="welcome">Willkommen</string>

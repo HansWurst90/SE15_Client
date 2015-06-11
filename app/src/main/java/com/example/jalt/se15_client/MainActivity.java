@@ -41,7 +41,13 @@ public class MainActivity extends ActionBarActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String savedUser = sharedPreferences.getString("USER", "");
 
-        Toast.makeText(this, savedUser, Toast.LENGTH_SHORT).show();
+
+        Intent settingsIntent = getIntent();
+        if(settingsIntent.getExtras().getString("origin").equals("settings"))
+        {
+            Toast.makeText(this, R.string.welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+        }
+
 
         // AB HIER NUR PORTRAIT LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {

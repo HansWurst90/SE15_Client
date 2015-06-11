@@ -57,7 +57,7 @@ public class SettingsActivity extends Activity{
         int MainId = view.getId();
         String SubjectName = getResources().getResourceEntryName(MainId);
 
-        //getMainIntent.putExtra("SubjectName", SubjectName);
+        getMainIntent.putExtra("origin", "settings");
 
         startActivity(getMainIntent);
     }
