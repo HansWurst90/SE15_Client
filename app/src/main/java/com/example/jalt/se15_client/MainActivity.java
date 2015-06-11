@@ -1,8 +1,10 @@
 package com.example.jalt.se15_client;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,6 +58,16 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String savedUser = sharedPreferences.getString("USER", "");
+
+
+        Intent settingsIntent = getIntent();
+        if(settingsIntent.getExtras().getString("origin").equals("settings"))
+        {
+            Toast.makeText(this, R.string.welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+        }
 
 
         // AB HIER NUR PORTRAIT LOGIK

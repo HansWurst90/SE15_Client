@@ -27,16 +27,20 @@ import common.TeacherTO;
 
 public class SubjectActivity extends ActionBarActivity {
 
+    CheckBox homeworkButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
+        homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
 
         // Intent whichSubjectId = getIntent();
         // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
 
         List<LessonTO> lessonList = TestLessons.getLessons();
         LessonTO thisLesson = lessonList.get(3);
+
         // Date für diese Ansicht nicht wichtig
 
         String thisLessonDescription = thisLesson.getSubject().getDescription();
@@ -107,8 +111,7 @@ public class SubjectActivity extends ActionBarActivity {
     }
 
 
-        public void homeworkToast(View view) {
-        final CheckBox homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
+    public void homeworkToast(View view) {
         boolean checked = homeworkButton.isChecked();
         if (checked) {
             Toast.makeText(this, R.string.homeworkDone, Toast.LENGTH_SHORT).show();
@@ -120,14 +123,12 @@ public class SubjectActivity extends ActionBarActivity {
 
     @Override
     public void onPause() {
-        final CheckBox homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
         super.onPause();
         save(homeworkButton.isChecked());
     }
 
     @Override
     public void onResume() {
-        final CheckBox homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
         super.onResume();
         homeworkButton.setChecked(load());
     }
