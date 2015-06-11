@@ -9,7 +9,7 @@
     <color name="yellow">#fffffd00</color>
     <color name="Shade">#dcffffff</color>
 
-    <!-- Material Farben Schulfächer -->
+    <!-- 10 Material Farben Schulfächer -->
     <color name="Red">#F44336</color>
     <color name="Purple">#9C27B0</color>
     <color name="Indigo">#3F51B5</color>
@@ -19,8 +19,9 @@
     <color name="Yellow">#FFEB3B</color>
     <color name="Orange">#FF9800</color>
     <color name="Brown">#795548</color>
+    <color name="Green">#4CAF50</color>
+    <!-- Design Farben -->
     <color name="Grey">#9E9E9E</color>
-    <!-- Design Farbe -->
     <color name="SuperLight_Blue">#E3F2FD</color>
 
 

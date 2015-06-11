@@ -38,9 +38,8 @@ public class ColorChooser {
         case 9:
             color = R.color.Brown;
             break;
-        // 10. Farbe festlegen
         case 10:
-            color = R.color.Grey;
+            color = R.color.Green;
             break;  }
         return color;
     }

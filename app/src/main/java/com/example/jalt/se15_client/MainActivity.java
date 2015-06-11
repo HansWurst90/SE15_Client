@@ -49,7 +49,6 @@ public class MainActivity extends ActionBarActivity {
                 Calendar date = Calendar.getInstance();
                 dateInMillis = intent.getExtras().getLong("dateInMillis");
                 date.setTimeInMillis(dateInMillis);
-                date.add(Calendar.DATE, 1);
                 dateTo = date;
             }
             if(intent.getExtras().getString("origin").equals("settings"))
@@ -380,10 +379,18 @@ public class MainActivity extends ActionBarActivity {
     }
     public void onNextClick(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
-
+        dateTo.add(Calendar.DATE, 1);
         getNextIntent.putExtra("dateInMillis", dateTo.getTimeInMillis());
         getNextIntent.putExtra("origin","main_portrait");
 
         startActivity(getNextIntent);
+    }
+    public void onPreviousClick(View view){
+        Intent getPreviousIntent = new Intent(this, MainActivity.class);
+        dateTo.add(Calendar.DATE, -1);
+        getPreviousIntent.putExtra("dateInMillis", dateTo.getTimeInMillis());
+        getPreviousIntent.putExtra("origin","main_portrait");
+
+        startActivity(getPreviousIntent);
     }
 }
