@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
+import java.util.List;
 
 import studeasy.common.ILesson;
 import studeasy.entities.Course;
@@ -35,27 +36,9 @@ public class SubjectActivity extends ActionBarActivity {
         // Intent whichSubjectId = getIntent();
         // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
 
-
-        ILesson thisLesson = new Lesson();
+        List<Lesson> lessonList = TestLessons.getLessons();
+        ILesson thisLesson = lessonList.get(3);
         // Date für diese Ansicht nicht wichtig
-        thisLesson.setDate(new Date());
-            Subject subject = new Subject();
-            subject.setDescription("English");
-            subject.setSubjectID(2);
-        thisLesson.setSubject(subject);
-            Teacher teacher = new Teacher();
-            teacher.setName("Mußenbrock");
-            teacher.setGender('m');
-        thisLesson.setTeacher(teacher);
-        thisLesson.setLessonHour(1);
-            Room room = new Room();
-            room.setRoomID("D422");
-        thisLesson.setRoom(room);
-        // Date für diese Ansicht nicht wichtig
-        thisLesson.setCourse(new Course());
-            Homework homework = new Homework();
-            homework.setDescription("Test Hausaufgaben");
-        thisLesson.setHomework(homework);
 
         String thisLessonDescription = thisLesson.getSubject().getDescription();
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
