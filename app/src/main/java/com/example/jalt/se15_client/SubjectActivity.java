@@ -12,13 +12,12 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-import studeasy.common.ILesson;
-import studeasy.entities.Course;
-import studeasy.entities.Homework;
-import studeasy.entities.Lesson;
-import studeasy.entities.Room;
-import studeasy.entities.Subject;
-import studeasy.entities.Teacher;
+import common.CourseTO;
+import common.HomeworkTO;
+import common.LessonTO;
+import common.RoomTO;
+import common.SubjectTO;
+import common.TeacherTO;
 
 /**
  *
@@ -36,33 +35,33 @@ public class SubjectActivity extends ActionBarActivity {
         // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
 
 
-        ILesson thisLesson = new Lesson();
+        LessonTO thisLesson = new LessonTO();
         // Date für diese Ansicht nicht wichtig
         thisLesson.setDate(new Date());
-            Subject subject = new Subject();
+            SubjectTO subject = new SubjectTO();
             subject.setDescription("English");
             subject.setSubjectID(2);
         thisLesson.setSubject(subject);
-            Teacher teacher = new Teacher();
+            TeacherTO teacher = new TeacherTO();
             teacher.setName("Mußenbrock");
             teacher.setGender('m');
         thisLesson.setTeacher(teacher);
         thisLesson.setLessonHour(1);
-            Room room = new Room();
+            RoomTO room = new RoomTO();
             room.setRoomID("D422");
         thisLesson.setRoom(room);
         // Date für diese Ansicht nicht wichtig
-        thisLesson.setCourse(new Course());
-            Homework homework = new Homework();
-            homework.setDescription("Test Hausaufgaben");
-        thisLesson.setHomework(homework);
+        thisLesson.setCourse(new CourseTO());
+            HomeworkTO homework = new HomeworkTO();
+            // homework.setDescription("Test Hausaufgaben");
+        // thisLesson.setHomework(homework);
 
         String thisLessonDescription = thisLesson.getSubject().getDescription();
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
         char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
         int thisLessonHour = thisLesson.getLessonHour();
         String thisLessonRoom = thisLesson.getRoom().getRoomID();
-        String thisLessonHomework = thisLesson.getHomework().getDescription();
+        // String thisLessonHomework = thisLesson.getHomework().getDescription();
         int thisLessonColor = ColorChooser.getColorFromId(thisLesson.getSubject().getSubjectID());
         // thisLesson.getHomeworks();
 
@@ -121,7 +120,7 @@ public class SubjectActivity extends ActionBarActivity {
         final TextView roomTextView = (TextView) findViewById(R.id.room_value);
         roomTextView.setText(thisLessonRoom);
         final TextView homeworkTextView = (TextView) findViewById(R.id.homework_value);
-        homeworkTextView.setText(thisLessonHomework);
+        // homeworkTextView.setText(thisLessonHomework);
     }
 
 

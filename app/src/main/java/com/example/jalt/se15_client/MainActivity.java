@@ -17,12 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import studeasy.common.ILesson;
-import studeasy.entities.Course;
-import studeasy.entities.Lesson;
-import studeasy.entities.Room;
-import studeasy.entities.Subject;
-import studeasy.entities.Teacher;
+import common.LessonTO;
+
 
 /**
  *
@@ -47,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
             // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
             //List<ILesson> lessionList = new ArrayList<ILesson>();
             // lessonList = IStudeasyScheduleService.getLessonsByDate(1, today);
-            List<Lesson> lessonList = TestLessons.getLessons();
+            List<LessonTO> lessonList = TestLessons.getLessons();
 
             // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
             DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
@@ -79,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
             final TextView subject6 = (TextView) findViewById(R.id.dayclass6subject);
             final TextView room6 = (TextView) findViewById(R.id.dayclass6room);
 
-            for (Lesson lesson : lessonList) {
+            for (LessonTO lesson : lessonList) {
                 if (lesson.getLessonHour() == 1) {
                     color1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     teacher1.setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
@@ -118,7 +114,7 @@ public class MainActivity extends ActionBarActivity {
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             //Montag
-            List<Lesson> lessonList = TestLessons.getLessons();
+            List<LessonTO> lessonList = TestLessons.getLessons();
             final TextView mo1 = (TextView) findViewById(R.id.mo1);
             final TextView mo2 = (TextView) findViewById(R.id.mo2);
             final TextView mo3 = (TextView) findViewById(R.id.mo3);
@@ -126,7 +122,7 @@ public class MainActivity extends ActionBarActivity {
             final TextView mo5 = (TextView) findViewById(R.id.mo5);
             final TextView mo6 = (TextView) findViewById(R.id.mo6);
 
-            for (Lesson lesson : lessonList) {
+            for (LessonTO lesson : lessonList) {
                 if (lesson.getLessonHour() == 1) {
                     mo1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     mo1.setText(lesson.getSubject().getDescription());
@@ -156,7 +152,7 @@ public class MainActivity extends ActionBarActivity {
             final TextView tu5 = (TextView) findViewById(R.id.tu5);
             final TextView tu6 = (TextView) findViewById(R.id.tu6);
 
-            for (Lesson lesson : lessonList) {
+            for (LessonTO lesson : lessonList) {
                 if (lesson.getLessonHour() == 1) {
                     tu1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     tu1.setText(lesson.getSubject().getDescription());
