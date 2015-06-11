@@ -19,33 +19,32 @@
             android:id="@+id/dayhead">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="&lt;"
-                android:id="@+id/dayprevious" />
-
-            <Space
-                android:layout_width="50dp"
-                android:layout_height="20px" />
+                android:id="@+id/dayprevious"
+                android:gravity="center"
+                android:background="@color/Yellow" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/daytoday"
-                android:id="@+id/daytoday" />
-
-            <Space
-                android:layout_width="50dp"
-                android:layout_height="20px" />
+                android:id="@+id/daytoday"
+                android:background="@color/Light_Blue"
+                android:gravity="center" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text=">"
-                android:id="@+id/daynext" />
+                android:id="@+id/daynext"
+                android:onClick="onNextClick"
+                android:gravity="center"
+                android:background="@color/Yellow" />
         </TableRow>
     </TableLayout>
 

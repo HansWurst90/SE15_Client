@@ -29,15 +29,37 @@ import common.LessonTO;
 
 public class MainActivity extends ActionBarActivity {
 
+    Calendar dateTo;
+    long dateInMillis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dateTo = Calendar.getInstance();
+
+        Intent dateIntent = getIntent();
+        if (dateIntent.getExtras() != null)
+        {
+            if (dateIntent.getExtras().getString("origin").equals("main_portrait"))
+            {
+                Calendar date = Calendar.getInstance();
+                dateInMillis = dateIntent.getExtras().getLong("dateInMillis");
+                date.setTimeInMillis(dateInMillis);
+                date.add(Calendar.DATE, 1);
+                dateTo = date;
+            }
+            if (dateIntent.getExtras().getString("origin").equals("settings"))
+            {
+                //Lukas Toast
+            }
+        }
+
+
+
         // AB HIER NUR PORTRAIT LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-
-            Calendar dateTo = Calendar.getInstance();
 
             // Abfrage: Welche Fächer gibt es am heutigen Tag?
             // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
@@ -48,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
             // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
             DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
             final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
-            textViewToChange.setText(dfmt.format(dateTo.getTime()g).toString());
+            textViewToChange.setText(dfmt.format(dateTo.getTime()).toString());
 
             final TableLayout color1 = (TableLayout) findViewById(R.id.dayclass1);
             final TextView teacher1 = (TextView) findViewById(R.id.dayclass1teacher);
@@ -113,7 +135,7 @@ public class MainActivity extends ActionBarActivity {
         // AB HIER NUR LANDSCAPE LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
-            Calendar dateTo = Calendar.getInstance();
+            dateTo = Calendar.getInstance();
 
             Calendar dateMo = Calendar.getInstance();
             dateMo.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -356,5 +378,9 @@ public class MainActivity extends ActionBarActivity {
     public void onNextClick(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
 
+        getNextIntent.putExtra("dateInMillis", dateTo.getTimeInMillis());
+        getNextIntent.putExtra("origin","main_portrait");
+
+        startActivity(getNextIntent);
     }
 }
