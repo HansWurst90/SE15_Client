@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
+import java.util.List;
 
 import common.CourseTO;
 import common.HomeworkTO;
@@ -34,27 +35,9 @@ public class SubjectActivity extends ActionBarActivity {
         // Intent whichSubjectId = getIntent();
         // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
 
-
-        LessonTO thisLesson = new LessonTO();
+        List<LessonTO> lessonList = TestLessons.getLessons();
+        LessonTO thisLesson = lessonList.get(3);
         // Date für diese Ansicht nicht wichtig
-        thisLesson.setDate(new Date());
-            SubjectTO subject = new SubjectTO();
-            subject.setDescription("English");
-            subject.setSubjectID(2);
-        thisLesson.setSubject(subject);
-            TeacherTO teacher = new TeacherTO();
-            teacher.setName("Mußenbrock");
-            teacher.setGender('m');
-        thisLesson.setTeacher(teacher);
-        thisLesson.setLessonHour(1);
-            RoomTO room = new RoomTO();
-            room.setRoomID("D422");
-        thisLesson.setRoom(room);
-        // Date für diese Ansicht nicht wichtig
-        thisLesson.setCourse(new CourseTO());
-            HomeworkTO homework = new HomeworkTO();
-            // homework.setDescription("Test Hausaufgaben");
-        // thisLesson.setHomework(homework);
 
         String thisLessonDescription = thisLesson.getSubject().getDescription();
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
