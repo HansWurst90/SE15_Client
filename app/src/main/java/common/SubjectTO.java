@@ -1,17 +1,20 @@
-package studeasy.entities;
+package common;
 
 import java.io.Serializable;
 
-import studeasy.common.*;
+/**
+ * Room-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
 
-public class Subject implements Serializable, ISubject {
+
+public class SubjectTO implements Serializable {
 
 	private static final long serialVersionUID = -1512930899828828250L;
-
+	
 	private int subjectID;
 	private String description;
-	
-	public Subject() {}
 	
 	public int getSubjectID() {
 		return subjectID;

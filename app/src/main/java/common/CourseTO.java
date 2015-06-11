@@ -1,29 +1,35 @@
-package studeasy.entities;
+package common;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
 
-import studeasy.common.*;
+import java.util.List;
 
 
-public class Course implements Serializable, ICourse {
+/**
+ * Curse-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
+
+
+public class CourseTO implements Serializable {
 	
 	private static final long serialVersionUID = -3906372330041256764L;
+
 
 	private int courseID;
 	
 	private int grade;
 	//e.g. 5'B'
 	private char descriptor;
-
-	private ITeacher classTeacher;
-
-	private ArrayList<IPupil> pupils;
-
-	private ArrayList<ILesson> lessons;
 	
-	public Course() {}
+	private TeacherTO classTeacher;
+	
+	private List<PupilTO> pupils;
+	
+	private List<LessonTO> lessons;
+	
 	
 	public int getCourseID() {
 		return courseID;
@@ -43,22 +49,22 @@ public class Course implements Serializable, ICourse {
 	public void setDescriptor(char descriptor) {
 		this.descriptor = descriptor;
 	}
-	public ITeacher getClassTeacher() {
+	public TeacherTO getClassTeacher() {
 		return classTeacher;
 	}
-	public void setClassTeacher(ITeacher classTeacher) {
+	public void setClassTeacher(TeacherTO classTeacher) {
 		this.classTeacher = classTeacher;
 	}
-	public ArrayList<IPupil> getPupils() {
+	public List<PupilTO> getPupils() {
 		return pupils;
 	}
-	public void setPupils(ArrayList<IPupil> pupils) {
+	public void setPupils(List<PupilTO> pupils) {
 		this.pupils = pupils;
 	}
-	public ArrayList<ILesson> getLessons() {
+	public List<LessonTO> getLessons() {
 		return lessons;
 	}
-	public void setLessons(ArrayList<ILesson> lessons) {
+	public void setLessons(List<LessonTO> lessons) {
 		this.lessons = lessons;
 	}
 }

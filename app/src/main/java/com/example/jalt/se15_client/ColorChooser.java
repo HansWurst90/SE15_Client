@@ -36,11 +36,11 @@ public class ColorChooser {
             color = R.color.Yellow;
             break;
         case 9:
-            color = R.color.SuperLight_Blue;
+            color = R.color.Brown;
             break;
         // 10. Farbe festlegen
         case 10:
-            color = R.color.SuperLight_Blue;
+            color = R.color.Grey;
             break;  }
         return color;
     }
