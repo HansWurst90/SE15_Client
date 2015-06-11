@@ -4,27 +4,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import studeasy.common.ILesson;
-import studeasy.entities.Course;
-import studeasy.entities.Homework;
-import studeasy.entities.Lesson;
-import studeasy.entities.Room;
-import studeasy.entities.Subject;
-import studeasy.entities.Teacher;
+import common.LessonTO;
+import common.TeacherTO;
 
 /**
  * Created by ErfiMac on 10.06.15.
  */
 public class TestLessons {
 
-    static List<Lesson> lessons = new ArrayList<Lesson>();
+    static List<LessonTO> lessons = new ArrayList<LessonTO>();
 
-    static List<Lesson> getLessons(){
+    static List<LessonTO> getLessons(){
     {
          Date date;
          String subject;
-         Teacher teacher;
-         Room room;
+         TeacherTO teacher;
+         RoomTO room;
          Lesson lesson1 = new Lesson();
          Lesson lesson2 = new Lesson();
          Lesson lesson3 = new Lesson();
@@ -61,7 +56,7 @@ public class TestLessons {
             teacher2.setName("Prischep");
             teacher2.setGender('m');
         lesson2.setTeacher(teacher2);
-        lesson2.setLessonHour(2);
+        lesson2.setLessonHour(3);
             Room room2 = new Room();
             room2.setRoomID("A004");
         lesson2.setRoom(room2);
@@ -73,14 +68,14 @@ public class TestLessons {
         //Lesson 3
         lesson3.setDate(new Date());
             Subject subject3 = new Subject();
-            subject3.setDescription("Mathematik");
+            subject3.setDescription("Mathe");
             subject3.setSubjectID(3);
         lesson3.setSubject(subject3);
             Teacher teacher3 = new Teacher();
             teacher3.setName("Erfkämper");
             teacher3.setGender('m');
         lesson3.setTeacher(teacher3);
-        lesson3.setLessonHour(3);
+        lesson3.setLessonHour(2);
             Room room3 = new Room();
             room3.setRoomID("D422");
         lesson3.setRoom(room3);
@@ -130,7 +125,7 @@ public class TestLessons {
         //Lesson 6
         lesson6.setDate(new Date());
             Subject subject6 = new Subject();
-            subject6.setDescription("Informatik");
+            subject6.setDescription("Info");
             subject6.setSubjectID(6);
         lesson6.setSubject(subject6);
             Teacher teacher6 = new Teacher();

@@ -40,16 +40,15 @@ public class MainActivity extends ActionBarActivity {
         Date today = new Date();
 
 
-        // Abfrage: Welche Fächer gibt es am heutigen Tag?
-        // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
-        //List<ILesson> lessionList = new ArrayList<ILesson>();
-        // lessonList = IStudeasyScheduleService.getLessonsByDate(1, today);
+        // AB HIER NUR PORTRAIT LOGIK
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
+            // Abfrage: Welche Fächer gibt es am heutigen Tag?
+            // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
+            //List<ILesson> lessionList = new ArrayList<ILesson>();
+            // lessonList = IStudeasyScheduleService.getLessonsByDate(1, today);
+            List<Lesson> lessonList = TestLessons.getLessons();
 
-        List<Lesson> lessonList = TestLessons.getLessons();
-
-
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
             DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
             final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
@@ -114,7 +113,101 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         }
+
+        // AB HIER NUR LANDSCAPE LOGIK
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            //Montag
+            List<Lesson> lessonList = TestLessons.getLessons();
+            final TextView mo1 = (TextView) findViewById(R.id.mo1);
+            final TextView mo2 = (TextView) findViewById(R.id.mo2);
+            final TextView mo3 = (TextView) findViewById(R.id.mo3);
+            final TextView mo4 = (TextView) findViewById(R.id.mo4);
+            final TextView mo5 = (TextView) findViewById(R.id.mo5);
+            final TextView mo6 = (TextView) findViewById(R.id.mo6);
+
+            for (Lesson lesson : lessonList) {
+                if (lesson.getLessonHour() == 1) {
+                    mo1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    mo1.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 2) {
+                    mo2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    mo2.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 3) {
+                    mo3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    mo3.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 4) {
+                    mo4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    mo4.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 5) {
+                    mo5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    mo5.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 6) {
+                    mo6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    mo6.setText(lesson.getSubject().getDescription());
+                }
+            }
+
+            //Dienstag
+            final TextView tu1 = (TextView) findViewById(R.id.tu1);
+            final TextView tu2 = (TextView) findViewById(R.id.tu2);
+            final TextView tu3 = (TextView) findViewById(R.id.tu3);
+            final TextView tu4 = (TextView) findViewById(R.id.tu4);
+            final TextView tu5 = (TextView) findViewById(R.id.tu5);
+            final TextView tu6 = (TextView) findViewById(R.id.tu6);
+
+            for (Lesson lesson : lessonList) {
+                if (lesson.getLessonHour() == 1) {
+                    tu1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    tu1.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 2) {
+                    tu2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    tu2.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 3) {
+                    tu3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    tu3.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 4) {
+                    tu4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    tu4.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 5) {
+                    tu5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    tu5.setText(lesson.getSubject().getDescription());
+                } else if (lesson.getLessonHour() == 6) {
+                    tu6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    tu6.setText(lesson.getSubject().getDescription());
+                }
+            }
+            
+            //Mittwoch
+            final TextView we1 = (TextView) findViewById(R.id.we1);
+            final TextView we2 = (TextView) findViewById(R.id.we2);
+            final TextView we3 = (TextView) findViewById(R.id.we3);
+            final TextView we4 = (TextView) findViewById(R.id.we4);
+            final TextView we5 = (TextView) findViewById(R.id.we5);
+            final TextView we6 = (TextView) findViewById(R.id.we6);
+            //Donnerstag
+            final TextView th1 = (TextView) findViewById(R.id.th1);
+            final TextView th2 = (TextView) findViewById(R.id.th2);
+            final TextView th3 = (TextView) findViewById(R.id.th3);
+            final TextView th4 = (TextView) findViewById(R.id.th4);
+            final TextView th5 = (TextView) findViewById(R.id.th5);
+            final TextView th6 = (TextView) findViewById(R.id.th6);
+            //Freitag
+            final TextView fr1 = (TextView) findViewById(R.id.fr1);
+            final TextView fr2 = (TextView) findViewById(R.id.fr2);
+            final TextView fr3 = (TextView) findViewById(R.id.fr3);
+            final TextView fr4 = (TextView) findViewById(R.id.fr4);
+            final TextView fr5 = (TextView) findViewById(R.id.fr5);
+            final TextView fr6 = (TextView) findViewById(R.id.fr6);
+
+
+
+
+
+
+        }
     }
+
 
 
     @Override

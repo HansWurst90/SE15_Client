@@ -1,13 +1,16 @@
-package studeasy.entities;
+package common;
 
 import java.io.Serializable;
 
-import studeasy.common.*;
-
-public abstract class Person implements Serializable, IPerson {
+/**
+ * Person-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
+public abstract class PersonTO implements Serializable {
 	
-	private static final long serialVersionUID = 849222223534910538L;
-
+	private static final long serialVersionUID = -3379697478831033483L;
+	
 	private int personID;
 	private String name;
 	private String firstname;

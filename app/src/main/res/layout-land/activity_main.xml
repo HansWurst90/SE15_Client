@@ -20,48 +20,42 @@
             <TableLayout android:gravity="center">
                 <TableRow
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:background="@color/white"
-                    >
+                    android:gravity="center">
                     <TextView
                         android:text="@string/monday_shortcut"
                         android:textSize="@dimen/textview_size"
-                        android:background="@drawable/border"
                         android:width="95dp"
                         android:height="35dp"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:id="@+id/mo0" />
                     <TextView
                         android:text="@string/tuesday_shortcut"
                         android:textSize="@dimen/textview_size"
                         android:width="95dp"
                         android:gravity="center"
                         android:height="35dp"
-                        android:background="@drawable/border"
-                        />
+                        android:id="@+id/tu0" />
                     <TextView
                         android:text="@string/wednesday_shortcut"
                         android:textSize="@dimen/textview_size"
                         android:width="95dp"
                         android:gravity="center"
                         android:height="35dp"
-                        android:background="@drawable/border"
-                        />
+                        android:id="@+id/we0" />
                     <TextView
                         android:text="@string/thursday_shortcut"
                         android:textSize="@dimen/textview_size"
                         android:width="95dp"
                         android:gravity="center"
                         android:height="35dp"
-                        android:background="@drawable/border"
-                        />
+                        android:id="@+id/th0" />
                     <TextView
                         android:text="@string/friday_shortcut"
                         android:textSize="@dimen/textview_size"
                         android:width="95dp"
                         android:gravity="center"
                         android:height="35dp"
-                        android:background="@drawable/border"
-                        />
+                        android:id="@+id/fr0" />
                 </TableRow>
                 <ScrollView
                     android:layout_width="match_parent"
@@ -73,371 +67,273 @@
                         android:layout_height="wrap_content">
                         <TableRow
                             android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/bordeaux">
+                            android:layout_width="match_parent">
 
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/mo1" />
                             <TextView
-                                android:text="@string/thursday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/tu1" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/we1" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/th1" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/fr1" />
                         </TableRow>
                         <TableRow
                             android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/blue">
+                            android:layout_width="match_parent">
 
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/mo2" />
                             <TextView
-                                android:text="@string/thursday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/tu2" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/we2" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/th2" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/fr2" />
                         </TableRow>
                         <TableRow
                             android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/green">
+                            android:layout_width="match_parent">
 
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/mo3" />
                             <TextView
-                                android:text="@string/thursday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/tu3" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/we3" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/th3" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/fr3" />
                         </TableRow>
                         <TableRow
                             android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/yellow">
+                            android:layout_width="match_parent">
 
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/mo4" />
                             <TextView
-                                android:text="@string/thursday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/tu4" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/we4" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/th4" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/fr4" />
                         </TableRow>
                         <TableRow
                             android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/white">
+                            android:layout_width="match_parent">
 
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/mo5" />
                             <TextView
-                                android:text="@string/thursday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/tu5" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/we5" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/th5" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/fr5" />
                         </TableRow>
                         <TableRow
                             android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/Red">
+                            android:layout_width="match_parent">
 
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/mo6" />
                             <TextView
-                                android:text="@string/thursday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/tu6" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/we6" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/th6" />
                             <TextView
-                                android:text="@string/monday_shortcut"
+                                android:text="@string/free_lesson_sign"
                                 android:textSize="@dimen/textview_size"
                                 android:width="95dp"
                                 android:height="35dp"
                                 android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                        </TableRow>
-                        <TableRow
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/Red">
-
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/thursday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                        </TableRow>
-                        <TableRow
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/purple">
-
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/thursday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
-                            <TextView
-                                android:text="@string/monday_shortcut"
-                                android:textSize="@dimen/textview_size"
-                                android:width="95dp"
-                                android:height="35dp"
-                                android:gravity="center"
-                                android:background="@drawable/border"
-                                />
+                                android:background="@color/Shade"
+                                android:id="@+id/fr6" />
                         </TableRow>
                     </TableLayout>
                 </ScrollView>
