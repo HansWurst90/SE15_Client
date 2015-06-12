@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="@string/submit"
             android:id="@+id/login_button"
-            android:onClick="loginClick"/>
+            android:onClick="loginButtonPress"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

@@ -52,11 +52,17 @@ public class MainActivity extends ActionBarActivity {
                 date.add(Calendar.DATE, 1);
                 dateTo = date;
             }
-            if(intent.getExtras().getString("origin").equals("settings"))
+            if(intent.getExtras().getString("origin").equals("login"))
             {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String savedUser = sharedPreferences.getString("USER", "");
-                Toast.makeText(this, R.string.welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+                String welcome = getResources().getString(R.string.welcome);
+                Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+            }
+            else if(intent.getExtras().getString("origin").equals("logout"))
+            {
+                String goodbye = getResources().getString(R.string.goodbye);
+                Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
             }
         }
 
