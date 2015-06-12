@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
 
     Calendar dateTo;
     long dateInMillis;
+    boolean login = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,20 @@ public class MainActivity extends ActionBarActivity {
             }
             if(intent.getExtras().getString("origin").equals("login"))
             {
+                login = false;
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String savedUser = sharedPreferences.getString("USER", "");
                 String welcome = getResources().getString(R.string.welcome);
                 Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+
             }
             else if(intent.getExtras().getString("origin").equals("logout"))
             {
+                login = true;
+                String loginText = getResources().getString(R.string.login);
                 String goodbye = getResources().getString(R.string.goodbye);
                 Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
+
             }
         }
 
@@ -350,6 +356,19 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_settings);
+        String loginText = getResources().getString(R.string.login);
+        String logoutText = getResources().getString(R.string.logout);
+        if(login)
+            item.setTitle(loginText);
+        else
+            item.setTitle(logoutText);
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

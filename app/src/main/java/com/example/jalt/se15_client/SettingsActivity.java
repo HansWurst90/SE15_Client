@@ -1,14 +1,18 @@
 package com.example.jalt.se15_client;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -36,10 +40,15 @@ public class SettingsActivity extends Activity{
         String Password = sharedPreferences.getString("PASSWORD", "");
         username.setText(User);
 
-        if(User.equals("")  && Password.equals(""))
+        if(User.equals("")  && Password.equals("")){
             loginButton.setText(R.string.login);
-        else
+            String loginText = getResources().getString(R.string.login);
+            }
+        else {
             loginButton.setText(R.string.logout);
+            String logoutText = getResources().getString(R.string.logout);
+             }
+
     }
 
     public void loginButtonPress(View view)
