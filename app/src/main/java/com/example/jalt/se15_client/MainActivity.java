@@ -31,14 +31,22 @@ import common.LessonTO;
 
 public class MainActivity extends ActionBarActivity {
 
+    SharedPreferences sharedPreferences;
     Calendar dateTo;
     long dateInMillis;
-    boolean login = true;
+    boolean login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userTrue = sharedPreferences.getString("USER", "");
+        if (userTrue.equals(""))
+            login = true;
+        else
+            login = false;
 
         dateTo = Calendar.getInstance();
 
@@ -55,8 +63,6 @@ public class MainActivity extends ActionBarActivity {
             }
             if(intent.getExtras().getString("origin").equals("login"))
             {
-                login = false;
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String savedUser = sharedPreferences.getString("USER", "");
                 String welcome = getResources().getString(R.string.welcome);
                 Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
@@ -64,8 +70,6 @@ public class MainActivity extends ActionBarActivity {
             }
             else if(intent.getExtras().getString("origin").equals("logout"))
             {
-                login = true;
-                String loginText = getResources().getString(R.string.login);
                 String goodbye = getResources().getString(R.string.goodbye);
                 Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
 
