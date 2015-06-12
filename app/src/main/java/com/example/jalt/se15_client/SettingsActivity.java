@@ -55,11 +55,24 @@ public class SettingsActivity extends Activity{
     {
         String buttonText = loginButton.getText().toString();
         String login = getResources().getString(R.string.login);
+
         if(buttonText.equals(login))
         {
-            SavePreferences("USER", username.getText().toString());
-            SavePreferences("PASSWORD", password.getText().toString());
-            backToMain(view, "login");
+            String user = username.getText().toString();
+            String pass = password.getText().toString();
+
+            if(user.equals("") && pass.equals(""))
+                Toast.makeText(this, R.string.missingBoth, Toast.LENGTH_SHORT).show();
+            else if(user.equals("") && !pass.equals(""))
+                Toast.makeText(this, R.string.missingUsername, Toast.LENGTH_SHORT).show();
+            else if(!user.equals("") && pass.equals(""))
+                Toast.makeText(this, R.string.missingPasswort, Toast.LENGTH_SHORT).show();
+            else if (!user.equals("") && !pass.equals(""))
+            {
+                SavePreferences("USER", username.getText().toString());
+                SavePreferences("PASSWORD", password.getText().toString());
+                backToMain(view, "login");
+            }
         }
         else {
             SavePreferences("USER", null);
