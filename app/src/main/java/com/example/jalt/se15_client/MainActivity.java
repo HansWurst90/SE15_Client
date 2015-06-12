@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import common.LessonTO;
 
@@ -32,6 +33,7 @@ import common.LessonTO;
 public class MainActivity extends ActionBarActivity {
 
     Calendar dateTo;
+    Calendar date;
     long dateInMillis;
 
     @Override
@@ -40,16 +42,21 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         dateTo = Calendar.getInstance();
+        date = Calendar.getInstance();
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            date.add(Calendar.DATE, 2);
+        }
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+            date.add(Calendar.DATE, 1);
+        }
 
         Intent intent = getIntent();
         if (intent.getExtras() != null)
         {
             if (intent.getExtras().getString("origin").equals("main_portrait"))
             {
-                Calendar date = Calendar.getInstance();
                 dateInMillis = intent.getExtras().getLong("dateInMillis");
                 date.setTimeInMillis(dateInMillis);
-                dateTo = date;
             }
             if(intent.getExtras().getString("origin").equals("settings"))
             {
@@ -70,9 +77,14 @@ public class MainActivity extends ActionBarActivity {
             List<LessonTO> lessonList = TestLessons.getLessons();
 
             // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
-            DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
-            final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
-            textViewToChange.setText(dfmt.format(dateTo.getTime()).toString());
+            DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
+            final TextView dateText = (TextView) findViewById(R.id.daytoday);
+            dateText.setText(dfmt.format(date.getTime()).toString());
+            if (date.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
+                dateText.setBackgroundResource(R.color.Light_Blue);
+            }
+
+
 
             final TableLayout color1 = (TableLayout) findViewById(R.id.dayclass1);
             final TextView teacher1 = (TextView) findViewById(R.id.dayclass1teacher);
@@ -379,16 +391,28 @@ public class MainActivity extends ActionBarActivity {
     }
     public void onNextClick(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
-        dateTo.add(Calendar.DATE, 1);
-        getNextIntent.putExtra("dateInMillis", dateTo.getTimeInMillis());
+        date.add(Calendar.DATE, 1);
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            date.add(Calendar.DATE, 2);
+        }
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+            date.add(Calendar.DATE, 1);
+        }
+        getNextIntent.putExtra("dateInMillis", date.getTimeInMillis());
         getNextIntent.putExtra("origin","main_portrait");
 
         startActivity(getNextIntent);
     }
     public void onPreviousClick(View view){
         Intent getPreviousIntent = new Intent(this, MainActivity.class);
-        dateTo.add(Calendar.DATE, -1);
-        getPreviousIntent.putExtra("dateInMillis", dateTo.getTimeInMillis());
+        date.add(Calendar.DATE, -1);
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+            date.add(Calendar.DATE, -2);
+        }
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            date.add(Calendar.DATE, -1);
+        }
+        getPreviousIntent.putExtra("dateInMillis", date.getTimeInMillis());
         getPreviousIntent.putExtra("origin","main_portrait");
 
         startActivity(getPreviousIntent);

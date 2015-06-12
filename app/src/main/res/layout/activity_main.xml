@@ -34,7 +34,6 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/daytoday"
                 android:id="@+id/daytoday"
-                android:background="@color/Light_Blue"
                 android:gravity="center" />
 
             <TextView
