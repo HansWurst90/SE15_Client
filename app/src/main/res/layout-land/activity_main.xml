@@ -17,7 +17,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="&lt;"
                 android:id="@+id/textView11"
-                android:background="@color/Grey" />
+                android:background="@color/Grey"
+                android:onClick="onPreviousClickL" />
             <TableLayout android:gravity="center">
                 <TableRow
                     android:layout_width="match_parent"
@@ -349,7 +350,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text=">"
                 android:id="@+id/textView5"
-                android:background="@color/Grey" />
+                android:background="@color/Grey"
+                android:onClick="onNextClickL" />
         </TableRow>
     </TableLayout>
 </LinearLayout>
