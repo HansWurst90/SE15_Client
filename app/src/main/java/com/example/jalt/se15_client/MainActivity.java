@@ -1,5 +1,5 @@
 package com.example.jalt.se15_client;
-
+//test
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
