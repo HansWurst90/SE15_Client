@@ -16,6 +16,7 @@ import java.util.List;
 
 import common.CourseTO;
 import common.HomeworkTO;
+import common.IStudeasyScheduleService;
 import common.LessonTO;
 import common.RoomTO;
 import common.SubjectTO;
@@ -39,14 +40,17 @@ public class SubjectActivity extends ActionBarActivity {
         // Empfangen der lessonId auf die geklickt wurde
         Intent whichSubjectId = getIntent();
         int lessonId = whichSubjectId.getExtras().getInt("lessonId");
-        Toast.makeText(this, "Später für Abfrage: lessonId = " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
 
         // "Abholen" der entsprechenden Lesson vom Server:
-
-
         // Beispiellesson:
         List<LessonTO> lessonList = TestLessons.getLessons();
         LessonTO thisLesson = lessonList.get(3);
+
+        for (LessonTO lesson : lessonList) {
+            if (lesson.getLessonID() == lessonId) {
+                thisLesson = lesson;
+            }
+        }
 
         // Sammlen der Daten
         String thisLessonDescription = thisLesson.getSubject().getDescription();
