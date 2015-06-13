@@ -16,11 +16,14 @@
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="&lt;"
-                android:id="@+id/textView11" />
+                android:id="@+id/textView11"
+                android:background="@color/Grey"
+                android:onClick="onPreviousClickL" />
             <TableLayout android:gravity="center">
                 <TableRow
                     android:layout_width="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:background="@color/Grey">
                     <TextView
                         android:text="@string/monday_shortcut"
                         android:textSize="@dimen/textview_size"
@@ -346,7 +349,9 @@
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text=">"
-                android:id="@+id/textView5" />
+                android:id="@+id/textView5"
+                android:background="@color/Grey"
+                android:onClick="onNextClickL" />
         </TableRow>
     </TableLayout>
 </LinearLayout>
