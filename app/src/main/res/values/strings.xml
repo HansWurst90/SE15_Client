@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Studeasy</string>
     <string name="login">Anmelden</string>
+    <string name="logout">Ausloggen</string>
     <string name="SV_Title">Fachansicht</string>
     <string name="daytoday">dd.mm.yy</string>
 
@@ -43,6 +44,10 @@
     <string name="password">Passwort</string>
     <string name="submit">Einloggen</string>
     <string name="welcome">Willkommen</string>
+    <string name="goodbye">Auf Wiedersehen</string>
+    <string name="missingPasswort">Bitte geben Sie noch ihr Passwort ein</string>
+    <string name="missingUsername">Bitte geben Sie noch ihre Benutzerkennung ein</string>
+    <string name="missingBoth">Bitte geben Sie noch ihre Benutzerkennung und ihr Passwort ein</string>
 
     <!--days -->
     <string name="monday">Montag</string>

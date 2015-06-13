@@ -32,15 +32,24 @@ import common.LessonTO;
 
 public class MainActivity extends ActionBarActivity {
 
+    SharedPreferences sharedPreferences;
     Calendar dateTo;
     Calendar date;
     long dateInMillis;
+    boolean login;
     private Toast dToast = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userTrue = sharedPreferences.getString("USER", "");
+        if (userTrue.equals(""))
+            login = true;
+        else
+            login = false;
 
         dateTo = Calendar.getInstance();
         date = Calendar.getInstance();
@@ -65,11 +74,18 @@ public class MainActivity extends ActionBarActivity {
                 dateInMillis = intent.getExtras().getLong("dateInMillis");
                 date.setTimeInMillis(dateInMillis);
             }
-            if(intent.getExtras().getString("origin").equals("settings"))
+            if(intent.getExtras().getString("origin").equals("login"))
             {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String savedUser = sharedPreferences.getString("USER", "");
-                Toast.makeText(this, R.string.welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+                String welcome = getResources().getString(R.string.welcome);
+                Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+
+            }
+            else if(intent.getExtras().getString("origin").equals("logout"))
+            {
+                String goodbye = getResources().getString(R.string.goodbye);
+                Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
+
             }
         }
 
@@ -364,6 +380,19 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_settings);
+        String loginText = getResources().getString(R.string.login);
+        String logoutText = getResources().getString(R.string.logout);
+        if(login)
+            item.setTitle(loginText);
+        else
+            item.setTitle(logoutText);
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
