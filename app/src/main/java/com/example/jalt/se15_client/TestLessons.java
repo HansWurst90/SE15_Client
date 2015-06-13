@@ -63,7 +63,7 @@ public class TestLessons {
             teacher2.setName("Prischep");
             teacher2.setGender('m');
         lesson2.setTeacher(teacher2);
-        lesson2.setLessonHour(3);
+        lesson2.setLessonHour(2);
             RoomTO room2 = new RoomTO();
             room2.setRoomID("A004");
         lesson2.setRoom(room2);
@@ -85,7 +85,7 @@ public class TestLessons {
             teacher3.setName("Erfkämper");
             teacher3.setGender('m');
         lesson3.setTeacher(teacher3);
-        lesson3.setLessonHour(2);
+        lesson3.setLessonHour(3);
             RoomTO room3 = new RoomTO();
             room3.setRoomID("D422");
         lesson3.setRoom(room3);

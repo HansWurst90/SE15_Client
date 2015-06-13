@@ -36,15 +36,19 @@ public class SubjectActivity extends ActionBarActivity {
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
 
+        // Empfangen der lessonId auf die geklickt wurde
         Intent whichSubjectId = getIntent();
         int lessonId = whichSubjectId.getExtras().getInt("lessonId");
-        Toast.makeText(this, String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Später für Abfrage: lessonId = " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
 
+        // "Abholen" der entsprechenden Lesson vom Server:
+
+
+        // Beispiellesson:
         List<LessonTO> lessonList = TestLessons.getLessons();
         LessonTO thisLesson = lessonList.get(3);
 
-        // Date für diese Ansicht nicht wichtig
-
+        // Sammlen der Daten
         String thisLessonDescription = thisLesson.getSubject().getDescription();
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
         char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
@@ -53,9 +57,6 @@ public class SubjectActivity extends ActionBarActivity {
         // String thisLessonHomework = thisLesson.getHomework().getDescription();
         int thisLessonColor = ColorChooser.getColorFromId(thisLesson.getSubject().getSubjectID());
         // thisLesson.getHomeworks();
-
-
-
         //Abhängig des Geschlechts wird die Anrede gesetzt
         String thisLessonTeacherTitle = GenderChooser.getTitleByGender(thisLessonTeacherGender);
 
