@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import common.LessonTO;
 
@@ -32,7 +33,9 @@ import common.LessonTO;
 public class MainActivity extends ActionBarActivity {
 
     Calendar dateTo;
+    Calendar date;
     long dateInMillis;
+    private Toast dToast = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +43,27 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         dateTo = Calendar.getInstance();
+        date = Calendar.getInstance();
+
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            date.add(Calendar.DATE, 2);
+        }
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+            date.add(Calendar.DATE, 1);
+        }
 
         Intent intent = getIntent();
         if (intent.getExtras() != null)
         {
             if (intent.getExtras().getString("origin").equals("main_portrait"))
             {
-                Calendar date = Calendar.getInstance();
                 dateInMillis = intent.getExtras().getLong("dateInMillis");
                 date.setTimeInMillis(dateInMillis);
-                date.add(Calendar.DATE, 1);
-                dateTo = date;
+            }
+            if (intent.getExtras().getString("origin").equals("main_landscape"))
+            {
+                dateInMillis = intent.getExtras().getLong("dateInMillis");
+                date.setTimeInMillis(dateInMillis);
             }
             if(intent.getExtras().getString("origin").equals("settings"))
             {
@@ -71,9 +84,14 @@ public class MainActivity extends ActionBarActivity {
             List<LessonTO> lessonList = TestLessons.getLessons();
 
             // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
-            DateFormat dfmt = new SimpleDateFormat("dd.MM.yy");
-            final TextView textViewToChange = (TextView) findViewById(R.id.daytoday);
-            textViewToChange.setText(dfmt.format(dateTo.getTime()).toString());
+            DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
+            final TextView dateText = (TextView) findViewById(R.id.daytoday);
+            dateText.setText(dfmt.format(date.getTime()).toString());
+            if (date.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
+                dateText.setBackgroundResource(R.color.Light_Blue);
+            }
+
+
 
             final TableLayout color1 = (TableLayout) findViewById(R.id.dayclass1);
             final TextView teacher1 = (TextView) findViewById(R.id.dayclass1teacher);
@@ -138,18 +156,20 @@ public class MainActivity extends ActionBarActivity {
         // AB HIER NUR LANDSCAPE LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
-            dateTo = Calendar.getInstance();
-
-            Calendar dateMo = Calendar.getInstance();
+            Calendar dateMo = (Calendar) date.clone();
             dateMo.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            Calendar dateTu = Calendar.getInstance();
+            Calendar dateTu = (Calendar) date.clone();
             dateTu.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-            Calendar dateWe = Calendar.getInstance();
+            Calendar dateWe = (Calendar) date.clone();
             dateWe.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-            Calendar dateTh = Calendar.getInstance();
+            Calendar dateTh = (Calendar) date.clone();
             dateTh.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-            Calendar dateFr = Calendar.getInstance();
+            Calendar dateFr = (Calendar) date.clone();
             dateFr.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+
+            DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
+            dToast = Toast.makeText(this, dfmt.format(dateMo.getTime()).toString() + " - " + dfmt.format(dateFr.getTime()).toString(), Toast.LENGTH_SHORT);
+            dToast.show();
 
             List<LessonTO> lessonListMo = TestLessons.getLessons();
             List<LessonTO> lessonListTu = TestLessons.getLessons();
@@ -378,12 +398,48 @@ public class MainActivity extends ActionBarActivity {
 
         startActivity(getSubjectIntent);
     }
-    public void onNextClick(View view){
+    public void onNextClickP(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
-
-        getNextIntent.putExtra("dateInMillis", dateTo.getTimeInMillis());
+        date.add(Calendar.DATE, 1);
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            date.add(Calendar.DATE, 2);
+        }
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+            date.add(Calendar.DATE, 1);
+        }
+        getNextIntent.putExtra("dateInMillis", date.getTimeInMillis());
         getNextIntent.putExtra("origin","main_portrait");
 
         startActivity(getNextIntent);
+    }
+    public void onPreviousClickP(View view){
+        Intent getPreviousIntent = new Intent(this, MainActivity.class);
+        date.add(Calendar.DATE, -1);
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+            date.add(Calendar.DATE, -2);
+        }
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            date.add(Calendar.DATE, -1);
+        }
+        getPreviousIntent.putExtra("dateInMillis", date.getTimeInMillis());
+        getPreviousIntent.putExtra("origin","main_portrait");
+
+        startActivity(getPreviousIntent);
+    }
+    public void onNextClickL(View view){
+        Intent getNextIntent = new Intent(this, MainActivity.class);
+        date.add(Calendar.DATE, 7);
+        getNextIntent.putExtra("dateInMillis", date.getTimeInMillis());
+        getNextIntent.putExtra("origin","main_landscape");
+
+        startActivity(getNextIntent);
+    }
+    public void onPreviousClickL(View view){
+        Intent getPreviousIntent = new Intent(this, MainActivity.class);
+        date.add(Calendar.DATE, -7);
+        getPreviousIntent.putExtra("dateInMillis", date.getTimeInMillis());
+        getPreviousIntent.putExtra("origin","main_landscape");
+
+        startActivity(getPreviousIntent);
     }
 }
