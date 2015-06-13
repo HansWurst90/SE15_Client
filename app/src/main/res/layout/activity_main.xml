@@ -62,7 +62,6 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:onClick="onSubjectClick"
                 android:id="@+id/dayclass1"
                 android:background="@color/Shade">
 
@@ -132,7 +131,6 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:onClick="onSubjectClick"
                 android:id="@+id/dayclass2"
                 android:background="@color/Shade">
 
@@ -213,7 +211,6 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:onClick="onSubjectClick"
                 android:id="@+id/dayclass3"
                 android:background="@color/Shade">
 
@@ -281,7 +278,6 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:onClick="onSubjectClick"
                 android:id="@+id/dayclass4"
                 android:background="@color/Shade">
 
@@ -360,7 +356,6 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:onClick="onSubjectClick"
                 android:id="@+id/dayclass5"
                 android:background="@color/Shade">
 
@@ -427,7 +422,6 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:onClick="onSubjectClick"
                 android:id="@+id/dayclass6"
                 android:background="@color/Shade">
 

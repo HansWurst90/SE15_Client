@@ -1,6 +1,7 @@
 package com.example.jalt.se15_client;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -35,8 +36,9 @@ public class SubjectActivity extends ActionBarActivity {
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
 
-        // Intent whichSubjectId = getIntent();
-        // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
+        Intent whichSubjectId = getIntent();
+        int lessonId = whichSubjectId.getExtras().getInt("lessonId");
+        Toast.makeText(this, String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
 
         List<LessonTO> lessonList = TestLessons.getLessons();
         LessonTO thisLesson = lessonList.get(3);
