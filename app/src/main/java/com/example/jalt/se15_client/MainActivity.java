@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
     long dateInMillis;
     boolean login;
     private Toast dToast = null;
+    SparseArray<LessonTO> lessonMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
             if (date.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
                 dateText.setBackgroundResource(R.color.Light_Blue);
             }
-            SparseArray<LessonTO> lessonMap = new SparseArray<>();
+            lessonMap = new SparseArray<>();
             SparseArray<TableLayout> cellMap = new SparseArray<>();
             SparseArray<TextView> teacherMap = new SparseArray<>();
             SparseArray<TextView> subjectMap = new SparseArray<>();
@@ -218,178 +219,144 @@ public class MainActivity extends ActionBarActivity {
             List<LessonTO> lessonListTh = TestLessons.getLessons();
             List<LessonTO> lessonListFr = TestLessons.getLessons();
 
-            //Montag
-            final TextView mo0 = (TextView) findViewById(R.id.mo0);
-            final TextView mo1 = (TextView) findViewById(R.id.mo1);
-            final TextView mo2 = (TextView) findViewById(R.id.mo2);
-            final TextView mo3 = (TextView) findViewById(R.id.mo3);
-            final TextView mo4 = (TextView) findViewById(R.id.mo4);
-            final TextView mo5 = (TextView) findViewById(R.id.mo5);
-            final TextView mo6 = (TextView) findViewById(R.id.mo6);
+            lessonMap = new SparseArray<>();
+            SparseArray<TextView> cellMap = new SparseArray();
 
-            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
-                mo0.setBackgroundResource(R.color.Light_Blue);
+            cellMap.put(10, (TextView) findViewById(R.id.mo0));
+            cellMap.put(11, (TextView) findViewById(R.id.mo1));
+            cellMap.put(12, (TextView) findViewById(R.id.mo2));
+            cellMap.put(13, (TextView) findViewById(R.id.mo3));
+            cellMap.put(14, (TextView) findViewById(R.id.mo4));
+            cellMap.put(15, (TextView) findViewById(R.id.mo5));
+            cellMap.put(16, (TextView) findViewById(R.id.mo6));
+
+            cellMap.put(20, (TextView) findViewById(R.id.tu0));
+            cellMap.put(21, (TextView) findViewById(R.id.tu1));
+            cellMap.put(22, (TextView) findViewById(R.id.tu2));
+            cellMap.put(23, (TextView) findViewById(R.id.tu3));
+            cellMap.put(24, (TextView) findViewById(R.id.tu4));
+            cellMap.put(25, (TextView) findViewById(R.id.tu5));
+            cellMap.put(26, (TextView) findViewById(R.id.tu6));
+
+            cellMap.put(30, (TextView) findViewById(R.id.we0));
+            cellMap.put(31, (TextView) findViewById(R.id.we1));
+            cellMap.put(32, (TextView) findViewById(R.id.we2));
+            cellMap.put(33, (TextView) findViewById(R.id.we3));
+            cellMap.put(34, (TextView) findViewById(R.id.we4));
+            cellMap.put(35, (TextView) findViewById(R.id.we5));
+            cellMap.put(36, (TextView) findViewById(R.id.we6));
+
+            cellMap.put(40, (TextView) findViewById(R.id.th0));
+            cellMap.put(41, (TextView) findViewById(R.id.th1));
+            cellMap.put(42, (TextView) findViewById(R.id.th2));
+            cellMap.put(43, (TextView) findViewById(R.id.th3));
+            cellMap.put(44, (TextView) findViewById(R.id.th4));
+            cellMap.put(45, (TextView) findViewById(R.id.th5));
+            cellMap.put(46, (TextView) findViewById(R.id.th6));
+
+            cellMap.put(50, (TextView) findViewById(R.id.fr0));
+            cellMap.put(51, (TextView) findViewById(R.id.fr1));
+            cellMap.put(52, (TextView) findViewById(R.id.fr2));
+            cellMap.put(53, (TextView) findViewById(R.id.fr3));
+            cellMap.put(54, (TextView) findViewById(R.id.fr4));
+            cellMap.put(55, (TextView) findViewById(R.id.fr5));
+            cellMap.put(56, (TextView) findViewById(R.id.fr6));
+
+            //Montag
+            for (LessonTO lesson : lessonListMo) {
+                if (lesson.getLessonHour() == 1) {
+                    lessonMap.put(11, lesson);
+                } else if (lesson.getLessonHour() == 2) {
+                    lessonMap.put(12, lesson);
+                } else if (lesson.getLessonHour() == 3) {
+                    lessonMap.put(13, lesson);
+                } else if (lesson.getLessonHour() == 4) {
+                    lessonMap.put(14, lesson);
+                } else if (lesson.getLessonHour() == 5) {
+                    lessonMap.put(15, lesson);
+                } else if (lesson.getLessonHour() == 6) {
+                    lessonMap.put(16, lesson);
+                }
+            }
+
+            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+                cellMap.get(10).setBackgroundResource(R.color.Light_Blue);
             }
 
             for (LessonTO lesson : lessonListMo) {
                 if (lesson.getLessonHour() == 1) {
-                    mo1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    mo1.setText(lesson.getSubject().getDescription());
+                    cellMap.get(11).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(11).setText(lesson.getSubject().getDescription());
+                    cellMap.get(11).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 11);}});
                 } else if (lesson.getLessonHour() == 2) {
-                    mo2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    mo2.setText(lesson.getSubject().getDescription());
+                    cellMap.get(12).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(12).setText(lesson.getSubject().getDescription());
+                    cellMap.get(12).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 12);}});
                 } else if (lesson.getLessonHour() == 3) {
-                    mo3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    mo3.setText(lesson.getSubject().getDescription());
+                    cellMap.get(13).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(13).setText(lesson.getSubject().getDescription());
+                    cellMap.get(13).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 13);}});
                 } else if (lesson.getLessonHour() == 4) {
-                    mo4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    mo4.setText(lesson.getSubject().getDescription());
+                    cellMap.get(14).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(14).setText(lesson.getSubject().getDescription());
+                    cellMap.get(14).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 14);}});
                 } else if (lesson.getLessonHour() == 5) {
-                    mo5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    mo5.setText(lesson.getSubject().getDescription());
+                    cellMap.get(15).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(15).setText(lesson.getSubject().getDescription());
+                    cellMap.get(15).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 15);}});
                 } else if (lesson.getLessonHour() == 6) {
-                    mo6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    mo6.setText(lesson.getSubject().getDescription());
+                    cellMap.get(16).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(16).setText(lesson.getSubject().getDescription());
+                    cellMap.get(16).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 16);}});
                 }
             }
 
             //Dienstag
-
-            final TextView tu0 = (TextView) findViewById(R.id.tu0);
-            final TextView tu1 = (TextView) findViewById(R.id.tu1);
-            final TextView tu2 = (TextView) findViewById(R.id.tu2);
-            final TextView tu3 = (TextView) findViewById(R.id.tu3);
-            final TextView tu4 = (TextView) findViewById(R.id.tu4);
-            final TextView tu5 = (TextView) findViewById(R.id.tu5);
-            final TextView tu6 = (TextView) findViewById(R.id.tu6);
-
-            if (dateTu.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
-                tu0.setBackgroundResource(R.color.Light_Blue);
-            }
-
-            for (LessonTO lesson : lessonListTu) {
+            for (LessonTO lesson : lessonListMo) {
                 if (lesson.getLessonHour() == 1) {
-                    tu1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    tu1.setText(lesson.getSubject().getDescription());
+                    lessonMap.put(21, lesson);
                 } else if (lesson.getLessonHour() == 2) {
-                    tu2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    tu2.setText(lesson.getSubject().getDescription());
+                    lessonMap.put(22, lesson);
                 } else if (lesson.getLessonHour() == 3) {
-                    tu3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    tu3.setText(lesson.getSubject().getDescription());
+                    lessonMap.put(23, lesson);
                 } else if (lesson.getLessonHour() == 4) {
-                    tu4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    tu4.setText(lesson.getSubject().getDescription());
+                    lessonMap.put(24, lesson);
                 } else if (lesson.getLessonHour() == 5) {
-                    tu5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    tu5.setText(lesson.getSubject().getDescription());
+                    lessonMap.put(25, lesson);
                 } else if (lesson.getLessonHour() == 6) {
-                    tu6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    tu6.setText(lesson.getSubject().getDescription());
-                }
-            }
-            
-            //Mittwoch
-            final TextView we0 = (TextView) findViewById(R.id.we0);
-            final TextView we1 = (TextView) findViewById(R.id.we1);
-            final TextView we2 = (TextView) findViewById(R.id.we2);
-            final TextView we3 = (TextView) findViewById(R.id.we3);
-            final TextView we4 = (TextView) findViewById(R.id.we4);
-            final TextView we5 = (TextView) findViewById(R.id.we5);
-            final TextView we6 = (TextView) findViewById(R.id.we6);
-
-            if (dateWe.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
-                we0.setBackgroundResource(R.color.Light_Blue);
-            }
-
-            for (LessonTO lesson : lessonListWe) {
-                if (lesson.getLessonHour() == 1) {
-                    we1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    we1.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 2) {
-                    we2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    we2.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 3) {
-                    we3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    we3.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 4) {
-                    we4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    we4.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 5) {
-                    we5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    we5.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 6) {
-                    we6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    lessonMap.put(26, lesson);
                 }
             }
 
-            //Donnerstag
-            final TextView th0 = (TextView) findViewById(R.id.th0);
-            final TextView th1 = (TextView) findViewById(R.id.th1);
-            final TextView th2 = (TextView) findViewById(R.id.th2);
-            final TextView th3 = (TextView) findViewById(R.id.th3);
-            final TextView th4 = (TextView) findViewById(R.id.th4);
-            final TextView th5 = (TextView) findViewById(R.id.th5);
-            final TextView th6 = (TextView) findViewById(R.id.th6);
-
-            if (dateTh.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
-                th0.setBackgroundResource(R.color.Light_Blue);
+            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+                cellMap.get(20).setBackgroundResource(R.color.Light_Blue);
             }
 
-            for (LessonTO lesson : lessonListTh) {
+            for (LessonTO lesson : lessonListMo) {
                 if (lesson.getLessonHour() == 1) {
-                    th1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    th1.setText(lesson.getSubject().getDescription());
+                    cellMap.get(21).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(21).setText(lesson.getSubject().getDescription());
+                    cellMap.get(21).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 21);}});
                 } else if (lesson.getLessonHour() == 2) {
-                    th2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    th2.setText(lesson.getSubject().getDescription());
+                    cellMap.get(22).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(22).setText(lesson.getSubject().getDescription());
+                    cellMap.get(22).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 22);}});
                 } else if (lesson.getLessonHour() == 3) {
-                    th3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    th3.setText(lesson.getSubject().getDescription());
+                    cellMap.get(23).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(23).setText(lesson.getSubject().getDescription());
+                    cellMap.get(23).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 23);}});
                 } else if (lesson.getLessonHour() == 4) {
-                    th4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    th4.setText(lesson.getSubject().getDescription());
+                    cellMap.get(24).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(24).setText(lesson.getSubject().getDescription());
+                    cellMap.get(24).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 24);}});
                 } else if (lesson.getLessonHour() == 5) {
-                    th5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    th5.setText(lesson.getSubject().getDescription());
+                    cellMap.get(25).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(25).setText(lesson.getSubject().getDescription());
+                    cellMap.get(25).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 25);}});
                 } else if (lesson.getLessonHour() == 6) {
-                    th6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    th6.setText(lesson.getSubject().getDescription());
-                }
-            }
-
-            //Freitag
-            final TextView fr0 = (TextView) findViewById(R.id.fr0);
-            final TextView fr1 = (TextView) findViewById(R.id.fr1);
-            final TextView fr2 = (TextView) findViewById(R.id.fr2);
-            final TextView fr3 = (TextView) findViewById(R.id.fr3);
-            final TextView fr4 = (TextView) findViewById(R.id.fr4);
-            final TextView fr5 = (TextView) findViewById(R.id.fr5);
-            final TextView fr6 = (TextView) findViewById(R.id.fr6);
-
-            if (dateFr.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
-                fr0.setBackgroundResource(R.color.Light_Blue);
-            }
-
-            for (LessonTO lesson : lessonListFr) {
-                if (lesson.getLessonHour() == 1) {
-                    fr1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    fr1.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 2) {
-                    fr2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    fr2.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 3) {
-                    fr3.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    fr3.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 4) {
-                    fr4.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    fr4.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 5) {
-                    fr5.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    fr5.setText(lesson.getSubject().getDescription());
-                } else if (lesson.getLessonHour() == 6) {
-                    fr6.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                    fr6.setText(lesson.getSubject().getDescription());
+                    cellMap.get(26).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(26).setText(lesson.getSubject().getDescription());
+                    cellMap.get(26).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 26);}});
                 }
             }
 
@@ -445,7 +412,16 @@ public class MainActivity extends ActionBarActivity {
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
 
         getSubjectIntent.putExtra("lessonId", lessonId);
+        lessonMap.get(lessonId).getLessonID();
+        startActivity(getSubjectIntent);
+    }
 
+    public void onSubjectClickL(View view, int lessonId) {
+
+        Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
+
+        lessonId = lessonMap.get(lessonId).getLessonID();
+        getSubjectIntent.putExtra("lessonId", lessonId);
         startActivity(getSubjectIntent);
     }
 
