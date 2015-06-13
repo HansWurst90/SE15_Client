@@ -1,6 +1,7 @@
 package com.example.jalt.se15_client;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import common.CourseTO;
 import common.HomeworkTO;
+import common.IStudeasyScheduleService;
 import common.LessonTO;
 import common.RoomTO;
 import common.SubjectTO;
@@ -35,14 +37,22 @@ public class SubjectActivity extends ActionBarActivity {
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
 
-        // Intent whichSubjectId = getIntent();
-        // int subjectId = whichSubjectId.getExtras().getInt("subjectId");
+        // Empfangen der lessonId auf die geklickt wurde
+        Intent whichSubjectId = getIntent();
+        int lessonId = whichSubjectId.getExtras().getInt("lessonId");
 
+        // "Abholen" der entsprechenden Lesson vom Server:
+        // Beispiellesson:
         List<LessonTO> lessonList = TestLessons.getLessons();
         LessonTO thisLesson = lessonList.get(3);
 
-        // Date für diese Ansicht nicht wichtig
+        for (LessonTO lesson : lessonList) {
+            if (lesson.getLessonID() == lessonId) {
+                thisLesson = lesson;
+            }
+        }
 
+        // Sammlen der Daten
         String thisLessonDescription = thisLesson.getSubject().getDescription();
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
         char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
@@ -51,9 +61,6 @@ public class SubjectActivity extends ActionBarActivity {
         // String thisLessonHomework = thisLesson.getHomework().getDescription();
         int thisLessonColor = ColorChooser.getColorFromId(thisLesson.getSubject().getSubjectID());
         // thisLesson.getHomeworks();
-
-
-
         //Abhängig des Geschlechts wird die Anrede gesetzt
         String thisLessonTeacherTitle = GenderChooser.getTitleByGender(thisLessonTeacherGender);
 

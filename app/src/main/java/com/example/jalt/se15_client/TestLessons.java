@@ -51,6 +51,7 @@ public class TestLessons {
             homework1.setDescription("English Homework");
             homeworks1.add(homework1);
         lesson1.setHomeworks(homeworks1);
+        lesson1.setLessonID(1);
 
         //Lesson 2
         lesson2.setDate(new Date());
@@ -62,7 +63,7 @@ public class TestLessons {
             teacher2.setName("Prischep");
             teacher2.setGender('m');
         lesson2.setTeacher(teacher2);
-        lesson2.setLessonHour(3);
+        lesson2.setLessonHour(2);
             RoomTO room2 = new RoomTO();
             room2.setRoomID("A004");
         lesson2.setRoom(room2);
@@ -72,6 +73,7 @@ public class TestLessons {
             homework2.setDescription("Aufsatz verfassen");
             homeworks2.add(homework2);
         lesson2.setHomeworks(homeworks2);
+        lesson2.setLessonID(2);
 
         //Lesson 3
         lesson3.setDate(new Date());
@@ -83,7 +85,7 @@ public class TestLessons {
             teacher3.setName("Erfkämper");
             teacher3.setGender('m');
         lesson3.setTeacher(teacher3);
-        lesson3.setLessonHour(2);
+        lesson3.setLessonHour(3);
             RoomTO room3 = new RoomTO();
             room3.setRoomID("D422");
         lesson3.setRoom(room3);
@@ -93,6 +95,7 @@ public class TestLessons {
             homework3.setDescription("Satz des Phythagoras nachweisen");
             homeworks3.add(homework3);
         lesson3.setHomeworks(homeworks3);
+        lesson3.setLessonID(3);
 
         //Lesson 4
         lesson4.setDate(new Date());
@@ -114,6 +117,7 @@ public class TestLessons {
             homework4.setDescription("Handstand üben");
             homeworks4.add(homework4);
         lesson4.setHomeworks(homeworks4);
+        lesson4.setLessonID(4);
 
         //Lesson 5
         lesson5.setDate(new Date());
@@ -135,6 +139,7 @@ public class TestLessons {
             homework5.setDescription("Aufsatz über die Relativitätstheorie verfassen");
             homeworks5.add(homework5);
         lesson5.setHomeworks(homeworks5);
+        lesson5.setLessonID(5);
 
         //Lesson 6
         lesson6.setDate(new Date());
@@ -156,6 +161,7 @@ public class TestLessons {
             homework6.setDescription("App programmieren");
             homeworks6.add(homework6);
         lesson6.setHomeworks(homeworks6);
+        lesson6.setLessonID(6);
 
         lessons.add(lesson1);
         lessons.add(lesson2);
