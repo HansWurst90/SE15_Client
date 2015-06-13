@@ -44,6 +44,7 @@ public class SubjectActivity extends ActionBarActivity {
         // "Abholen" der entsprechenden Lesson vom Server:
         // Beispiellesson:
         List<LessonTO> lessonList = TestLessons.getLessons();
+        lessonList.addAll(TestLessons.getLessons1());
         LessonTO thisLesson = lessonList.get(3);
 
         for (LessonTO lesson : lessonList) {

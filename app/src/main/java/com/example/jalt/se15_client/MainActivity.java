@@ -211,9 +211,9 @@ public class MainActivity extends ActionBarActivity {
             dToast.show();
 
             List<LessonTO> lessonListMo = TestLessons.getLessons();
-            List<LessonTO> lessonListTu = TestLessons.getLessons();
+            List<LessonTO> lessonListTu = TestLessons.getLessons1();
             List<LessonTO> lessonListWe = TestLessons.getLessons();
-            List<LessonTO> lessonListTh = TestLessons.getLessons();
+            List<LessonTO> lessonListTh = TestLessons.getLessons1();
             List<LessonTO> lessonListFr = TestLessons.getLessons();
 
             lessonMap = new SparseArray<>();
@@ -309,7 +309,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
             //Dienstag
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListTu) {
                 if (lesson.getLessonHour() == 1) {
                     lessonMap.put(21, lesson);
                 } else if (lesson.getLessonHour() == 2) {
@@ -329,7 +329,7 @@ public class MainActivity extends ActionBarActivity {
                 cellMap.get(20).setBackgroundResource(R.color.Light_Blue);
             }
 
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListTu) {
                 if (lesson.getLessonHour() == 1) {
                     cellMap.get(21).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(21).setText(lesson.getSubject().getDescription());
@@ -358,7 +358,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
             //Mittwoch
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListWe) {
                 if (lesson.getLessonHour() == 1) {
                     lessonMap.put(31, lesson);
                 } else if (lesson.getLessonHour() == 2) {
@@ -378,7 +378,7 @@ public class MainActivity extends ActionBarActivity {
                 cellMap.get(30).setBackgroundResource(R.color.Light_Blue);
             }
 
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListWe) {
                 if (lesson.getLessonHour() == 1) {
                     cellMap.get(31).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(31).setText(lesson.getSubject().getDescription());
@@ -406,7 +406,7 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
             //Donnerstag
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListTh) {
                 if (lesson.getLessonHour() == 1) {
                     lessonMap.put(41, lesson);
                 } else if (lesson.getLessonHour() == 2) {
@@ -426,7 +426,7 @@ public class MainActivity extends ActionBarActivity {
                 cellMap.get(40).setBackgroundResource(R.color.Light_Blue);
             }
 
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListTh) {
                 if (lesson.getLessonHour() == 1) {
                     cellMap.get(41).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(41).setText(lesson.getSubject().getDescription());
@@ -455,7 +455,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
             //Freitag
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListFr) {
                 if (lesson.getLessonHour() == 1) {
                     lessonMap.put(51, lesson);
                 } else if (lesson.getLessonHour() == 2) {
@@ -475,7 +475,7 @@ public class MainActivity extends ActionBarActivity {
                 cellMap.get(50).setBackgroundResource(R.color.Light_Blue);
             }
 
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListFr) {
                 if (lesson.getLessonHour() == 1) {
                     cellMap.get(51).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(51).setText(lesson.getSubject().getDescription());
