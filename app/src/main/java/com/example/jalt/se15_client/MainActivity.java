@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import common.IStudeasyScheduleService;
+import common.LessonListResponse;
 import common.LessonTO;
 
 
@@ -41,22 +43,25 @@ public class MainActivity extends ActionBarActivity {
     boolean login;
     private Toast dToast = null;
     SparseArray<LessonTO> lessonMap;
+    int sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Abfrage des aktuell gespeicherten Users
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userTrue = sharedPreferences.getString("USER", "");
+        // Ist ein User gespeichert? davon hängt die Gruß/Abschiedsnachricht ab
         if (userTrue.equals(""))
             login = true;
         else
             login = false;
 
+        // Logik zum Überspringen des Wochenendes für das HEUTIGE DATUM
         dateTo = Calendar.getInstance();
         date = Calendar.getInstance();
-
         if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
             date.add(Calendar.DATE, 2);
         }
@@ -64,57 +69,75 @@ public class MainActivity extends ActionBarActivity {
             date.add(Calendar.DATE, 1);
         }
 
+        // Abfrage zu Herkunfts-Activities
         Intent intent = getIntent();
         if (intent.getExtras() != null)
         {
-            if (intent.getExtras().getString("origin").equals("main_portrait"))
-            {
-                dateInMillis = intent.getExtras().getLong("dateInMillis");
-                date.setTimeInMillis(dateInMillis);
-            }
-            if (intent.getExtras().getString("origin").equals("main_landscape"))
-            {
-                dateInMillis = intent.getExtras().getLong("dateInMillis");
-                date.setTimeInMillis(dateInMillis);
-            }
-            if(intent.getExtras().getString("origin").equals("login"))
-            {
-                String savedUser = sharedPreferences.getString("USER", "");
-                String welcome = getResources().getString(R.string.welcome);
-                Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
-
-            }
-            else if(intent.getExtras().getString("origin").equals("logout"))
-            {
-                String goodbye = getResources().getString(R.string.goodbye);
-                Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
-
+            // Woher kommt der Activity-Aufruf? Davon hängt ab, welche extras mitgesandt wurden
+            if (intent.getExtras().getString("origin") != null) {
+                // Wenn man von Main im Hochformat kommt kann man ein neues Datum erwarten. (Vorheriger oder folgender Tag wie in der Herkunfts-Aktivity)
+                if (intent.getExtras().getString("origin").equals("main_portrait")) {
+                    dateInMillis = intent.getExtras().getLong("dateInMillis");
+                    date.setTimeInMillis(dateInMillis);
+                    // Übergabe der Animation abhängig von Next- oder Previous-Methode
+                    if (intent.getExtras().getString("direction").equals("right")) {
+                        this.overridePendingTransition(R.anim.slide_in_right, 17432577);
+                    }
+                    // Übergabe der Animation abhängig von Next- oder Previous-Methode
+                    if (intent.getExtras().getString("direction").equals("left")) {
+                        this.overridePendingTransition(R.anim.slide_in_left, 17432577);
+                    }
+                }
+                // Wenn man von Main im Querformat kommt kann man ein neues Datum erwarten. (/ Tage vor oder nach dem Datum der Herkunfts-Aktivity)
+                if (intent.getExtras().getString("origin").equals("main_landscape")) {
+                    dateInMillis = intent.getExtras().getLong("dateInMillis");
+                    date.setTimeInMillis(dateInMillis);
+                    // Übergabe der Animation abhängig von Next- oder Previous-Methode
+                    if (intent.getExtras().getString("direction").equals("right")) {
+                        this.overridePendingTransition(R.anim.slide_in_right, 17432577);
+                    }
+                    // Übergabe der Animation abhängig von Next- oder Previous-Methode
+                    if (intent.getExtras().getString("direction").equals("left")) {
+                        this.overridePendingTransition(R.anim.slide_in_left, 17432577);
+                    }
+                }
+                // Wenn man sich grade eingeloggt hat, wird man mit Namen gegrüßt.
+                if (intent.getExtras().getString("origin").equals("login")) {
+                    String savedUser = sharedPreferences.getString("USER", "");
+                    String welcome = getResources().getString(R.string.welcome);
+                    Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
+                    // Wenn man sich grade ausgeloggt hat, wird man verabschiedet.
+                } else if (intent.getExtras().getString("origin").equals("logout")) {
+                    String goodbye = getResources().getString(R.string.goodbye);
+                    Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
+                }
             }
         }
-
 
         // AB HIER NUR PORTRAIT LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
-            // Abfrage: Welche Fächer gibt es am heutigen Tag?
-            // Objekt mit Array mit Veranstaltungsobjekten wird zurückgeliefert
-            //List<ILesson> lessionList = new ArrayList<ILesson>();
-            // lessonList = IStudeasyScheduleService.getLessonsByDate(1, today);
+            // Abfrage eines Tagesplan für den gegebenen Tag.
+            // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, date);
+            // List<LessonTO> lessonList = lessonListResponse.getLessonList()
             List<LessonTO> lessonList = TestLessons.getLessons();
 
-            // Hier wird das heutige Datum für die Anzeige im Kopf der Tabelle aufbereitet.
+            // Hier wird das Datum für die Anzeige im Kopf der Tabelle aufbereitet und blau gefärbt, wenn es das heutige Datum ist.
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
             final TextView dateText = (TextView) findViewById(R.id.daytoday);
             dateText.setText(dfmt.format(date.getTime()).toString());
             if (date.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
                 dateText.setBackgroundResource(R.color.Light_Blue);
             }
+
+            // Map/Arrays zum einfachen Addressieren der Verschiedenen TextViews in unserem Tabellenlayout
             lessonMap = new SparseArray<>();
             SparseArray<TableLayout> cellMap = new SparseArray<>();
             SparseArray<TextView> teacherMap = new SparseArray<>();
             SparseArray<TextView> subjectMap = new SparseArray<>();
             SparseArray<TextView> roomMap = new SparseArray<>();
 
+            // Zuweisen der Zellen und TextVIews
             cellMap.put(1, (TableLayout) findViewById(R.id.dayclass1));
             teacherMap.put(1, (TextView) findViewById(R.id.dayclass1teacher));
             subjectMap.put(1, (TextView) findViewById(R.id.dayclass1subject));
@@ -145,59 +168,46 @@ public class MainActivity extends ActionBarActivity {
             subjectMap.put(6, (TextView) findViewById(R.id.dayclass6subject));
             roomMap.put(6, (TextView) findViewById(R.id.dayclass6room));
 
-            // LessonMap befüllen und OnClick setzten. Kann nicht mit in die Schleife da in Methodenaufruf Int Final sein muss.
+            // Lessons werden nach Unterichtsstunde Sortiert in die LessonMap gespeichert.
+            // Zellen 1-6 werden entsprechend mit verlinkt um später die SessionId mitgeben zu können.
+            // Wenn die erste Stunde angeklickt wurde bekommt die OnClick-Methode eine 1 mitgeliefert und kann sich so mit "lessonMap.get(1).getLessonId()" der folgenden Activity die Id mitliefern.
+            // Hinweis: Die Id kann nicht variabel eingefügt werden, da in Methodenaufruf Int Final sein muss.
+            // Hinweis: LessonMap befüllen und OnClick setzten. Kann nicht mit in die Schleife, da in Methodenaufruf Int Final sein muss.
             for (LessonTO lesson : lessonList) {
                 if (lesson.getLessonHour() == 1) {
                     lessonMap.put(1, lesson);
-                    cellMap.get(1).setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        onSubjectClick(v, 1);
-                    }});
+                    cellMap.get(1).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, 1);}});
                 } else if (lesson.getLessonHour() == 2) {
                     lessonMap.put(2, lesson);
-                    cellMap.get(2).setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            onSubjectClick(v, 2);
-                        }});
+                    cellMap.get(2).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, 2);}});
                 } else if (lesson.getLessonHour() == 3) {
                     lessonMap.put(3, lesson);
-                    cellMap.get(3).setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            onSubjectClick(v, 3);
-                        }});
+                    cellMap.get(3).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, 3);}});
                 } else if (lesson.getLessonHour() == 4) {
                     lessonMap.put(4, lesson);
-                    cellMap.get(4).setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            onSubjectClick(v, 4);
-                        }});
+                    cellMap.get(4).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, 4);}});
                 } else if (lesson.getLessonHour() == 5) {
                     lessonMap.put(5, lesson);
-                    cellMap.get(5).setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            onSubjectClick(v, 5);
-                        }});
+                    cellMap.get(5).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, 5);}});
                 } else if (lesson.getLessonHour() == 6) {
                     lessonMap.put(6, lesson);
-                    cellMap.get(6).setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            onSubjectClick(v, 6);
-                        }});
+                    cellMap.get(6).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, 6);}});
                 }
-                for(int i=1; i<7; i++){
-                    if (lessonMap.get(i) != null) {
-                        cellMap.get(i).setBackgroundResource(ColorChooser.getColorFromId(lessonMap.get(i).getSubject().getSubjectID()));
-                        teacherMap.get(i).setText(GenderChooser.getTitleByGender(lessonMap.get(i).getTeacher().getGender()) + " " + lessonMap.get(i).getTeacher().getName());
-                        subjectMap.get(i).setText(lessonMap.get(i).getSubject().getDescription());
-                        roomMap.get(i).setText(lessonMap.get(i).getRoom().getRoomID());
-                    }
+            }
+            // Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
+            for(int i=1; i<7; i++){
+                if (lessonMap.get(i) != null) {
+                    cellMap.get(i).setBackgroundResource(ColorChooser.getColorFromId(lessonMap.get(i).getSubject().getSubjectID()));
+                    teacherMap.get(i).setText(GenderChooser.getTitleByGender(lessonMap.get(i).getTeacher().getGender()) + " " + lessonMap.get(i).getTeacher().getName());
+                    subjectMap.get(i).setText(lessonMap.get(i).getSubject().getDescription());
+                    roomMap.get(i).setText(lessonMap.get(i).getRoom().getRoomID());
                 }
             }
         }
 
         // AB HIER NUR LANDSCAPE LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-
+            // Es werden alle Wochentage der Woche des genannten Datums ermittelt
             Calendar dateMo = (Calendar) date.clone();
             dateMo.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
             Calendar dateTu = (Calendar) date.clone();
@@ -208,20 +218,32 @@ public class MainActivity extends ActionBarActivity {
             dateTh.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
             Calendar dateFr = (Calendar) date.clone();
             dateFr.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-
+            // Overlay Info zur Woche (Datum: Von - Bis)
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
             dToast = Toast.makeText(this, dfmt.format(dateMo.getTime()).toString() + " - " + dfmt.format(dateFr.getTime()).toString(), Toast.LENGTH_SHORT);
             dToast.show();
 
+            // Abfrage der Tagespläne für jeden Wochentag der Woche
+            // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, dateMo);
+            // List<LessonTO> lessonListMo = lessonListResponse.getLessonList();
+            // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, dateTu);
+            // List<LessonTO> lessonListTu = lessonListResponse.getLessonList();
+            // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, dateWe);
+            // List<LessonTO> lessonListWe = lessonListResponse.getLessonList();
+            // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, dateTh);
+            // List<LessonTO> lessonListTh = lessonListResponse.getLessonList();
+            // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, dateFr);
+            // List<LessonTO> lessonListFr = lessonListResponse.getLessonList();
             List<LessonTO> lessonListMo = TestLessons.getLessons();
-            List<LessonTO> lessonListTu = TestLessons.getLessons();
+            List<LessonTO> lessonListTu = TestLessons.getLessons1();
             List<LessonTO> lessonListWe = TestLessons.getLessons();
-            List<LessonTO> lessonListTh = TestLessons.getLessons();
+            List<LessonTO> lessonListTh = TestLessons.getLessons1();
             List<LessonTO> lessonListFr = TestLessons.getLessons();
 
+            // Map und Array zum einfachen Adressieren
             lessonMap = new SparseArray<>();
             SparseArray<TextView> cellMap = new SparseArray();
-
+            // Befüllen der Map mit allen Zellen: Einerstelle Tag (Mo = 1, Di = 2, ...), Zehnerstelle Stunde (1, 2, ...)
             cellMap.put(10, (TextView) findViewById(R.id.mo0));
             cellMap.put(11, (TextView) findViewById(R.id.mo1));
             cellMap.put(12, (TextView) findViewById(R.id.mo2));
@@ -262,7 +284,8 @@ public class MainActivity extends ActionBarActivity {
             cellMap.put(55, (TextView) findViewById(R.id.fr5));
             cellMap.put(56, (TextView) findViewById(R.id.fr6));
 
-            //Montag
+            // MONTAG
+            // Sortierung der Fächer nach Stunde in die lessonMap für Montag
             for (LessonTO lesson : lessonListMo) {
                 if (lesson.getLessonHour() == 1) {
                     lessonMap.put(11, lesson);
@@ -278,41 +301,41 @@ public class MainActivity extends ActionBarActivity {
                     lessonMap.put(16, lesson);
                 }
             }
-
+            // Färben des Spaltenkopfs wenn das Datum HEUTE ist.
             if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 cellMap.get(10).setBackgroundResource(R.color.Light_Blue);
             }
-
+            // Fächerfarben, Fachnamen werdne eingetragen und Zelle wird verlinkt.
             for (LessonTO lesson : lessonListMo) {
                 if (lesson.getLessonHour() == 1) {
                     cellMap.get(11).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(11).setText(lesson.getSubject().getDescription());
-                    cellMap.get(11).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 11);}});
+                    cellMap.get(11).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 11);}});
                 } else if (lesson.getLessonHour() == 2) {
                     cellMap.get(12).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(12).setText(lesson.getSubject().getDescription());
-                    cellMap.get(12).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 12);}});
+                    cellMap.get(12).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 12);}});
                 } else if (lesson.getLessonHour() == 3) {
                     cellMap.get(13).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(13).setText(lesson.getSubject().getDescription());
-                    cellMap.get(13).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 13);}});
+                    cellMap.get(13).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 13);}});
                 } else if (lesson.getLessonHour() == 4) {
                     cellMap.get(14).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(14).setText(lesson.getSubject().getDescription());
-                    cellMap.get(14).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 14);}});
+                    cellMap.get(14).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 14);}});
                 } else if (lesson.getLessonHour() == 5) {
                     cellMap.get(15).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(15).setText(lesson.getSubject().getDescription());
-                    cellMap.get(15).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 15);}});
+                    cellMap.get(15).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 15);}});
                 } else if (lesson.getLessonHour() == 6) {
                     cellMap.get(16).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(16).setText(lesson.getSubject().getDescription());
-                    cellMap.get(16).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 16);}});
+                    cellMap.get(16).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 16);}});
                 }
             }
 
-            //Dienstag
-            for (LessonTO lesson : lessonListMo) {
+            //DIENSTAG (siehe MONTAG)
+            for (LessonTO lesson : lessonListTu) {
                 if (lesson.getLessonHour() == 1) {
                     lessonMap.put(21, lesson);
                 } else if (lesson.getLessonHour() == 2) {
@@ -327,43 +350,179 @@ public class MainActivity extends ActionBarActivity {
                     lessonMap.put(26, lesson);
                 }
             }
-
             if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 cellMap.get(20).setBackgroundResource(R.color.Light_Blue);
             }
-
-            for (LessonTO lesson : lessonListMo) {
+            for (LessonTO lesson : lessonListTu) {
                 if (lesson.getLessonHour() == 1) {
                     cellMap.get(21).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(21).setText(lesson.getSubject().getDescription());
-                    cellMap.get(21).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 21);}});
+                    cellMap.get(21).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 21);}});
                 } else if (lesson.getLessonHour() == 2) {
                     cellMap.get(22).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(22).setText(lesson.getSubject().getDescription());
-                    cellMap.get(22).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 22);}});
+                    cellMap.get(22).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 22);}});
                 } else if (lesson.getLessonHour() == 3) {
                     cellMap.get(23).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(23).setText(lesson.getSubject().getDescription());
-                    cellMap.get(23).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 23);}});
+                    cellMap.get(23).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 23);}});
                 } else if (lesson.getLessonHour() == 4) {
                     cellMap.get(24).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(24).setText(lesson.getSubject().getDescription());
-                    cellMap.get(24).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 24);}});
+                    cellMap.get(24).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 24);}});
                 } else if (lesson.getLessonHour() == 5) {
                     cellMap.get(25).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(25).setText(lesson.getSubject().getDescription());
-                    cellMap.get(25).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 25);}});
+                    cellMap.get(25).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 25);}});
                 } else if (lesson.getLessonHour() == 6) {
                     cellMap.get(26).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                     cellMap.get(26).setText(lesson.getSubject().getDescription());
-                    cellMap.get(26).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClickL(v, 26);}});
+                    cellMap.get(26).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 26);}});
                 }
             }
 
+            // MITTWOCH (siehe MONTAG)
+            for (LessonTO lesson : lessonListWe) {
+                if (lesson.getLessonHour() == 1) {
+                    lessonMap.put(31, lesson);
+                } else if (lesson.getLessonHour() == 2) {
+                    lessonMap.put(32, lesson);
+                } else if (lesson.getLessonHour() == 3) {
+                    lessonMap.put(33, lesson);
+                } else if (lesson.getLessonHour() == 4) {
+                    lessonMap.put(34, lesson);
+                } else if (lesson.getLessonHour() == 5) {
+                    lessonMap.put(35, lesson);
+                } else if (lesson.getLessonHour() == 6) {
+                    lessonMap.put(36, lesson);
+                }
+            }
+            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+                cellMap.get(30).setBackgroundResource(R.color.Light_Blue);
+            }
+            for (LessonTO lesson : lessonListWe) {
+                if (lesson.getLessonHour() == 1) {
+                    cellMap.get(31).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(31).setText(lesson.getSubject().getDescription());
+                    cellMap.get(31).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 31);}});
+                } else if (lesson.getLessonHour() == 2) {
+                    cellMap.get(32).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(32).setText(lesson.getSubject().getDescription());
+                    cellMap.get(32).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 32);}});
+                } else if (lesson.getLessonHour() == 3) {
+                    cellMap.get(33).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(33).setText(lesson.getSubject().getDescription());
+                    cellMap.get(33).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 33);}});
+                } else if (lesson.getLessonHour() == 4) {
+                    cellMap.get(34).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(34).setText(lesson.getSubject().getDescription());
+                    cellMap.get(34).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 34);}});
+                } else if (lesson.getLessonHour() == 5) {
+                    cellMap.get(35).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(35).setText(lesson.getSubject().getDescription());
+                    cellMap.get(35).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 35);}});
+                } else if (lesson.getLessonHour() == 6) {
+                    cellMap.get(36).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(36).setText(lesson.getSubject().getDescription());
+                    cellMap.get(36).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 36);}});
+                }
+            }
+
+            //DONNERSTAG (siehe MONTAG)
+            for (LessonTO lesson : lessonListTh) {
+                if (lesson.getLessonHour() == 1) {
+                    lessonMap.put(41, lesson);
+                } else if (lesson.getLessonHour() == 2) {
+                    lessonMap.put(42, lesson);
+                } else if (lesson.getLessonHour() == 3) {
+                    lessonMap.put(43, lesson);
+                } else if (lesson.getLessonHour() == 4) {
+                    lessonMap.put(44, lesson);
+                } else if (lesson.getLessonHour() == 5) {
+                    lessonMap.put(45, lesson);
+                } else if (lesson.getLessonHour() == 6) {
+                    lessonMap.put(46, lesson);
+                }
+            }
+            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+                cellMap.get(40).setBackgroundResource(R.color.Light_Blue);
+            }
+            for (LessonTO lesson : lessonListTh) {
+                if (lesson.getLessonHour() == 1) {
+                    cellMap.get(41).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(41).setText(lesson.getSubject().getDescription());
+                    cellMap.get(41).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 41);}});
+                } else if (lesson.getLessonHour() == 2) {
+                    cellMap.get(42).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(42).setText(lesson.getSubject().getDescription());
+                    cellMap.get(42).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 42);}});
+                } else if (lesson.getLessonHour() == 3) {
+                    cellMap.get(43).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(43).setText(lesson.getSubject().getDescription());
+                    cellMap.get(43).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 43);}});
+                } else if (lesson.getLessonHour() == 4) {
+                    cellMap.get(44).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(44).setText(lesson.getSubject().getDescription());
+                    cellMap.get(44).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 44);}});
+                } else if (lesson.getLessonHour() == 5) {
+                    cellMap.get(45).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(45).setText(lesson.getSubject().getDescription());
+                    cellMap.get(45).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 45);}});
+                } else if (lesson.getLessonHour() == 6) {
+                    cellMap.get(46).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(46).setText(lesson.getSubject().getDescription());
+                    cellMap.get(46).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 46);}});
+                }
+            }
+
+            //FREITAG (siehe MONTAG)
+            for (LessonTO lesson : lessonListFr) {
+                if (lesson.getLessonHour() == 1) {
+                    lessonMap.put(51, lesson);
+                } else if (lesson.getLessonHour() == 2) {
+                    lessonMap.put(52, lesson);
+                } else if (lesson.getLessonHour() == 3) {
+                    lessonMap.put(53, lesson);
+                } else if (lesson.getLessonHour() == 4) {
+                    lessonMap.put(54, lesson);
+                } else if (lesson.getLessonHour() == 5) {
+                    lessonMap.put(55, lesson);
+                } else if (lesson.getLessonHour() == 6) {
+                    lessonMap.put(56, lesson);
+                }
+            }
+            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+                cellMap.get(50).setBackgroundResource(R.color.Light_Blue);
+            }
+            for (LessonTO lesson : lessonListFr) {
+                if (lesson.getLessonHour() == 1) {
+                    cellMap.get(51).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(51).setText(lesson.getSubject().getDescription());
+                    cellMap.get(51).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 51);}});
+                } else if (lesson.getLessonHour() == 2) {
+                    cellMap.get(52).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(52).setText(lesson.getSubject().getDescription());
+                    cellMap.get(52).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 52);}});
+                } else if (lesson.getLessonHour() == 3) {
+                    cellMap.get(53).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(53).setText(lesson.getSubject().getDescription());
+                    cellMap.get(53).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 53);}});
+                } else if (lesson.getLessonHour() == 4) {
+                    cellMap.get(54).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(54).setText(lesson.getSubject().getDescription());
+                    cellMap.get(54).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 54);}});
+                } else if (lesson.getLessonHour() == 5) {
+                    cellMap.get(55).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(55).setText(lesson.getSubject().getDescription());
+                    cellMap.get(55).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 55);}});
+                } else if (lesson.getLessonHour() == 6) {
+                    cellMap.get(56).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    cellMap.get(56).setText(lesson.getSubject().getDescription());
+                    cellMap.get(56).setOnClickListener(new View.OnClickListener() {public void onClick(View v) { onSubjectClick(v, 56);}});
+                }
+            }
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -391,43 +550,28 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     public void onSettingsClick(MenuItem item) {
-
         Intent getSettingsIntent = new Intent(this, SettingsActivity.class);
-
         startActivity(getSettingsIntent);
     }
 
+    // Methode für Fachauswahl
     public void onSubjectClick(View view, int lessonId) {
-
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
-
-        getSubjectIntent.putExtra("lessonId", lessonId);
-        lessonMap.get(lessonId).getLessonID();
+        getSubjectIntent.putExtra("lessonId", lessonMap.get(lessonId).getLessonID());
         startActivity(getSubjectIntent);
     }
-
-    public void onSubjectClickL(View view, int lessonId) {
-
-        Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
-
-        lessonId = lessonMap.get(lessonId).getLessonID();
-        getSubjectIntent.putExtra("lessonId", lessonId);
-        startActivity(getSubjectIntent);
-    }
-
-
+    // Methode nächster TAG
     public void onNextClickP(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
+        // Datum der aktuellen Activity wird um einen Tag erhöht. Falls dies ein Wochenende ist wird zum Montag gesprungen
         date.add(Calendar.DATE, 1);
         if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
             date.add(Calendar.DATE, 2);
@@ -435,11 +579,17 @@ public class MainActivity extends ActionBarActivity {
         if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
             date.add(Calendar.DATE, 1);
         }
+        // Datum wird in Millisekunden umgewandelt, da per Intent kein Date-Objekt mitgeliefert werden kann.
         getNextIntent.putExtra("dateInMillis", date.getTimeInMillis());
+        // Angabe der Herkunt zum Handeln der Extras
         getNextIntent.putExtra("origin","main_portrait");
-
+        // Angabe in welche Richtung die Animation ablaufen soll.
+        getNextIntent.putExtra("direction","right");
+        // Unterdrücken der Standardanimation
+        getNextIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getNextIntent);
     }
+    // Methode vorheriger TAG (Kommentare wie bei "nächster TAG")
     public void onPreviousClickP(View view){
         Intent getPreviousIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, -1);
@@ -451,23 +601,29 @@ public class MainActivity extends ActionBarActivity {
         }
         getPreviousIntent.putExtra("dateInMillis", date.getTimeInMillis());
         getPreviousIntent.putExtra("origin","main_portrait");
+        getPreviousIntent.putExtra("direction","left");
 
+        getPreviousIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getPreviousIntent);
     }
+    // Methode nächste WOCHE (ähnlich wie "nächster TAG" jedoch mit 7 Tagen)
     public void onNextClickL(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, 7);
         getNextIntent.putExtra("dateInMillis", date.getTimeInMillis());
         getNextIntent.putExtra("origin","main_landscape");
-
+        getNextIntent.putExtra("direction","right");
+        getNextIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getNextIntent);
     }
+    // Methode vorherige Woche (Kommentare wie bei "nächste "WOCHE")
     public void onPreviousClickL(View view){
         Intent getPreviousIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, -7);
         getPreviousIntent.putExtra("dateInMillis", date.getTimeInMillis());
         getPreviousIntent.putExtra("origin","main_landscape");
-
+        getPreviousIntent.putExtra("direction","left");
+        getPreviousIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getPreviousIntent);
     }
 }
