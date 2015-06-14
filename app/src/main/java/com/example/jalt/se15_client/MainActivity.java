@@ -120,7 +120,7 @@ public class MainActivity extends ActionBarActivity {
             // Abfrage eines Tagesplan für den gegebenen Tag.
             // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, date);
             // List<LessonTO> lessonList = lessonListResponse.getLessonList()
-            List<LessonTO> lessonList = TestLessons.getLessons();
+            List<LessonTO> lessonList = TestLessons.getLessons1();
 
             // Hier wird das Datum für die Anzeige im Kopf der Tabelle aufbereitet und blau gefärbt, wenn es das heutige Datum ist.
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
@@ -234,11 +234,11 @@ public class MainActivity extends ActionBarActivity {
             // List<LessonTO> lessonListTh = lessonListResponse.getLessonList();
             // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, dateFr);
             // List<LessonTO> lessonListFr = lessonListResponse.getLessonList();
-            List<LessonTO> lessonListMo = TestLessons.getLessons();
-            List<LessonTO> lessonListTu = TestLessons.getLessons1();
-            List<LessonTO> lessonListWe = TestLessons.getLessons();
-            List<LessonTO> lessonListTh = TestLessons.getLessons1();
-            List<LessonTO> lessonListFr = TestLessons.getLessons();
+            List<LessonTO> lessonListMo = TestLessons.getLessons1();
+            List<LessonTO> lessonListTu = TestLessons.getLessons2();
+            List<LessonTO> lessonListWe = TestLessons.getLessons3();
+            List<LessonTO> lessonListTh = TestLessons.getLessons4();
+            List<LessonTO> lessonListFr = TestLessons.getLessons5();
 
             // Map und Array zum einfachen Adressieren
             lessonMap = new SparseArray<>();
