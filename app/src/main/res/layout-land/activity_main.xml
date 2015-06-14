@@ -85,7 +85,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/mo1"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -94,7 +94,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/tu1"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -103,7 +103,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/we1"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -112,7 +112,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/th1"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -121,7 +121,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/fr1"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -136,7 +136,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/mo2"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -145,7 +145,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/tu2"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -154,7 +154,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/we2"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -163,7 +163,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/th2"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -172,7 +172,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/fr2"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -187,7 +187,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/mo3"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -196,7 +196,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/tu3"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -205,7 +205,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/we3"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -214,7 +214,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/th3"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -223,7 +223,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/fr3"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -238,7 +238,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/mo4"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -247,7 +247,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/tu4"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -256,7 +256,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/we4"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -265,7 +265,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/th4"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -274,7 +274,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/fr4"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -289,7 +289,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/mo5"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -298,7 +298,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/tu5"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -307,7 +307,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/we5"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -316,7 +316,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/th5"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -325,7 +325,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/fr5"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -340,7 +340,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/mo6"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -349,7 +349,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/tu6"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -358,7 +358,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/we6"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -367,7 +367,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/th6"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
@@ -376,7 +376,7 @@
                                 android:textSize="@dimen/textview_size"
                                 android:width="92dp"
                                 android:gravity="center"
-                                android:background="@color/Shade"
+                                android:background="@drawable/border"
                                 android:id="@+id/fr6"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent" />
