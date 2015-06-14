@@ -47,8 +47,14 @@ public class TestLessons {
         lesson1.setCourse(new CourseTO());
             List<HomeworkTO> homeworks1 = new ArrayList<HomeworkTO>();
             HomeworkTO homework1 = new HomeworkTO();
-            homework1.setDescription("English Homework");
+            HomeworkTO homework11 = new HomeworkTO();
+            HomeworkTO homework12 = new HomeworkTO();
+            homework1.setDescription("- Learn Voc");
+            homework11.setDescription("- Read Page 326");
+            homework12.setDescription("- Wirte a letter to Mr Mußenbrock");
             homeworks1.add(homework1);
+            homeworks1.add(homework11);
+            homeworks1.add(homework12);
         lesson1.setHomeworks(homeworks1);
         lesson1.setLessonID(1);
 

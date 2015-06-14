@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TableRow;
@@ -60,7 +61,8 @@ public class SubjectActivity extends ActionBarActivity {
         char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
         int thisLessonHour = thisLesson.getLessonHour();
         String thisLessonRoom = thisLesson.getRoom().getRoomID();
-        // String thisLessonHomework = thisLesson.getHomework().getDescription();
+        /** String thisLessonHomework = String.join(", ", thisLesson.getHomeworks()); */
+        String thisLessonHomework = HomeworkArrayToString(thisLesson.getHomeworks());
         int thisLessonColor = ColorChooser.getColorFromId(thisLesson.getSubject().getSubjectID());
         // thisLesson.getHomeworks();
         //Abhängig des Geschlechts wird die Anrede gesetzt
@@ -117,9 +119,21 @@ public class SubjectActivity extends ActionBarActivity {
         final TextView roomTextView = (TextView) findViewById(R.id.room_value);
         roomTextView.setText(thisLessonRoom);
         final TextView homeworkTextView = (TextView) findViewById(R.id.homework_value);
-        // homeworkTextView.setText(thisLessonHomework);
+        homeworkTextView.setText(thisLessonHomework);
     }
 
+    private String HomeworkArrayToString(List<HomeworkTO> list)
+    {
+        StringBuilder homeworkString = new StringBuilder();
+        String string = "";
+        for (int i = 0; i< list.size(); i++)
+        {
+            string = list.get(i).getDescription();
+            homeworkString.append(string);
+            homeworkString.append("\n");
+        }
+        return homeworkString.toString();
+    }
 
     public void homeworkToast(View view) {
         boolean checked = homeworkButton.isChecked();
