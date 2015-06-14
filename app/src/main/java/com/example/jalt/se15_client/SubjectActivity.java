@@ -12,6 +12,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,13 +43,18 @@ public class SubjectActivity extends ActionBarActivity {
         // Empfangen der lessonId auf die geklickt wurde
         Intent whichSubjectId = getIntent();
         int lessonId = whichSubjectId.getExtras().getInt("lessonId");
+        Toast.makeText(this, "LessonId: " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
 
-        // "Abholen" der entsprechenden Lesson vom Server:
         // Beispiellesson:
-        List<LessonTO> lessonList = TestLessons.getLessons();
+        List<LessonTO> lessonList = new ArrayList<>();
         lessonList.addAll(TestLessons.getLessons1());
+        lessonList.addAll(TestLessons.getLessons2());
+        lessonList.addAll(TestLessons.getLessons3());
+        lessonList.addAll(TestLessons.getLessons4());
+        lessonList.addAll(TestLessons.getLessons5());
         LessonTO thisLesson = lessonList.get(3);
 
+        // "Abholen" der entsprechenden Lesson vom Server:
         for (LessonTO lesson : lessonList) {
             if (lesson.getLessonID() == lessonId) {
                 thisLesson = lesson;
