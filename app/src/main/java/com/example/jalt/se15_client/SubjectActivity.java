@@ -30,6 +30,7 @@ import common.TeacherTO;
 public class SubjectActivity extends ActionBarActivity {
 
     CheckBox homeworkButton;
+    String saveKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class SubjectActivity extends ActionBarActivity {
         // thisLesson.getHomeworks();
         //Abhängig des Geschlechts wird die Anrede gesetzt
         String thisLessonTeacherTitle = GenderChooser.getTitleByGender(thisLessonTeacherGender);
+        saveKey = "lesson"+thisLesson.getLessonID();
 
         //Abhängig der Stunde werdne die Star- und Endzeiten gewählt
         String from = null;
@@ -144,13 +146,13 @@ public class SubjectActivity extends ActionBarActivity {
     private void save(final boolean isChecked) {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("check", isChecked);
+        editor.putBoolean(saveKey, isChecked);
         editor.commit();
     }
 
     private boolean load() {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean("check", false);
+        return sharedPreferences.getBoolean(saveKey, false);
     }
 
 
