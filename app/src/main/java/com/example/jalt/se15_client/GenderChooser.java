@@ -2,6 +2,8 @@ package com.example.jalt.se15_client;
 
 /**
  * Created by Jan on 10.06.15.
+ * Auslagerung der Auswahl der Anrede anhand des Geschlechts.
+ *  @author Mußenbrock
  */
 public class GenderChooser {
 
