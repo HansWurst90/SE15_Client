@@ -149,7 +149,7 @@ public class SubjectActivity extends ActionBarActivity {
     public void homeworkTextClick(View view) {
         if (teacherLogin)
         {
-            Toast.makeText(this, "JOJO: ", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(SubjectActivity.this,TeacherActivity.class));
         }
     }
 

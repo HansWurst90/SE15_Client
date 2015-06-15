@@ -9,6 +9,7 @@
     <string name="title_activity_subject">Fachansicht</string>
     <string name="free_lesson_value">Freistunde</string>
     <string name="free_lesson_sign">---</string>
+    <string name="school_break">Pause</string>
     <string name="subject_value">Fachplatzhalter</string>
     <string name="subject_label">Fach:</string>
     <string name="teacher_label">Lehrer:</string>
@@ -20,8 +21,8 @@
     <string name="room_label">Raum:</string>
     <string name="room_value">Raum ####</string>
     <string name="homework_label">Hausaufgaben:</string>
-    <string name="homeworkDone">Sehr gut</string>
-    <string name="homeworkUndone">Schade</string>
+    <string name="homeworkDone">Sehr gut!</string>
+    <string name="homeworkUndone">Schade!</string>
     <string name="homework_value">
         Hier kommen später eine Menge Hausaufgaben rein:\n
         - Buch lesen\n

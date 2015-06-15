@@ -1,7 +1,83 @@
 <resources>
     <string name="app_name">Studeasy</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="SV_Title">Sobrevista de asignaturas</string>
+    <string name="daytoday">dd.mm.yy</string>
 
-    <string name="hello_world">This is our welcome page.</string>
-    <string name="action_settings">Settings</string>
-    <string name="SV_Title">Subject View</string>
+    <!--subject_activity -->
+    <string name="title_activity_subject">Sobrevista de asignaturas</string>
+    <string name="free_lesson_value">Hora libre</string>
+    <string name="free_lesson_sign">---</string>
+    <string name="school_break">Recreo</string>
+    <string name="subject_value">Fachplatzhalter</string>
+    <string name="subject_label">Asignatura:</string>
+    <string name="teacher_label">Profesor:</string>
+    <string name="teacher_value">Lehrerplatzhalter</string>
+    <string name="from_label">Desde:</string>
+    <string name="from_value">##:##</string>
+    <string name="to_label">Hasta:</string>
+    <string name="to_value">##:##</string>
+    <string name="room_label">Aula:</string>
+    <string name="room_value">Aula ####</string>
+    <string name="homework_label">Deberes:</string>
+    <string name="homeworkDone">Muy bien</string>
+    <string name="homeworkUndone">Que pena</string>
+    <string name="homework_value">
+        Hier kommen später eine Menge Hausaufgaben rein:\n
+        - Buch lesen\n
+        - Aufgaben rechnen\n
+        - Aufsatz schreiben\n
+        - Vokabeln üben\n
+        - Experiment durchführen\n
+        - Sportübungen machen\n
+        - Buch lesen\n
+        - Aufgaben rechnen\n
+        - Aufsatz schreiben\n
+        - Vokabeln üben\n
+        - Experiment durchführen\n
+        - Sportübungen machen\n
+    </string>
+
+
+    <!--Logging -->
+    <string name="username">Nombre</string>
+    <string name="password">Contraseña</string>
+    <string name="submit">Entrar</string>
+    <string name="welcome">Bienvenidos</string>
+    <string name="goodbye">Adiós</string>
+    <string name="missingPasswort">Todavía falta introducir contraseña</string>
+    <string name="missingUsername">Todavía falta introducir nombre del usuario</string>
+    <string name="missingBoth">Todavía falta introducir nombre del usuario y contraseña</string>
+
+    <!--days -->
+    <string name="monday">Lunes</string>
+    <string name="tuesday">Martes</string>
+    <string name="wednesday">Miércoles</string>
+    <string name="thursday">Jueves</string>
+    <string name="friday">Viernes</string>
+
+    <!--days shortcut -->
+
+    <string name="monday_shortcut">L</string>
+    <string name="tuesday_shortcut">M</string>
+    <string name="wednesday_shortcut">X</string>
+    <string name="thursday_shortcut">J</string>
+    <string name="friday_shortcut">V</string>
+
+    <!-- times -->
+    <string name="from_1">08:30</string>
+    <string name="to_1">09:15</string>
+    <string name="from_2">09:15</string>
+    <string name="to_2">10:00</string>
+    <string name="from_3">10:15</string>
+    <string name="to_3">11:00</string>
+    <string name="from_4">11.00</string>
+    <string name="to_4">11:45</string>
+    <string name="from_5">12:00</string>
+    <string name="to_5">12:45</string>
+    <string name="from_6">12:45</string>
+    <string name="to_6">13:00</string>
+
+    <!-- subjects -->
 </resources>
