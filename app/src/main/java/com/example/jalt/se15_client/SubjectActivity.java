@@ -3,6 +3,7 @@ package com.example.jalt.se15_client;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,12 +34,14 @@ public class SubjectActivity extends ActionBarActivity {
 
     CheckBox homeworkButton;
     String saveKey;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
+        teacherLogin();
 
         // Empfangen der lessonId auf die geklickt wurde
         Intent whichSubjectId = getIntent();
@@ -126,6 +129,17 @@ public class SubjectActivity extends ActionBarActivity {
         roomTextView.setText(thisLessonRoom);
         final TextView homeworkTextView = (TextView) findViewById(R.id.homework_value);
         homeworkTextView.setText(thisLessonHomework);
+    }
+
+    private void teacherLogin()
+    {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String savedUser = sharedPreferences.getString("USER", "");
+        if (savedUser.equals("Teacher"))
+        {
+            homeworkButton.setVisibility(View.GONE);
+
+        }
     }
 
     private String HomeworkArrayToString(List<HomeworkTO> list)
