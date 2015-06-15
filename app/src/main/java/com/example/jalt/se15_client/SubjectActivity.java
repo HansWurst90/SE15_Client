@@ -33,7 +33,9 @@ import common.TeacherTO;
 public class SubjectActivity extends ActionBarActivity {
 
     CheckBox homeworkButton;
+    TextView homeworkText;
     String saveKey;
+    boolean teacherLogin;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -41,6 +43,8 @@ public class SubjectActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
+        homeworkText = (TextView) findViewById(R.id.homework_value);
+        teacherLogin = false;
         teacherLogin();
 
         // Empfangen der lessonId auf die geklickt wurde
@@ -138,7 +142,14 @@ public class SubjectActivity extends ActionBarActivity {
         if (savedUser.equals("Teacher"))
         {
             homeworkButton.setVisibility(View.GONE);
+            teacherLogin = true;
+        }
+    }
 
+    public void homeworkTextClick(View view) {
+        if (teacherLogin)
+        {
+            Toast.makeText(this, "JOJO: ", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -188,6 +199,7 @@ public class SubjectActivity extends ActionBarActivity {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(saveKey, false);
     }
+
 
 
 }

@@ -152,6 +152,7 @@
             android:paddingRight="@dimen/padding_right"
             android:paddingTop="@dimen/padding_top"
             android:id="@+id/homework_value"
+            android:onClick="homeworkTextClick"
             />
     </ScrollView>
 
