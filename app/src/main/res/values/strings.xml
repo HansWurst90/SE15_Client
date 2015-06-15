@@ -81,5 +81,7 @@
 
     <!-- subjects -->
 
+    <!--teacher-->
+    <string name="finish">Fertig</string>
 
 </resources>

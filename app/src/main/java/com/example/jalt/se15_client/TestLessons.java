@@ -16,8 +16,9 @@ import common.TeacherTO;
  */
 public class TestLessons {
 
+    static List<LessonTO> lessons;
     static List<LessonTO> getLessons(){
-        List<LessonTO> lessons = new ArrayList<LessonTO>();
+        lessons = new ArrayList<LessonTO>();
 
          Date date;
          String subject;
@@ -255,5 +256,9 @@ public class TestLessons {
         lesson.setHomeworks(homeworks1);
         lesson.setLessonID(lessonId);
         return lesson;
+    }
+    static LessonTO getLessonById(int id)
+    {
+        return lessons.get(id);
     }
 }
