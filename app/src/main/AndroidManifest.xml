@@ -18,7 +18,6 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/action_settings"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -26,7 +25,8 @@
             android:label="@string/title_activity_subject">
         </activity>
         <activity
-            android:name=".TeacherActivity">
+            android:name=".TeacherActivity"
+            android:theme="@style/AppTheme.TeacherTheme">
         </activity>
     </application>
 

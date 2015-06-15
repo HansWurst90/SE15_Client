@@ -9,7 +9,7 @@
     <string name="title_activity_subject">Sobrevista de asignaturas</string>
     <string name="free_lesson_value">Hora libre</string>
     <string name="free_lesson_sign">---</string>
-    <string name="school_break">Recreo</string>
+    <string name="school_break">Descanso</string>
     <string name="subject_value">Fachplatzhalter</string>
     <string name="subject_label">Asignatura:</string>
     <string name="teacher_label">Profesor:</string>
@@ -21,8 +21,8 @@
     <string name="room_label">Aula:</string>
     <string name="room_value">Aula ####</string>
     <string name="homework_label">Deberes:</string>
-    <string name="homeworkDone">Muy bien</string>
-    <string name="homeworkUndone">Que pena</string>
+    <string name="homeworkDone">Muy bien!</string>
+    <string name="homeworkUndone">Que pena!</string>
     <string name="homework_value">
         Hier kommen später eine Menge Hausaufgaben rein:\n
         - Buch lesen\n
@@ -45,7 +45,7 @@
     <string name="password">Contraseña</string>
     <string name="submit">Entrar</string>
     <string name="welcome">Bienvenidos</string>
-    <string name="goodbye">Adiós</string>
+    <string name="goodbye">Adiós!</string>
     <string name="missingPasswort">Todavía falta introducir contraseña</string>
     <string name="missingUsername">Todavía falta introducir nombre del usuario</string>
     <string name="missingBoth">Todavía falta introducir nombre del usuario y contraseña</string>

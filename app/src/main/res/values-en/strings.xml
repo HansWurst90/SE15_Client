@@ -44,8 +44,8 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="submit">Login</string>
-    <string name="welcome">Welcom</string>
-    <string name="goodbye">Goodbye</string>
+    <string name="welcome">Welcome</string>
+    <string name="goodbye">Goodbye!</string>
     <string name="missingPasswort">Please fill in your password</string>
     <string name="missingUsername">Please fill in your username</string>
     <string name="missingBoth">Please fill in your username and password</string>
