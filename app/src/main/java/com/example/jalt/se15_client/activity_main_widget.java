@@ -17,18 +17,18 @@ public class activity_main_widget extends AppWidgetProvider {
         // There may be multiple widgets active, so update all of them
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
-            updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+            /* updateAppWidget(context, appWidgetManager, appWidgetIds[i]);*/
         }
     }
 
-    @Override
+    /** @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         // When the user deletes the widget, delete the preference associated with it.
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
             activity_main_widgetConfigureActivity.deleteTitlePref(context, appWidgetIds[i]);
         }
-    }
+    } */
 
     @Override
     public void onEnabled(Context context) {
@@ -40,7 +40,7 @@ public class activity_main_widget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+    /**static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
         CharSequence widgetText = activity_main_widgetConfigureActivity.loadTitlePref(context, appWidgetId);
@@ -50,6 +50,6 @@ public class activity_main_widget extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
-    }
+    }*/
 }
 

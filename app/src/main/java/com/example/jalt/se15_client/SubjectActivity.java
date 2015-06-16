@@ -136,11 +136,6 @@ public class SubjectActivity extends ActionBarActivity {
         homeworkTextView.setText(thisLessonHomework);
     }
 
-    public static int getLessonID()
-    {
-        return lessonId;
-    }
-
     private void teacherLogin()
     {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -155,6 +150,8 @@ public class SubjectActivity extends ActionBarActivity {
     public void homeworkTextClick(View view) {
         if (teacherLogin)
         {
+            Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
+            getSubjectIntent.putExtra("lessonId", lessonId);
             startActivity(new Intent(SubjectActivity.this,TeacherActivity.class));
         }
     }

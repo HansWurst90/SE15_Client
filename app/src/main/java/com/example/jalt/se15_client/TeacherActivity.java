@@ -1,6 +1,7 @@
 package com.example.jalt.se15_client;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -17,6 +18,7 @@ public class TeacherActivity extends Activity {
 
     EditText homeworkText;
     Button finishButton;
+    int lessonID;
 
 
     @Override
@@ -25,6 +27,8 @@ public class TeacherActivity extends Activity {
         setContentView(R.layout.activity_teacher);
         homeworkText = (EditText) findViewById(R.id.teacher_editText);
         finishButton = (Button) findViewById(R.id.finish_button);
+        Intent subjectIntent = new Intent();
+        lessonID = subjectIntent.getExtras().getInt("lessonId");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -35,12 +39,13 @@ public class TeacherActivity extends Activity {
 
     }
 
+    //Abrufen der Lesson mit dazugehörigen ID und Methode addHomework
     public void finishButtonPress(View view) {
         String homework = homeworkText.getText().toString();
-        int lessonID = SubjectActivity.getLessonID();
-        Toast.makeText(this, homework + " " + lessonID, Toast.LENGTH_SHORT).show();
         HomeworkTO homeworkto = new HomeworkTO();
         homeworkto.setDescription(homework);
+        Toast.makeText(this, homework + " " + lessonID, Toast.LENGTH_SHORT).show();
+
         /** TestLessons.getLessonById(lessonID).getHomeworks().add(homeworkto); */
     }
 }

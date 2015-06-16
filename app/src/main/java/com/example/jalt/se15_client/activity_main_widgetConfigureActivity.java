@@ -21,6 +21,7 @@ public class activity_main_widgetConfigureActivity extends Activity {
     Button runterY;
     TextView xCoordinate;
     TextView yCoordinate;
+    Button finishButton;
 
     public activity_main_widgetConfigureActivity() {
         super();
@@ -42,6 +43,7 @@ public class activity_main_widgetConfigureActivity extends Activity {
         runterY = (Button) findViewById(R.id.runterY);
         xCoordinate = (TextView) findViewById(R.id.xCoordinate);
         yCoordinate = (TextView) findViewById(R.id.yCoordinate);
+        finishButton = (Button) findViewById(R.id.widgetConfigureFinishButton);
 
         // Find the widget id from the intent.
         Intent intent = getIntent();
@@ -96,6 +98,10 @@ public class activity_main_widgetConfigureActivity extends Activity {
             yCoordinateField = Integer.toString(y);
             yCoordinate.setText(yCoordinateField);
         }
+    }
+
+    public void widgetConfigureFinish(View view) {
+        finish();
     }
 }
 
