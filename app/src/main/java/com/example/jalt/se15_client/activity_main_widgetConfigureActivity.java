@@ -2,6 +2,7 @@ package com.example.jalt.se15_client;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -101,6 +102,11 @@ public class activity_main_widgetConfigureActivity extends Activity {
     }
 
     public void widgetConfigureFinish(View view) {
+
+        // Make sure we pass back the original appWidgetId
+        Intent resultValue = new Intent();
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+        setResult(RESULT_OK, resultValue);
         finish();
     }
 }

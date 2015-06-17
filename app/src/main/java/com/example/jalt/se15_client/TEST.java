@@ -8,11 +8,11 @@ import android.widget.RemoteViews;
 
 /**
  * Implementation of App Widget functionality.
- * App Widget Configuration implemented in {@link activity_main_widgetConfigureActivity activity_main_widgetConfigureActivity}
+ * App Widget Configuration implemented in {@link TESTConfigureActivity TESTConfigureActivity}
  */
-public class activity_main_widget extends AppWidgetProvider {
+public class TEST extends AppWidgetProvider {
 
-    /** @Override
+    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         final int N = appWidgetIds.length;
@@ -26,7 +26,7 @@ public class activity_main_widget extends AppWidgetProvider {
         // When the user deletes the widget, delete the preference associated with it.
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
-            activity_main_widgetConfigureActivity.deleteTitlePref(context, appWidgetIds[i]);
+            TESTConfigureActivity.deleteTitlePref(context, appWidgetIds[i]);
         }
     }
 
@@ -43,14 +43,13 @@ public class activity_main_widget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = activity_main_widgetConfigureActivity.loadTitlePref(context, appWidgetId);
+        CharSequence widgetText = TESTConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.activity_main_widget);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.test);
         views.setTextViewText(R.id.appwidget_text, widgetText);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
-    }*/
-
+    }
 }
 
