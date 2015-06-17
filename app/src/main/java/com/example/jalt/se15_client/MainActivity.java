@@ -105,10 +105,12 @@ public class MainActivity extends ActionBarActivity {
                 if (intent.getExtras().getString("origin").equals("login")) {
                     String savedUser = sharedPreferences.getString("USER", "");
                     String welcome = getResources().getString(R.string.welcome);
+
                     Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
                     // Wenn man sich grade ausgeloggt hat, wird man verabschiedet.
                 } else if (intent.getExtras().getString("origin").equals("logout")) {
                     String goodbye = getResources().getString(R.string.goodbye);
+
                     Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
                 }
             }

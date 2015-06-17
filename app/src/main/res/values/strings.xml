@@ -9,6 +9,7 @@
     <string name="title_activity_subject">Fachansicht</string>
     <string name="free_lesson_value">Freistunde</string>
     <string name="free_lesson_sign">---</string>
+    <string name="school_break">Pause</string>
     <string name="subject_value">Fachplatzhalter</string>
     <string name="subject_label">Fach:</string>
     <string name="teacher_label">Lehrer:</string>
@@ -20,8 +21,8 @@
     <string name="room_label">Raum:</string>
     <string name="room_value">Raum ####</string>
     <string name="homework_label">Hausaufgaben:</string>
-    <string name="homeworkDone">Sehr gut</string>
-    <string name="homeworkUndone">Schade</string>
+    <string name="homeworkDone">Sehr gut!</string>
+    <string name="homeworkUndone">Schade!</string>
     <string name="homework_value">
         Hier kommen später eine Menge Hausaufgaben rein:\n
         - Buch lesen\n
@@ -44,7 +45,7 @@
     <string name="password">Passwort</string>
     <string name="submit">Einloggen</string>
     <string name="welcome">Willkommen</string>
-    <string name="goodbye">Auf Wiedersehen</string>
+    <string name="goodbye">Auf Wiedersehen!</string>
     <string name="missingPasswort">Bitte geben Sie noch ihr Passwort ein</string>
     <string name="missingUsername">Bitte geben Sie noch ihre Benutzerkennung ein</string>
     <string name="missingBoth">Bitte geben Sie noch ihre Benutzerkennung und ihr Passwort ein</string>
@@ -80,5 +81,10 @@
 
     <!-- subjects -->
 
+    <!--teacher-->
+    <string name="finish">Fertig</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

@@ -204,7 +204,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pause"
+                    android:text="@string/school_break"
                     android:id="@+id/textView9" />
             </TableRow>
 
@@ -349,7 +349,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pause"
+                    android:text="@string/school_break"
                     android:id="@+id/textView15" />
             </TableRow>
 

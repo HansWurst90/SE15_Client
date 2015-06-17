@@ -42,10 +42,14 @@ public class SettingsActivity extends Activity{
 
         if(User.equals("")  && Password.equals("")){
             loginButton.setText(R.string.login);
+            username.setEnabled(true);
+            password.setEnabled(true);
             String loginText = getResources().getString(R.string.login);
             }
         else {
             loginButton.setText(R.string.logout);
+            username.setEnabled(false);
+            password.setEnabled(false);
             String logoutText = getResources().getString(R.string.logout);
              }
 

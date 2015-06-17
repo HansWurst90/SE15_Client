@@ -3,6 +3,7 @@ package com.example.jalt.se15_client;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -32,17 +33,24 @@ import common.TeacherTO;
 public class SubjectActivity extends ActionBarActivity {
 
     CheckBox homeworkButton;
+    TextView homeworkText;
     String saveKey;
+    boolean teacherLogin;
+    static int lessonId;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
+        homeworkText = (TextView) findViewById(R.id.homework_value);
+        teacherLogin = false;
+        teacherLogin();
 
         // Empfangen der lessonId auf die geklickt wurde
         Intent whichSubjectId = getIntent();
-        int lessonId = whichSubjectId.getExtras().getInt("lessonId");
+        lessonId = whichSubjectId.getExtras().getInt("lessonId");
         Toast.makeText(this, "LessonId: " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
 
         // Beispiellesson:
@@ -128,6 +136,26 @@ public class SubjectActivity extends ActionBarActivity {
         homeworkTextView.setText(thisLessonHomework);
     }
 
+    private void teacherLogin()
+    {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String savedUser = sharedPreferences.getString("USER", "");
+        if (savedUser.equals("Teacher"))
+        {
+            homeworkButton.setVisibility(View.GONE);
+            teacherLogin = true;
+        }
+    }
+
+    public void homeworkTextClick(View view) {
+        if (teacherLogin)
+        {
+            Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
+            getSubjectIntent.putExtra("lessonId", lessonId);
+            startActivity(new Intent(SubjectActivity.this,TeacherActivity.class));
+        }
+    }
+
     private String HomeworkArrayToString(List<HomeworkTO> list)
     {
         StringBuilder homeworkString = new StringBuilder();
@@ -174,6 +202,7 @@ public class SubjectActivity extends ActionBarActivity {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(saveKey, false);
     }
+
 
 
 }
