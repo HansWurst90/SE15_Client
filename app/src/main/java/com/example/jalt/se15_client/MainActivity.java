@@ -53,9 +53,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
-        LoginTask loginTask = new LoginTask(this, myApp);
-        loginTask.execute((Object) 6, (Object) "Hedwig");
+
 
 
 

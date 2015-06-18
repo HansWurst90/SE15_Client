@@ -5,7 +5,6 @@ import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
@@ -13,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 
 import common.BooleanResponse;
-import common.Customer;
 import common.HomeworkListResponse;
 import common.IStudeasyScheduleService;
 import common.LessonByIDResponse;
@@ -22,22 +20,10 @@ import common.ReturncodeResponse;
 import common.UserLoginResponse;
 
 
-/**
- * Diese Klasse enthaelt die Verbindung der App mit dem Xbank-Webservice.
- */
-public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
-    /**
-     * Namespace is the targetNamespace in the WSDL.
-     */
-    private static final String NAMESPACE = "http://schedulemanager.studeasy.de/";
 
-    /**
-     * The WSDL URL. Its value is the location attribute of the soap:address element for a port
-     * element in a WSDL. Unless the web service is also hosted on the Android device, the hostname 
-     * should not be specified as localhost, because the application runs on the Android device while 
-     * the web service is hosted on the localhost server. Specify hostname as the IP address of the 
-     * server hosting the web service (or "10.0.2.2 instead of 'localhost' when running in the emulator). 
-     */
+public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
+
+    private static final String NAMESPACE = "http://schedulemanager.studeasy.de/";
     private static final String URL = "http://10.60.70.6:8080/studeasy/StudeasyScheduleService?WSDL";
     private int sessionId;
 

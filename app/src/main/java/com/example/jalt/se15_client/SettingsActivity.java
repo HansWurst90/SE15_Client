@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jalt.se15_client.tasks.LoginTask;
+
 
 /**
  *
@@ -73,6 +75,10 @@ public class SettingsActivity extends Activity{
                 Toast.makeText(this, R.string.missingPasswort, Toast.LENGTH_SHORT).show();
             else if (!user.equals("") && !pass.equals(""))
             {
+                StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+                LoginTask loginTask = new LoginTask(this, myApp);
+                loginTask.execute((Object) 6, (Object) pass);
+
                 SavePreferences("USER", username.getText().toString());
                 SavePreferences("PASSWORD", password.getText().toString());
                 backToMain(view, "login");
