@@ -40,6 +40,7 @@ public class SettingsActivity extends Activity{
 
         String User = sharedPreferences.getString("USER", "");
         String Password = sharedPreferences.getString("PASSWORD", "");
+
         username.setText(User);
 
         if(User.equals("")  && Password.equals("")){
@@ -64,24 +65,20 @@ public class SettingsActivity extends Activity{
 
         if(buttonText.equals(login))
         {
-            String user = username.getText().toString();
+            int user = Integer.parseInt(username.getText().toString());;
             String pass = password.getText().toString();
 
-            if(user.equals("") && pass.equals(""))
+            if(user == 0 && pass.equals(""))
                 Toast.makeText(this, R.string.missingBoth, Toast.LENGTH_SHORT).show();
-            else if(user.equals("") && !pass.equals(""))
+            else if(user == 0 && !pass.equals(""))
                 Toast.makeText(this, R.string.missingUsername, Toast.LENGTH_SHORT).show();
-            else if(!user.equals("") && pass.equals(""))
+            else if(user != 0 && pass.equals(""))
                 Toast.makeText(this, R.string.missingPasswort, Toast.LENGTH_SHORT).show();
-            else if (!user.equals("") && !pass.equals(""))
+            else if (user != 0 && !pass.equals(""))
             {
                 StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
                 LoginTask loginTask = new LoginTask(this, myApp);
-                loginTask.execute((Object) 6, (Object) pass);
-
-                SavePreferences("USER", username.getText().toString());
-                SavePreferences("PASSWORD", password.getText().toString());
-                backToMain(view, "login");
+                loginTask.execute(user, pass);
             }
         }
         else {

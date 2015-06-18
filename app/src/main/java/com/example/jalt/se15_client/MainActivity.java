@@ -109,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
                         this.overridePendingTransition(R.anim.slide_in_left, 17432577);
                     }
                 }
-                // Wenn man sich grade eingeloggt hat, wird man mit Namen gegrüßt.
+                /** Wenn man sich grade eingeloggt hat, wird man mit Namen gegrüßt.
                 if (intent.getExtras().getString("origin").equals("login")) {
                     String savedUser = sharedPreferences.getString("USER", "");
                     String welcome = getResources().getString(R.string.welcome);
@@ -120,7 +120,7 @@ public class MainActivity extends ActionBarActivity {
                     String goodbye = getResources().getString(R.string.goodbye);
 
                     Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
-                }
+                } */
             }
         }
 
