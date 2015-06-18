@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
 
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
         LoginTask loginTask = new LoginTask(this, myApp);
-        loginTask.execute((Object) 1, (Object) "Hedwig");
+        loginTask.execute((Object) 6, (Object) "Hedwig");
 
 
 

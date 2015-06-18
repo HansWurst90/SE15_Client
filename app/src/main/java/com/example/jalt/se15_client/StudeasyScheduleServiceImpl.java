@@ -30,6 +30,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
      * Namespace is the targetNamespace in the WSDL.
      */
     private static final String NAMESPACE = "http://schedulemanager.studeasy.de/";
+
     /**
      * The WSDL URL. Its value is the location attribute of the soap:address element for a port
      * element in a WSDL. Unless the web service is also hosted on the Android device, the hostname 
@@ -47,7 +48,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         SoapObject response = null;
         try {
             response = executeSoapAction(METHOD_NAME, personID, password);
-            this.sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionId"));
+            this.sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionID"));
             if (sessionId != 0) {
                 result = new UserLoginResponse();
                 result.setSessionID(sessionId);
