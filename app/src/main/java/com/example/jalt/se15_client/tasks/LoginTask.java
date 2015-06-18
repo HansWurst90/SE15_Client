@@ -1,9 +1,13 @@
 package com.example.jalt.se15_client.tasks;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import com.example.jalt.se15_client.MainActivity;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
 import java.util.Objects;
@@ -17,6 +21,8 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
 
     private Context context;
     private StudeasyScheduleApplication myApp;
+    private int personid;
+    SharedPreferences sharedPreferences;
 
     public LoginTask(Context context, StudeasyScheduleApplication myApp) {
         this.context = context;
@@ -27,7 +33,7 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
     protected UserLoginResponse doInBackground(Object... params){
         if(params.length != 2)
             return null;
-        int personid = (int) params[0];
+        personid = (int) params[0];
         String password = (String) params[1];
         try {
             UserLoginResponse myResponse = myApp.getStudeasyScheduleService().login(personid, password);
@@ -40,19 +46,23 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
 
     protected void onProgessUpdate(Integer... values)
     {
-        //wird in diesem Beispiel nicht verwendet
+
     }
 
     protected void onPostExecute(UserLoginResponse result)
     {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result != null)
         {
+            SavePreferences("USER", "" + personid);
+            SavePreferences("PASSWORD", "******");
+            SavePreferences("SESSIONID", "" + result.getSessionID());
             //Toast anzeigen
-            CharSequence text = "Login erfolgreich! ID: " + result.getSessionID();
+            CharSequence text = "Willkommen User " + personid;
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
+            context.startActivity(new Intent(context, MainActivity.class));
         }
         else
         {
@@ -62,5 +72,11 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+    private void SavePreferences(String key, String value)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
     }
 }

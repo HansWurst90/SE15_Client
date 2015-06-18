@@ -24,7 +24,7 @@
                 android:layout_width="180dp"
                 android:layout_height="35dp"
                 android:hint="@string/username"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
