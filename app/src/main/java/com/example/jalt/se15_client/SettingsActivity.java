@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.tasks.LoginTask;
+import com.example.jalt.se15_client.tasks.LogoutTask;
 
 
 /**
@@ -27,6 +28,7 @@ public class SettingsActivity extends Activity{
     EditText username;
     EditText password;
     Button loginButton;
+    int sessionId;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -40,9 +42,8 @@ public class SettingsActivity extends Activity{
 
         String User = sharedPreferences.getString("USER", "");
         String Password = sharedPreferences.getString("PASSWORD", "");
-        String sessionId = sharedPreferences.getString("SESSIONID", "");
 
-        username.setText(User + " und " + sessionId);
+        username.setText(User);
         password.setText(Password);
 
         if(User.equals("")  && Password.equals("")){
@@ -65,36 +66,30 @@ public class SettingsActivity extends Activity{
 
         if(buttonText.equals(login))
         {
-            int user = Integer.parseInt(username.getText().toString());;
+            String user = username.getText().toString();
             String pass = password.getText().toString();
 
-            if(user == 0 && pass.equals(""))
+            if(user.equals("") && pass.equals(""))
                 Toast.makeText(this, R.string.missingBoth, Toast.LENGTH_SHORT).show();
-            else if(user == 0 && !pass.equals(""))
+            else if(user.equals("") && !pass.equals(""))
                 Toast.makeText(this, R.string.missingUsername, Toast.LENGTH_SHORT).show();
-            else if(user != 0 && pass.equals(""))
+            else if(!user.equals("") && pass.equals(""))
                 Toast.makeText(this, R.string.missingPasswort, Toast.LENGTH_SHORT).show();
-            else if (user != 0 && !pass.equals(""))
+            else if (!user.equals("") && !pass.equals(""))
             {
                 StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
                 LoginTask loginTask = new LoginTask(this, myApp);
-                loginTask.execute(user, pass);
+                loginTask.execute(Integer.parseInt(user), pass);
             }
         }
         else {
-
-            SavePreferences("USER", null);
-            SavePreferences("PASSWORD", null);
-            backToMain(view, "logout");
+            StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+            LogoutTask logoutTask = new LogoutTask(this, myApp);
+            sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
+            logoutTask.execute(sessionId);
         }
     }
 
-    private void SavePreferences(String key, String value)
-    {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
 
 
     private void backToMain(View view, String button)
