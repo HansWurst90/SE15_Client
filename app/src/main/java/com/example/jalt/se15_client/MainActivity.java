@@ -54,9 +54,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
-        LogoutTask logoutTask = new LogoutTask(this, myApp);
-        logoutTask.execute(28);
+
 
 
 
