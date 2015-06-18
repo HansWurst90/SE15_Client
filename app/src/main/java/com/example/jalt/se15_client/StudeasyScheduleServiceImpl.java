@@ -25,7 +25,6 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 
     private static final String NAMESPACE = "http://schedulemanager.studeasy.de/";
     private static final String URL = "http://10.60.70.6:8080/studeasy/StudeasyScheduleService?WSDL";
-    private int sessionId;
 
     @Override
     public UserLoginResponse login(int personID, String password) throws Exception{
@@ -34,7 +33,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         SoapObject response = null;
         try {
             response = executeSoapAction(METHOD_NAME, personID, password);
-            this.sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionID"));
+            int sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionID"));
             if (sessionId != 0) {
                 result = new UserLoginResponse();
                 result.setSessionID(sessionId);
@@ -51,14 +50,26 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 
     @Override
     public ReturncodeResponse logout(int sessionID) throws Exception {
+        ReturncodeResponse result;
         String METHOD_NAME = "logout";
+        SoapObject response = null;
         try {
-            SoapObject response = executeSoapAction(METHOD_NAME, sessionId);
-        }
+                response = executeSoapAction(METHOD_NAME, sessionID);
+                int returnCode;
+                result = new ReturncodeResponse();
+                returnCode = Integer.parseInt(response.getPrimitivePropertySafelyAsString("returnCode"));
+                if (returnCode == 0) {
+                    result.setReturnCode(returnCode);
+                    return result;
+                }
+                    else{
+                    result.setReturnCode(1);
+                    return result;
+                }
+            }
         catch (SoapFault e) {
             throw new Exception(e.getMessage());
         }
-        return new ReturncodeResponse();
     }
 
     public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)

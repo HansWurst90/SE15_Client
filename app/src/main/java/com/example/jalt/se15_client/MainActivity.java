@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.tasks.LoginTask;
+import com.example.jalt.se15_client.tasks.LogoutTask;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -53,7 +54,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+        LogoutTask logoutTask = new LogoutTask(this, myApp);
+        logoutTask.execute(28);
 
 
 
