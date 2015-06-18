@@ -16,28 +16,21 @@ import java.util.Date;
 public interface IStudeasyScheduleService {
 
 	public static final String INTERFACE_ID = "IStudeasyScheduleService";
+
+	public UserLoginResponse login(int personID, String password)throws Exception ;
 	
-	/**
-	 * Operation zum Einloggen mit Username und Password.
-	 * @param personID
-	 * @param password
-	 * @return boolean successful
-	 * @throws InvalidLoginException
-	 */
-	public UserLoginResponse login(int personID, String password) ;
+	public ReturncodeResponse logout(int sessionID)throws Exception;
 	
-	public ReturncodeResponse logout(int sessionID);
+	public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)throws Exception  ;
 	
-	public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)  ;
+	public BooleanResponse removeHomework(int sessionID, int homeworkID)throws Exception  ;// auch ReturncodeResonse
 	
-	public BooleanResponse removeHomework(int sessionID, int homeworkID)  ;// auch ReturncodeResonse
+	public LessonListResponse getLessonsByDate(int sessionID, Date date)throws Exception;
 	
-	public LessonListResponse getLessonsByDate(int sessionID, Date date);
+	public LessonByIDResponse findLessonById(int lessonID)throws Exception;
 	
-	public LessonByIDResponse findLessonById(int lessonID);
+	public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate)throws Exception ;
 	
-	public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) ;
-	
-	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate) ;	
+	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate)throws Exception ;
 	
 }
