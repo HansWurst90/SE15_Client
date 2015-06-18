@@ -15,6 +15,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jalt.se15_client.tasks.LoginTask;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import common.IStudeasyScheduleService;
 import common.LessonListResponse;
@@ -49,6 +52,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+        LoginTask loginTask = new LoginTask(this, myApp);
+        loginTask.execute((Object) 1, (Object) "Hedwig");
+
+
+
 
         // Abfrage des aktuell gespeicherten Users
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
