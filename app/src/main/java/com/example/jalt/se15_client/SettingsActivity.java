@@ -40,21 +40,21 @@ public class SettingsActivity extends Activity{
 
         String User = sharedPreferences.getString("USER", "");
         String Password = sharedPreferences.getString("PASSWORD", "");
+        String sessionId = sharedPreferences.getString("SESSIONID", "");
 
-        username.setText(User);
+        username.setText(User + " und " + sessionId);
+        password.setText(Password);
 
         if(User.equals("")  && Password.equals("")){
             loginButton.setText(R.string.login);
             username.setEnabled(true);
             password.setEnabled(true);
-            String loginText = getResources().getString(R.string.login);
-            }
+        }
         else {
             loginButton.setText(R.string.logout);
             username.setEnabled(false);
             password.setEnabled(false);
-            String logoutText = getResources().getString(R.string.logout);
-             }
+        }
 
     }
 
@@ -82,6 +82,7 @@ public class SettingsActivity extends Activity{
             }
         }
         else {
+
             SavePreferences("USER", null);
             SavePreferences("PASSWORD", null);
             backToMain(view, "logout");
