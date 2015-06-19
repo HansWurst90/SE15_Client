@@ -12,11 +12,17 @@ import java.util.Date;
 import java.util.List;
 
 import common.BooleanResponse;
+import common.CourseTO;
 import common.HomeworkListResponse;
 import common.IStudeasyScheduleService;
 import common.LessonByIDResponse;
 import common.LessonListResponse;
+import common.LessonTO;
+import common.PersonTO;
 import common.ReturncodeResponse;
+import common.RoomTO;
+import common.SubjectTO;
+import common.TeacherTO;
 import common.UserLoginResponse;
 
 
@@ -89,7 +95,43 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 
     public LessonByIDResponse findLessonById(int lessonID)
     {
-        return new LessonByIDResponse();
+        LessonByIDResponse result = null;
+        String METHOD_NAME = "findLessonById"; // <------ACHTUNG
+        SoapObject response = null;
+        try {
+            response = executeSoapAction(METHOD_NAME, lessonID);
+            if (response != null) {
+                // Soap2Lesson
+                int lessonHour = Integer.parseInt(response.getPrimitivePropertySafelyAsString("LessonHour"));
+                SoapObject SoapDate = (SoapObject) response.getProperty("date");
+                //Teacher vorbereiten
+                SoapObject SoapTeacher = (SoapObject) response.getProperty("teacher");
+                String teacherLastname = SoapTeacher.getPropertySafelyAsString("name");
+                String teacherGender = SoapTeacher.getPrimitivePropertySafelyAsString("gender");
+                PersonTO teacher = new PersonTO();
+                teacher.setName(teacherLastname);
+                teacher.getGender(teacherGender)
+                // Subject vorbereiten
+                SoapObject SoapSubject = (SoapObject) response.getProperty("subject");
+
+                String room = response.getPrimitivePropertySafelyAsString("room");
+                LessonTO lesson = new LessonTO();
+                lesson.setLessonID(lessonID);
+                lesson.setLessonHour(lessonHour);
+                lesson.setDate(StringtoDate());
+                lesson.setRoom(room);
+                lesson.setSubject(subject);
+                lesson.setTeacher(teacher);
+                result = new LessonByIDResponse();
+                result.setLesson(lesson);
+                return result;
+            }
+            else {
+                throw new Exception("Login not successful!");
+            }
+        } catch (SoapFault e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate)
