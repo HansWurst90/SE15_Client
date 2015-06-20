@@ -7,7 +7,8 @@ import android.widget.Toast;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
 import common.LessonResponse;
-import common.UserLoginResponse;
+import common.LessonTO;
+
 
 /**
  * Created by ErfiMac on 19.06.15.
@@ -52,12 +53,23 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonResponse>{
      * result Auswertung, bei Erfolg werden die Lessons angezeigt, ansonsten Fehlermeldung
      * @param result
      */
-    protected void onPostExecute(UserLoginResponse result)
+    protected void onPostExecute(LessonResponse result)
     {
         if(result != null)
         {
             //Toast anzeigen
-            Toast.makeText(context, "hat geklappt", Toast.LENGTH_LONG).show();
+            LessonTO lesson = new LessonTO();
+            lesson = result.getLesson();
+            int lessonId = lesson.getLessonID();
+            int lessonHour = lesson.getLessonHour();
+            String date = lesson.getDate();
+            String genderT = "" + lesson.getTeacher().getGender();
+            String nameT = lesson.getTeacher().getName();
+            String subjectDescription = lesson.getSubject().getDescription();
+            int subjectId = lesson.getSubject().getSubjectID();
+            String room = lesson.getRoom();
+            CharSequence text = lessonId + " " + lessonHour + " " + date + " " + genderT + " " + nameT + " " + subjectDescription + " " + subjectId + " " + room;
+            Toast.makeText(context, text, Toast.LENGTH_LONG).show();
             }
         else
         {
