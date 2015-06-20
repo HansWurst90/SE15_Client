@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.tasks.IsTeacherTask;
+import com.example.jalt.se15_client.tasks.LessonTask;
 import com.example.jalt.se15_client.tasks.LoginTask;
 import com.example.jalt.se15_client.tasks.LogoutTask;
 
@@ -54,6 +55,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+        AsyncTask task = new LessonTask(this, myApp);
+        task.execute(5);
 
         // Abfrage des aktuell gespeicherten Users
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

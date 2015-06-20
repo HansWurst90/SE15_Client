@@ -104,7 +104,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
                 return Soap2Object.soap2lesson(response);
             }
             else {
-                throw new Exception("findLessonById not successful!");
+                throw new Exception("findLessonById fehlgeschlagen!");
             }
         } catch (SoapFault e) {
             throw new Exception(e.getMessage());

@@ -16,7 +16,7 @@ import common.LessonTO;
  * @author Lukas Erfkämper
  */
 
-public class LessonTask  extends AsyncTask<Integer, Void, LessonResponse>{
+public class LessonTask  extends AsyncTask<Object, Void, LessonResponse>{
 
     private Context context;
     private StudeasyScheduleApplication myApp;
@@ -31,7 +31,7 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonResponse>{
     /**
      * myResponse vorbereiten
      */
-    protected LessonResponse doInBackground(Integer... params){
+    protected LessonResponse doInBackground(Object... params){
         if(params.length != 1)
             return null;
         lessonID = (int) params[0];
@@ -68,7 +68,7 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonResponse>{
             String subjectDescription = lesson.getSubject().getDescription();
             int subjectId = lesson.getSubject().getSubjectID();
             String room = lesson.getRoom();
-            CharSequence text = lessonId + " " + lessonHour + " " + date + " " + genderT + " " + nameT + " " + subjectDescription + " " + subjectId + " " + room;
+            String text = "LessonID: " + lessonId + " LessonHour: " + lessonHour + " Date: " + date + " GenderT: " + genderT + " NameT: " + nameT + " SubjectD: " + subjectDescription + " SubjectId: " + subjectId + " Room: " + room;
             Toast.makeText(context, text, Toast.LENGTH_LONG).show();
             }
         else
