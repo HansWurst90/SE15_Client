@@ -139,7 +139,6 @@ public class SubjectActivity extends ActionBarActivity {
     }
 
     public void homeworkTextClick(View view) {
-        Toast.makeText(this, "passt", Toast.LENGTH_SHORT).show();
         if (teacherLogin.equals("true"))
         {
             Intent getSubjectIntent = new Intent(this, TeacherActivity.class);
@@ -193,10 +192,5 @@ public class SubjectActivity extends ActionBarActivity {
     private boolean load() {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(saveKey, false);
-    }
-
-
-    public void homeworkTextClick2(View view) {
-        Toast.makeText(this, "passt", Toast.LENGTH_SHORT).show();
     }
 }

@@ -20,7 +20,7 @@
                 android:paddingTop="@dimen/padding_top"
                 android:paddingBottom="@dimen/padding_bottom"
                 android:paddingRight="@dimen/padding_right"
-                android:onClick="homeworkTextClick"/>
+                />
             <TextView
                 android:textSize="@dimen/textview_size"
                 android:layout_weight="1"
@@ -127,7 +127,7 @@
             android:paddingBottom="@dimen/padding_bottom"
             android:paddingRight="80dp"
             android:layout_gravity="center"
-            android:onClick="homeworkTextClick"/>
+            />
         <CheckBox
             android:layout_width="40dp"
             android:layout_height="40dp"
