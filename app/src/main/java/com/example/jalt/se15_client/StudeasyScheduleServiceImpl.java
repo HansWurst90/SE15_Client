@@ -15,7 +15,10 @@ import common.BooleanResponse;
 import common.HomeworkListResponse;
 import common.IStudeasyScheduleService;
 import common.LessonResponse;
+import common.LessonTO;
+import common.PersonTO;
 import common.ReturncodeResponse;
+import common.SubjectTO;
 import common.UserLoginResponse;
 
 
@@ -87,50 +90,26 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
     {
         return new LessonResponse();
     }
+
     @Override
-    public LessonResponse findLessonById(int lessonID) throws Exception{ return new LessonResponse();}
-    /**@Override
     public LessonResponse findLessonById(int lessonID) throws Exception
     {
         LessonResponse result = null;
         String METHOD_NAME = "findLessonById"; // <------ACHTUNG
         SoapObject response = null;
         try {
+            // Lesson abholen und "entpacken
             response = executeSoapAction(METHOD_NAME, lessonID);
             if (response != null) {
-                // Soap2Lesson
-                int lessonHour = Integer.parseInt(response.getPrimitivePropertySafelyAsString("LessonHour"));
-                SoapObject SoapDate = (SoapObject) response.getProperty("date");
-                //Teacher vorbereiten
-                SoapObject SoapTeacher = (SoapObject) response.getProperty("teacher");
-                String teacherLastname = SoapTeacher.getPropertySafelyAsString("name");
-                String teacherGender = SoapTeacher.getPrimitivePropertySafelyAsString("gender");
-                PersonTO teacher = new PersonTO();
-                teacher.setName(teacherLastname);
-                teacher.getGender(teacherGender)
-                // Subject vorbereiten
-                SoapObject SoapSubject = (SoapObject) response.getProperty("subject");
-
-                String room = response.getPrimitivePropertySafelyAsString("room");
-                LessonTO lesson = new LessonTO();
-                lesson.setLessonID(lessonID);
-                lesson.setLessonHour(lessonHour);
-                lesson.setDate(StringtoDate());
-                lesson.setRoom(room);
-                lesson.setSubject(subject);
-                lesson.setTeacher(teacher);
-                result = new LessonByIDResponse();
-                result.setLesson(lesson);
-                return result;
+                return Soap2Object.soap2lesson(response);
             }
             else {
-                throw new Exception("Login not successful!");
+                throw new Exception("findLessonById not successful!");
             }
         } catch (SoapFault e) {
             throw new Exception(e.getMessage());
         }
     }
-    */
 
     // public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) {return new LessonListResponse();}
 
@@ -200,5 +179,14 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         }
 
         return (SoapObject) result;
+    }
+
+    Date makeStringToDate(String date) {
+        int day = Integer.parseInt(date.substring(0, 2));
+        int month = Integer.parseInt(date.substring(2, 4));
+        int year = Integer.parseInt(date.substring(4));
+
+        Date d = new Date(year, month, day);
+        return d;
     }
 }

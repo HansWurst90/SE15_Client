@@ -1,22 +1,12 @@
 package com.example.jalt.se15_client.tasks;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import com.example.jalt.se15_client.MainActivity;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
-import java.util.Date;
-
-import common.LessonByIDResponse;
-import common.LessonTO;
-import common.RoomTO;
-import common.SubjectTO;
-import common.TeacherTO;
+import common.LessonResponse;
 import common.UserLoginResponse;
 
 /**
@@ -25,7 +15,7 @@ import common.UserLoginResponse;
  * @author Lukas Erfkämper
  */
 
-public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
+public class LessonTask  extends AsyncTask<Integer, Void, LessonResponse>{
 
     private Context context;
     private StudeasyScheduleApplication myApp;
@@ -40,12 +30,12 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
     /**
      * myResponse vorbereiten
      */
-    protected LessonByIDResponse doInBackground(Integer... params){
+    protected LessonResponse doInBackground(Integer... params){
         if(params.length != 1)
             return null;
         lessonID = (int) params[0];
         try {
-            LessonByIDResponse myResponse = myApp.getStudeasyScheduleService().findLessonById(lessonID);
+            LessonResponse myResponse = myApp.getStudeasyScheduleService().findLessonById(lessonID);
             return myResponse;
         } catch (Exception e) {
             e.printStackTrace();
