@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.tasks.IsTeacherTask;
+import com.example.jalt.se15_client.tasks.LessonByDateTask;
 import com.example.jalt.se15_client.tasks.LessonTask;
 import com.example.jalt.se15_client.tasks.LoginTask;
 import com.example.jalt.se15_client.tasks.LogoutTask;
@@ -49,19 +50,20 @@ public class MainActivity extends ActionBarActivity {
     boolean login;
     private Toast dToast = null;
     SparseArray<LessonTO> lessonMap;
-    int sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
 
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
-        AsyncTask task = new LessonTask(this, myApp);
-        task.execute(5);
+        LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp);
+        lessonByDate.execute(51,"22062015", 4);
 
         // Abfrage des aktuell gespeicherten Users
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         String userTrue = sharedPreferences.getString("USER", "");
         // Ist ein User gespeichert? davon hängt die Gruß/Abschiedsnachricht ab
         if (userTrue.equals(""))
