@@ -1,22 +1,13 @@
 package com.example.jalt.se15_client.tasks;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import com.example.jalt.se15_client.MainActivity;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
-import java.util.Date;
-
-import common.LessonByIDResponse;
+import common.LessonResponse;
 import common.LessonTO;
-import common.RoomTO;
-import common.SubjectTO;
-import common.TeacherTO;
 import common.UserLoginResponse;
 
 /**
@@ -25,7 +16,7 @@ import common.UserLoginResponse;
  * @author Lukas Erfkämper
  */
 
-public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
+public class LessonTask  extends AsyncTask<Integer, Void, LessonResponse>{
 
     private Context context;
     private StudeasyScheduleApplication myApp;
@@ -40,12 +31,12 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
     /**
      * myResponse vorbereiten
      */
-    protected LessonByIDResponse doInBackground(Integer... params){
+    protected LessonResponse doInBackground(Integer... params){
         if(params.length != 1)
             return null;
         lessonID = (int) params[0];
         try {
-            LessonByIDResponse myResponse = myApp.getStudeasyScheduleService().findLessonById(lessonID);
+            LessonResponse myResponse = myApp.getStudeasyScheduleService().findLessonById(lessonID);
             return myResponse;
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,12 +53,23 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
      * result Auswertung, bei Erfolg werden die Lessons angezeigt, ansonsten Fehlermeldung
      * @param result
      */
-    protected void onPostExecute(UserLoginResponse result)
+    protected void onPostExecute(LessonResponse result)
     {
         if(result != null)
         {
             //Toast anzeigen
-            Toast.makeText(context, "hat geklappt", Toast.LENGTH_LONG).show();
+            LessonTO lesson = new LessonTO();
+            lesson = result.getLesson();
+            int lessonId = lesson.getLessonID();
+            int lessonHour = lesson.getLessonHour();
+            String date = lesson.getDate();
+            String genderT = "" + lesson.getTeacher().getGender();
+            String nameT = lesson.getTeacher().getName();
+            String subjectDescription = lesson.getSubject().getDescription();
+            int subjectId = lesson.getSubject().getSubjectID();
+            String room = lesson.getRoom();
+            CharSequence text = lessonId + " " + lessonHour + " " + date + " " + genderT + " " + nameT + " " + subjectDescription + " " + subjectId + " " + room;
+            Toast.makeText(context, text, Toast.LENGTH_LONG).show();
             }
         else
         {

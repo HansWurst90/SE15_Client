@@ -10,8 +10,6 @@ import android.widget.Toast;
 import com.example.jalt.se15_client.MainActivity;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
-import java.util.Objects;
-
 import common.UserLoginResponse;
 
 /**
@@ -72,7 +70,7 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
             SavePreferences("FIRSTNAME", result.getFirstname());
             SavePreferences("SESSIONID", "" + result.getSessionID());
             //Toast anzeigen
-            CharSequence text = "Willkommen User " + personid;
+            CharSequence text = "Willkommen User " + result.getFirstname() + " " + result.getName();
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
