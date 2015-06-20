@@ -58,9 +58,13 @@ public class MainActivity extends ActionBarActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 
-        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+        /** StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
         LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp);
-        lessonByDate.execute(51,"22062015", 4);
+        lessonByDate.execute(52,"22062015", 4); */
+
+        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+        LessonTask lessonTask = new LessonTask(this, myApp);
+        lessonTask.execute(2);
 
         // Abfrage des aktuell gespeicherten Users
 
