@@ -1,13 +1,11 @@
 package common;
 
 import java.io.Serializable;
-
-import java.util.Date;
 import java.util.List;
 
 /**
  * Lesson-Transferobjekt für die Kommunikation mit der Client-Applikation 
- * @author Andreas Prischep
+ * @author Andreas Prischep, Tobias Riegel
  *
  */
 public class LessonTO implements Serializable {
@@ -17,14 +15,13 @@ public class LessonTO implements Serializable {
 
 	private int lessonID;
 	private int lessonHour;
-	private Date date;
+	private String date;
 	
-
-	private CourseTO course;
-	private TeacherTO teacher;
+	private PersonTO teacher;
 	private SubjectTO subject;
-	private RoomTO room;
+	private String room;
 	private List<HomeworkTO> homeworks;
+	
 	public int getLessonID() {
 		return lessonID;
 	}
@@ -37,22 +34,16 @@ public class LessonTO implements Serializable {
 	public void setLessonHour(int lessonHour) {
 		this.lessonHour = lessonHour;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public CourseTO getCourse() {
-		return course;
-	}
-	public void setCourse(CourseTO course) {
-		this.course = course;
-	}
-	public TeacherTO getTeacher() {
+	public PersonTO getTeacher() {
 		return teacher;
 	}
-	public void setTeacher(TeacherTO teacher) {
+	public void setTeacher(PersonTO teacher) {
 		this.teacher = teacher;
 	}
 	public SubjectTO getSubject() {
@@ -61,10 +52,10 @@ public class LessonTO implements Serializable {
 	public void setSubject(SubjectTO subject) {
 		this.subject = subject;
 	}
-	public RoomTO getRoom() {
+	public String getRoom() {
 		return room;
 	}
-	public void setRoom(RoomTO room) {
+	public void setRoom(String room) {
 		this.room = room;
 	}
 	public List<HomeworkTO> getHomeworks() {

@@ -14,8 +14,7 @@ import java.util.List;
 import common.BooleanResponse;
 import common.HomeworkListResponse;
 import common.IStudeasyScheduleService;
-import common.LessonByIDResponse;
-import common.LessonListResponse;
+import common.LessonResponse;
 import common.ReturncodeResponse;
 import common.UserLoginResponse;
 
@@ -46,8 +45,6 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             throw new Exception(e.getMessage());
         }
     }
-
-
     @Override
     public ReturncodeResponse logout(int sessionID) throws Exception {
         ReturncodeResponse result;
@@ -71,42 +68,79 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             throw new Exception(e.getMessage());
         }
     }
-
+    @Override
     public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)
     {
         return new ReturncodeResponse();
     }
-
+    @Override
     public BooleanResponse removeHomework(int sessionID, int homeworkID)
     {
         return new BooleanResponse();
     }
-
-    public LessonListResponse getLessonsByDate(int sessionID, Date date)
+    @Override
+    public LessonResponse getLessonByDate(int sessionID, String date, int hour)
     {
-        return new LessonListResponse();
+        return new LessonResponse();
     }
-
-    public LessonByIDResponse findLessonById(int lessonID)
+    @Override
+    public LessonResponse findLessonById(int lessonID) throws Exception{ return new LessonResponse();}
+    /**@Override
+    public LessonResponse findLessonById(int lessonID) throws Exception
     {
-        return new LessonByIDResponse();
-    }
+        LessonResponse result = null;
+        String METHOD_NAME = "findLessonById"; // <------ACHTUNG
+        SoapObject response = null;
+        try {
+            response = executeSoapAction(METHOD_NAME, lessonID);
+            if (response != null) {
+                // Soap2Lesson
+                int lessonHour = Integer.parseInt(response.getPrimitivePropertySafelyAsString("LessonHour"));
+                SoapObject SoapDate = (SoapObject) response.getProperty("date");
+                //Teacher vorbereiten
+                SoapObject SoapTeacher = (SoapObject) response.getProperty("teacher");
+                String teacherLastname = SoapTeacher.getPropertySafelyAsString("name");
+                String teacherGender = SoapTeacher.getPrimitivePropertySafelyAsString("gender");
+                PersonTO teacher = new PersonTO();
+                teacher.setName(teacherLastname);
+                teacher.getGender(teacherGender)
+                // Subject vorbereiten
+                SoapObject SoapSubject = (SoapObject) response.getProperty("subject");
 
-    public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate)
-    {
-        return new LessonListResponse();
+                String room = response.getPrimitivePropertySafelyAsString("room");
+                LessonTO lesson = new LessonTO();
+                lesson.setLessonID(lessonID);
+                lesson.setLessonHour(lessonHour);
+                lesson.setDate(StringtoDate());
+                lesson.setRoom(room);
+                lesson.setSubject(subject);
+                lesson.setTeacher(teacher);
+                result = new LessonByIDResponse();
+                result.setLesson(lesson);
+                return result;
+            }
+            else {
+                throw new Exception("Login not successful!");
+            }
+        } catch (SoapFault e) {
+            throw new Exception(e.getMessage());
+        }
     }
+    */
 
+    // public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) {return new LessonListResponse();}
+
+    @Override
     public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate)
     {
         return new HomeworkListResponse();
     }
+    @Override
+    public BooleanResponse isUserTeacher(int sessionID)
+    {
+        return new BooleanResponse();
+    }
 
-    /**
-     * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
-     * @param methodName
-     * @return
-     */
     private SoapObject executeSoapAction(String methodName, Object... args) throws SoapFault {
 
         Object result = null;

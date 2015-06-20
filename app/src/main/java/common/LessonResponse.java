@@ -8,7 +8,7 @@ package common;
  */
 
 
-public class LessonByIDResponse extends ReturncodeResponse {
+public class LessonResponse extends ReturncodeResponse {
 
 	private static final long serialVersionUID = 370515707812705415L;
 

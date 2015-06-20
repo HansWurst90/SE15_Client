@@ -3,10 +3,9 @@ package com.example.jalt.se15_client;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TableRow;
@@ -14,16 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import common.CourseTO;
 import common.HomeworkTO;
-import common.IStudeasyScheduleService;
 import common.LessonTO;
-import common.RoomTO;
-import common.SubjectTO;
-import common.TeacherTO;
 
 /**
  *
@@ -74,7 +67,7 @@ public class SubjectActivity extends ActionBarActivity {
         String thisLessonTeacherName = thisLesson.getTeacher().getName();
         char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
         int thisLessonHour = thisLesson.getLessonHour();
-        String thisLessonRoom = thisLesson.getRoom().getRoomID();
+        String thisLessonRoom = thisLesson.getRoom();
         /** String thisLessonHomework = String.join(", ", thisLesson.getHomeworks()); */
         String thisLessonHomework = HomeworkArrayToString(thisLesson.getHomeworks());
         int thisLessonColor = ColorChooser.getColorFromId(thisLesson.getSubject().getSubjectID());
