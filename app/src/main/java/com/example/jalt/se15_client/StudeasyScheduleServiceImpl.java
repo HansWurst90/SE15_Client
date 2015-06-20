@@ -121,7 +121,6 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
     @Override
     public BooleanResponse isUserTeacher(int sessionID) throws Exception
     {
-
         BooleanResponse result = null;
         String METHOD_NAME = "isUserTeacher"; // <------ACHTUNG
         SoapObject response = null;

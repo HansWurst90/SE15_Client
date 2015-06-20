@@ -10,20 +10,20 @@ import android.widget.Toast;
 import com.example.jalt.se15_client.MainActivity;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
-import common.UserLoginResponse;
+import common.BooleanResponse;
 
 /**
  * Logout as AsyncTask
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
-public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
+public class IsTeacherTask extends AsyncTask<Object, Void, BooleanResponse> {
 
     private Context context;
     private StudeasyScheduleApplication myApp;
-    private int personid;
+    private int sessionID;
     SharedPreferences sharedPreferences;
 
-    public LoginTask(Context context, StudeasyScheduleApplication myApp) {
+    public IsTeacherTask(Context context, StudeasyScheduleApplication myApp) {
         this.context = context;
         this.myApp = myApp;
     }
@@ -32,13 +32,12 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
     /**
      * myResponse wird vorbereitet
      */
-    protected UserLoginResponse doInBackground(Object... params){
-        if(params.length != 2)
+    protected BooleanResponse doInBackground(Object... params){
+        if(params.length != 1)
             return null;
-        personid = (int) params[0];
-        String password = (String) params[1];
+        sessionID = (int) params[0];
         try {
-            UserLoginResponse myResponse = myApp.getStudeasyScheduleService().login(personid, password);
+            BooleanResponse myResponse = myApp.getStudeasyScheduleService().isUserTeacher(sessionID);
             return myResponse;
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,31 +57,18 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
      * Bei Misserfolg wird darauf hingewiesen, dass das Login nicht funktioniert hat.
      * @param result
      */
-    protected void onPostExecute(UserLoginResponse result)
+    protected void onPostExecute(BooleanResponse result)
     {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result != null)
         {
-            // Persistierung
-            SavePreferences("USER", "" + personid);
-            SavePreferences("PASSWORD", "******");
-            SavePreferences("NAME", result.getName());
-            SavePreferences("FIRSTNAME", result.getFirstname());
-            SavePreferences("SESSIONID", "" + result.getSessionID());
-            SavePreferences("TEACHER", "false");
-            AsyncTask Task = new IsTeacherTask(context, myApp);
-            Task.execute(result.getSessionID());
-            //Toast anzeigen
-            CharSequence text = "Willkommen User " + result.getFirstname() + " " + result.getName();
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-            context.startActivity(new Intent(context, MainActivity.class));
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            boolean teacher = result.isSuccessfull();
+            String teachertext = String.valueOf(teacher);
+            SavePreferences("TEACHER", teachertext);
         }
         else
         {
-            //Toast anzeigen
-            CharSequence text = "Login fehlgeschlagen!";
+            CharSequence text = "Lehrerabfrage fehlgeschlagen!";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
