@@ -1,5 +1,5 @@
 package com.example.jalt.se15_client;
-//test
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -35,7 +35,7 @@ import common.LessonTO;
 
 /**
  *
- * @author Mußenbrock
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 
 public class MainActivity extends ActionBarActivity {
@@ -53,10 +53,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
 
 
         // Abfrage des aktuell gespeicherten Users

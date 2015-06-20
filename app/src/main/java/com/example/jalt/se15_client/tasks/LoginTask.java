@@ -16,6 +16,7 @@ import common.UserLoginResponse;
 
 /**
  * Logout as AsyncTask
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
 
@@ -30,6 +31,9 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
     }
 
     @Override
+    /**
+     * myResponse wird vorbereitet
+     */
     protected UserLoginResponse doInBackground(Object... params){
         if(params.length != 2)
             return null;
@@ -49,11 +53,19 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
 
     }
 
+    /**
+     * result Auswertung und sharedPreference erzeugen.
+     * Bei Erfolg werden User und SessionId persistiert, für das Passwort wird zu Anzeigezwecken ****** gespeichert
+     * Ebenfalls wird ein Toast angezeigt um den User zu begrüßen.
+     * Bei Misserfolg wird darauf hingewiesen, dass das Login nicht funktioniert hat.
+     * @param result
+     */
     protected void onPostExecute(UserLoginResponse result)
     {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result != null)
         {
+            // Persistierung
             SavePreferences("USER", "" + personid);
             SavePreferences("PASSWORD", "******");
             SavePreferences("SESSIONID", "" + result.getSessionID());
@@ -73,6 +85,12 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
             toast.show();
         }
     }
+
+    /**
+     * Persistieren in die SharedPreference
+     * @param key
+     * @param value
+     */
     private void SavePreferences(String key, String value)
     {
         SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -21,7 +21,10 @@ import common.UserLoginResponse;
 
 /**
  * Created by ErfiMac on 19.06.15.
+ * AsyncTask zum Abrufen der Lessons
+ * @author Lukas Erfkämper
  */
+
 public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
 
     private Context context;
@@ -34,6 +37,9 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
     }
 
     @Override
+    /**
+     * myResponse vorbereiten
+     */
     protected LessonByIDResponse doInBackground(Integer... params){
         if(params.length != 1)
             return null;
@@ -52,24 +58,21 @@ public class LessonTask  extends AsyncTask<Integer, Void, LessonByIDResponse>{
 
     }
 
+    /**
+     * result Auswertung, bei Erfolg werden die Lessons angezeigt, ansonsten Fehlermeldung
+     * @param result
+     */
     protected void onPostExecute(UserLoginResponse result)
     {
         if(result != null)
         {
             //Toast anzeigen
-            CharSequence text = "Willkommen User ";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-            context.startActivity(new Intent(context, MainActivity.class));
-        }
+            Toast.makeText(context, "hat geklappt", Toast.LENGTH_LONG).show();
+            }
         else
         {
             //Toast anzeigen
-            CharSequence text = "Login fehlgeschlagen!";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            Toast.makeText(context, "nöööööö", Toast.LENGTH_LONG).show();
         }
     }
 }
