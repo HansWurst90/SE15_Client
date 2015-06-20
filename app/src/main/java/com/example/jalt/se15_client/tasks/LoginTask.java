@@ -73,7 +73,7 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
             AsyncTask Task = new IsTeacherTask(context, myApp);
             Task.execute(result.getSessionID());
             //Toast anzeigen
-            CharSequence text = "Willkommen User " + result.getFirstname() + " " + result.getName();
+            CharSequence text = "Willkommen  " + result.getFirstname() + " " + result.getName();
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();

@@ -27,7 +27,7 @@ public class TeacherActivity extends Activity {
         setContentView(R.layout.activity_teacher);
         homeworkText = (EditText) findViewById(R.id.teacher_editText);
         finishButton = (Button) findViewById(R.id.finish_button);
-        Intent subjectIntent = new Intent();
+        Intent subjectIntent = getIntent();
         lessonID = subjectIntent.getExtras().getInt("lessonId");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
