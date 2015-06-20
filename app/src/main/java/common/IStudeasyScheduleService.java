@@ -23,7 +23,7 @@ public interface IStudeasyScheduleService {
 	
 	public BooleanResponse removeHomework(int sessionID, int homeworkID) ;// auch ReturncodeResonse
 	
-	public LessonResponse getLessonByDate(int sessionID, String date, int hour);
+	public LessonResponse getLessonByDate(int sessionID, String date, int hour) throws Exception;
 	
 	public LessonResponse findLessonById(int lessonID) throws Exception ;
 	
