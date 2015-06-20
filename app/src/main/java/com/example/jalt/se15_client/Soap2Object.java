@@ -11,10 +11,10 @@ public class Soap2Object {
         //Teacher abholen und "entpacken"
         SoapObject SoapTeacher = (SoapObject) SoapLesson.getProperty("teacher");
         String teacherLastname = SoapTeacher.getPropertySafelyAsString("name");
-        String teacherGender = SoapTeacher.getPrimitivePropertySafelyAsString("gender");
+        int teacherGender = Integer.parseInt(SoapTeacher.getPrimitivePropertySafelyAsString("gender"));
         PersonTO teacher = new PersonTO();
         teacher.setName(teacherLastname);
-        teacher.setGender(teacherGender.charAt(0));
+        teacher.setGender((char) teacherGender);
         // Subject abholen und "entpacken
         SoapObject SoapSubject = (SoapObject) SoapLesson.getProperty("subject");
         int subjectID = Integer.parseInt(SoapSubject.getPrimitivePropertySafelyAsString("subjectID"));
