@@ -33,9 +33,13 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         try {
             response = executeSoapAction(METHOD_NAME, personID, password);
             int sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionID"));
+            String name = response.getPrimitivePropertyAsString("name");
+            String firstname = response.getPrimitivePropertyAsString("firstname");
             if (sessionId != 0) {
                 result = new UserLoginResponse();
                 result.setSessionID(sessionId);
+                result.setName(name);
+                result.setFirstName(firstname);
                 return result;
             }
             else {

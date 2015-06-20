@@ -20,8 +20,8 @@ import com.example.jalt.se15_client.tasks.LogoutTask;
 
 
 /**
- *
- * @author Erfkämper
+ * Login und Logout
+ * @author Lukas Erfkämper
  */
 
 public class SettingsActivity extends Activity{
@@ -32,6 +32,9 @@ public class SettingsActivity extends Activity{
     SharedPreferences sharedPreferences;
 
     @Override
+    /**
+     *
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);

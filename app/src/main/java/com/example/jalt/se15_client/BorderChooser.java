@@ -2,6 +2,8 @@ package com.example.jalt.se15_client;
 
 /**
  * Created by ErfiMac on 14.06.15.
+ * Auslagerung der Farbwahl mit Umrandung anhand der Fach-Nr.
+ * @author Lukas Erfkämper
  */
 public class BorderChooser {
     static int getBorderFromId(int subjectId){

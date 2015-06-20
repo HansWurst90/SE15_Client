@@ -3,7 +3,7 @@ package com.example.jalt.se15_client;
 /**
  * Created by Jan on 10.06.15.
  * Auslagerung der Farbwahl anhand der Fach-Nr.
- * @author Mußenbrock
+ * @author Jan Mußenbrock
  */
 
 public class ColorChooser {
