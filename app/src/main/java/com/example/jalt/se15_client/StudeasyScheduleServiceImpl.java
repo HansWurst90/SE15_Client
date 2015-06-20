@@ -12,17 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 import common.BooleanResponse;
-import common.CourseTO;
 import common.HomeworkListResponse;
 import common.IStudeasyScheduleService;
-import common.LessonByIDResponse;
-import common.LessonListResponse;
-import common.LessonTO;
-import common.PersonTO;
+import common.LessonResponse;
 import common.ReturncodeResponse;
-import common.RoomTO;
-import common.SubjectTO;
-import common.TeacherTO;
 import common.UserLoginResponse;
 
 
@@ -52,8 +45,6 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             throw new Exception(e.getMessage());
         }
     }
-
-
     @Override
     public ReturncodeResponse logout(int sessionID) throws Exception {
         ReturncodeResponse result;
@@ -77,25 +68,27 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             throw new Exception(e.getMessage());
         }
     }
-
+    @Override
     public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)
     {
         return new ReturncodeResponse();
     }
-
+    @Override
     public BooleanResponse removeHomework(int sessionID, int homeworkID)
     {
         return new BooleanResponse();
     }
-
-    public LessonListResponse getLessonsByDate(int sessionID, Date date)
+    @Override
+    public LessonResponse getLessonByDate(int sessionID, String date, int hour)
     {
-        return new LessonListResponse();
+        return new LessonResponse();
     }
-
-    public LessonByIDResponse findLessonById(int lessonID)
+    @Override
+    public LessonResponse findLessonById(int lessonID) throws Exception{ return new LessonResponse();}
+    /**@Override
+    public LessonResponse findLessonById(int lessonID) throws Exception
     {
-        LessonByIDResponse result = null;
+        LessonResponse result = null;
         String METHOD_NAME = "findLessonById"; // <------ACHTUNG
         SoapObject response = null;
         try {
@@ -133,22 +126,21 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             throw new Exception(e.getMessage());
         }
     }
+    */
 
-    public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate)
-    {
-        return new LessonListResponse();
-    }
+    // public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) {return new LessonListResponse();}
 
+    @Override
     public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate)
     {
         return new HomeworkListResponse();
     }
+    @Override
+    public BooleanResponse isUserTeacher(int sessionID)
+    {
+        return new BooleanResponse();
+    }
 
-    /**
-     * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
-     * @param methodName
-     * @return
-     */
     private SoapObject executeSoapAction(String methodName, Object... args) throws SoapFault {
 
         Object result = null;

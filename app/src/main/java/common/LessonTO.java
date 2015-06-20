@@ -1,13 +1,11 @@
 package common;
 
 import java.io.Serializable;
-
-import java.util.Date;
 import java.util.List;
 
 /**
  * Lesson-Transferobjekt für die Kommunikation mit der Client-Applikation 
- * @author Andreas Prischep
+ * @author Andreas Prischep, Tobias Riegel
  *
  */
 public class LessonTO implements Serializable {
@@ -19,12 +17,11 @@ public class LessonTO implements Serializable {
 	private int lessonHour;
 	private String date;
 	
-
-	private CourseTO course;
-	private TeacherTO teacher;
+	private PersonTO teacher;
 	private SubjectTO subject;
 	private String room;
 	private List<HomeworkTO> homeworks;
+	
 	public int getLessonID() {
 		return lessonID;
 	}
@@ -43,16 +40,10 @@ public class LessonTO implements Serializable {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public CourseTO getCourse() {
-		return course;
-	}
-	public void setCourse(CourseTO course) {
-		this.course = course;
-	}
-	public TeacherTO getTeacher() {
+	public PersonTO getTeacher() {
 		return teacher;
 	}
-	public void setTeacher(TeacherTO teacher) {
+	public void setTeacher(PersonTO teacher) {
 		this.teacher = teacher;
 	}
 	public SubjectTO getSubject() {

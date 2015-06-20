@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import common.CourseTO;
+
 import common.HomeworkTO;
 import common.LessonTO;
-import common.RoomTO;
+import common.PersonTO;
 import common.SubjectTO;
-import common.TeacherTO;
 
 /**
  * Created by ErfiMac on 10.06.15.
@@ -22,8 +21,8 @@ public class TestLessons {
 
          Date date;
          String subject;
-         TeacherTO teacher;
-         RoomTO room;
+         PersonTO teacher;
+         String room;
          LessonTO lesson1 = new LessonTO();
          LessonTO lesson2 = new LessonTO();
          LessonTO lesson3 = new LessonTO();

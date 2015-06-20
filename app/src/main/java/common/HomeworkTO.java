@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Homework-Transferobjekt für die Kommunikation mit der Client-Applikation 
- * @author Andreas Prischep
+ * @author Andreas Prischep, Tobias Riegel
  *
  */
 
@@ -18,9 +18,6 @@ public class HomeworkTO implements Serializable {
 	private String description;
 	
 	
-	private LessonTO lesson;
-	
-	
 	public int getHomeworkID() {
 		return homeworkID;
 	}
@@ -32,11 +29,5 @@ public class HomeworkTO implements Serializable {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public LessonTO getLesson() {
-		return lesson;
-	}
-	public void setLesson(LessonTO lesson) {
-		this.lesson = lesson;
 	}
 }
