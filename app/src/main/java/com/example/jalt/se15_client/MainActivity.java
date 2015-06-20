@@ -211,7 +211,7 @@ public class MainActivity extends ActionBarActivity {
                     cellMap.get(i).setBackgroundResource(ColorChooser.getColorFromId(lessonMap.get(i).getSubject().getSubjectID()));
                     teacherMap.get(i).setText(GenderChooser.getTitleByGender(lessonMap.get(i).getTeacher().getGender()) + " " + lessonMap.get(i).getTeacher().getName());
                     subjectMap.get(i).setText(lessonMap.get(i).getSubject().getDescription());
-                    roomMap.get(i).setText(lessonMap.get(i).getRoom().getRoomID());
+                    roomMap.get(i).setText(lessonMap.get(i).getRoom());
                 }
             }
         }
