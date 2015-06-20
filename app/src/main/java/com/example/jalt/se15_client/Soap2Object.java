@@ -3,9 +3,14 @@ import common.*;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Jan on 20.06.15.
  */
@@ -32,6 +37,15 @@ public class Soap2Object {
         String date = SoapLesson.getPrimitivePropertySafelyAsString("date");
         int lessonHour = Integer.parseInt(SoapLesson.getPrimitivePropertySafelyAsString("LessonHour"));
         int lessonID = Integer.parseInt(SoapLesson.getPrimitivePropertySafelyAsString("lessonID"));
+        // Hausaufgaben abholen
+        List<HomeworkTO> list = new ArrayList<>();
+        for (int i = 0; i < input.getPropertyCount(); i++) {
+            PropertyInfo info = new PropertyInfo();
+            input.getPropertyInfo(i, info);
+            if("input".equals(info.getName())) {
+                list.add(soap2homework((SoapObject) input.getProperty(i)));
+            }
+        }
         LessonTO lesson = new LessonTO();
         lesson.setLessonID(lessonID);
         lesson.setLessonHour(lessonHour);
@@ -42,5 +56,10 @@ public class Soap2Object {
         LessonResponse output = new LessonResponse();
         output.setLesson(lesson);
         return output;
+    }
+
+    static HomeworkTO soap2homework(SoapObject input) {
+        SoapObject SoapHomework = (SoapObject) SoapLesson.getProperty("teacher");
+
     }
 }
