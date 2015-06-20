@@ -6,16 +6,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jalt.se15_client.tasks.LessonTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import common.HomeworkTO;
+import common.LessonResponse;
 import common.LessonTO;
 
 /**
@@ -46,88 +50,33 @@ public class SubjectActivity extends ActionBarActivity {
         Intent whichSubjectId = getIntent();
         lessonId = whichSubjectId.getExtras().getInt("lessonId");
         Toast.makeText(this, "LessonId: " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
+        saveKey = "lesson"+lessonId;
 
-        // Beispiellesson:
-        List<LessonTO> lessonList = new ArrayList<>();
-        lessonList.addAll(TestLessons.getLessons1());
-        lessonList.addAll(TestLessons.getLessons2());
-        lessonList.addAll(TestLessons.getLessons3());
-        lessonList.addAll(TestLessons.getLessons4());
-        lessonList.addAll(TestLessons.getLessons5());
-        LessonTO thisLesson = lessonList.get(3);
-
-        // "Abholen" der entsprechenden Lesson vom Server:
-        for (LessonTO lesson : lessonList) {
-            if (lesson.getLessonID() == lessonId) {
-                thisLesson = lesson;
-            }
-        }
-
-        // Sammlen der Daten
-        String thisLessonDescription = thisLesson.getSubject().getDescription();
-        String thisLessonTeacherName = thisLesson.getTeacher().getName();
-        char thisLessonTeacherGender = thisLesson.getTeacher().getGender();
-        int thisLessonHour = thisLesson.getLessonHour();
-        String thisLessonRoom = thisLesson.getRoom();
-        /** String thisLessonHomework = String.join(", ", thisLesson.getHomeworks()); */
-        String thisLessonHomework = HomeworkArrayToString(thisLesson.getHomeworks());
-        int thisLessonColor = ColorChooser.getColorFromId(thisLesson.getSubject().getSubjectID());
-        // thisLesson.getHomeworks();
-        //Abhängig des Geschlechts wird die Anrede gesetzt
-        String thisLessonTeacherTitle = GenderChooser.getTitleByGender(thisLessonTeacherGender);
-        saveKey = "lesson"+thisLesson.getLessonID();
-
-        //Abhängig der Stunde werdne die Star- und Endzeiten gewählt
-        String from = null;
-        String to = null;
-        switch (thisLessonHour) {
-            default:
-                from = "Error";
-                to = "Error";
-                break;
-            case 1:
-                from = "08:30";
-                to = "09:15";
-                break;
-            case 2:
-                from = "09:15";
-                to = "10:00";
-                break;
-            case 3:
-                from = "10:15";
-                to = "11:00";
-                break;
-            case 4:
-                from = "11:00";
-                to = "11:45";
-                break;
-            case 5:
-                from = "12:00";
-                to = "12:45";
-                break;
-            case 6:
-                from = "12:45";
-                to = "13:30";
-                break;
-        }
-
-
+        // Vorbereiten der Felder zum befüllen
         final TableRow headerRow1 = (TableRow) findViewById(R.id.headerRow1);
         final TableRow headerRow2 = (TableRow) findViewById(R.id.headerRow2);
-        headerRow1.setBackgroundResource(thisLessonColor);
-        headerRow2.setBackgroundResource(thisLessonColor);
-        final TextView descriptionTextView = (TextView) findViewById(R.id.description_value);
-        descriptionTextView.setText(thisLessonDescription);
         final TextView teacherTextView = (TextView) findViewById(R.id.teacher_value);
-        teacherTextView.setText(thisLessonTeacherTitle + " " + thisLessonTeacherName);
         final TextView fromTexView = (TextView) findViewById(R.id.from_value);
-        fromTexView.setText(from);
         final TextView toTexView = (TextView) findViewById(R.id.to_value);
-        toTexView.setText(to);
         final TextView roomTextView = (TextView) findViewById(R.id.room_value);
-        roomTextView.setText(thisLessonRoom);
         final TextView homeworkTextView = (TextView) findViewById(R.id.homework_value);
-        homeworkTextView.setText(thisLessonHomework);
+        final TextView descriptionTextView = (TextView) findViewById(R.id.description_value);
+        // Abruf der Lesson und befüllung der Felder
+        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+        new LessonTask(this, myApp){
+            @Override
+            public void onPostExecute(LessonResponse result)
+            {
+                LessonTO lesson = result.getLesson();
+                headerRow1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                headerRow2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                descriptionTextView.setText(lesson.getSubject().getDescription());
+                teacherTextView.setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
+                fromTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[0]);
+                toTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[1]);
+                roomTextView.setText(lesson.getRoom());
+            }
+        }.execute(lessonId);
     }
 
     private void teacherLogin()
