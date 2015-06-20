@@ -28,7 +28,7 @@ public class SubjectActivity extends ActionBarActivity {
     CheckBox homeworkButton;
     TextView homeworkText;
     String saveKey;
-    boolean teacherLogin;
+    String teacherLogin;
     static int lessonId;
     SharedPreferences sharedPreferences;
 
@@ -38,7 +38,8 @@ public class SubjectActivity extends ActionBarActivity {
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
         homeworkText = (TextView) findViewById(R.id.homework_value);
-        teacherLogin = false;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        teacherLogin = sharedPreferences.getString("TEACHER", "");
         teacherLogin();
 
         // Empfangen der lessonId auf die geklickt wurde
@@ -131,21 +132,18 @@ public class SubjectActivity extends ActionBarActivity {
 
     private void teacherLogin()
     {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String savedUser = sharedPreferences.getString("USER", "");
-        if (savedUser.equals("Teacher"))
+        if (teacherLogin.equals("true"))
         {
             homeworkButton.setVisibility(View.GONE);
-            teacherLogin = true;
         }
     }
 
     public void homeworkTextClick(View view) {
-        if (teacherLogin)
+        if (teacherLogin.equals("true"))
         {
-            Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
+            Intent getSubjectIntent = new Intent(this, TeacherActivity.class);
             getSubjectIntent.putExtra("lessonId", lessonId);
-            startActivity(new Intent(SubjectActivity.this,TeacherActivity.class));
+            startActivity(getSubjectIntent);
         }
     }
 
@@ -195,7 +193,4 @@ public class SubjectActivity extends ActionBarActivity {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(saveKey, false);
     }
-
-
-
 }

@@ -87,7 +87,7 @@ public class TestLessons {
         lesson.setRoom(room1);
         List<HomeworkTO> homeworks1 = new ArrayList<HomeworkTO>();
         HomeworkTO homework1 = new HomeworkTO();
-        homework1.setDescription("Test");
+        homework1.setDescription("Testafddsfdsafdsafdsfdsjkdsöflkndsflhsödsjföldskjfösdjkflksödjfödklsjfdsöjfdskfjdskölfjsdöfjdslköfjdsöklfjsdölfjkdsöklfjadsölkfjdlsökfjdskölfjölskajfsdölkjfaölksdfjsdlökfjslödkjeiurklfjsdölkfsdiö");
         homeworks1.add(homework1);
         lesson.setHomeworks(homeworks1);
         lesson.setLessonID(lessonId);
