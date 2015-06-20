@@ -12,25 +12,26 @@ import org.ksoap2.transport.HttpTransportSE;
 public class Soap2Object {
 
     static LessonResponse soap2lesson(SoapObject input){
+        SoapObject SoapLesson = (SoapObject) input.getProperty("lesson");
         //Teacher abholen und "entpacken"
-        SoapObject SoapTeacher = (SoapObject) input.getProperty("teacher");
+        SoapObject SoapTeacher = (SoapObject) SoapLesson.getProperty("teacher");
         String teacherLastname = SoapTeacher.getPropertySafelyAsString("name");
         String teacherGender = SoapTeacher.getPrimitivePropertySafelyAsString("gender");
         PersonTO teacher = new PersonTO();
         teacher.setName(teacherLastname);
         teacher.setGender(teacherGender.charAt(0));
         // Subject abholen und "entpacken
-        SoapObject SoapSubject = (SoapObject) input.getProperty("subject");
+        SoapObject SoapSubject = (SoapObject) SoapLesson.getProperty("subject");
         int subjectID = Integer.parseInt(SoapSubject.getPrimitivePropertySafelyAsString("subjectID"));
         String subjectDescription = SoapSubject.getPrimitivePropertySafelyAsString("subjectDescription");
         SubjectTO subject = new SubjectTO();
         subject.setSubjectID(subjectID);
         subject.setDescription(subjectDescription);
         // Lesson abholen und "entpacken
-        String room = input.getPrimitivePropertySafelyAsString("room");
-        String date = input.getPrimitivePropertySafelyAsString("date");
-        int lessonHour = Integer.parseInt(input.getPrimitivePropertySafelyAsString("LessonHour"));
-        int lessonID = Integer.parseInt(input.getPrimitivePropertySafelyAsString("lessonID"));
+        String room = SoapLesson.getPrimitivePropertySafelyAsString("room");
+        String date = SoapLesson.getPrimitivePropertySafelyAsString("date");
+        int lessonHour = Integer.parseInt(SoapLesson.getPrimitivePropertySafelyAsString("LessonHour"));
+        int lessonID = Integer.parseInt(SoapLesson.getPrimitivePropertySafelyAsString("lessonID"));
         LessonTO lesson = new LessonTO();
         lesson.setLessonID(lessonID);
         lesson.setLessonHour(lessonHour);

@@ -119,9 +119,25 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         return new HomeworkListResponse();
     }
     @Override
-    public BooleanResponse isUserTeacher(int sessionID)
+    public BooleanResponse isUserTeacher(int sessionID) throws Exception
     {
-        return new BooleanResponse();
+
+        BooleanResponse result = null;
+        String METHOD_NAME = "isUserTeacher"; // <------ACHTUNG
+        SoapObject response = null;
+        try {
+            response = executeSoapAction(METHOD_NAME, sessionID);
+            if (response != null) {
+                result = new BooleanResponse();
+                result.setSuccessfull(Boolean.parseBoolean(response.getPropertySafelyAsString("successfull")));
+                return result;
+            }
+            else {
+                throw new Exception("isUserTeacher not successful!");
+            }
+        } catch (SoapFault e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     private SoapObject executeSoapAction(String methodName, Object... args) throws SoapFault {
