@@ -9,6 +9,7 @@ import com.example.jalt.se15_client.StudeasyScheduleApplication;
 import common.LessonResponse;
 import common.LessonTO;
 
+
 /**
  * Created by ErfiMac on 19.06.15.
  * AsyncTask zum Abrufen der Lessons
