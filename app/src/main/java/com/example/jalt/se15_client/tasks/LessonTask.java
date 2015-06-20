@@ -8,7 +8,6 @@ import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
 import common.LessonResponse;
 import common.LessonTO;
-import common.UserLoginResponse;
 
 /**
  * Created by ErfiMac on 19.06.15.
