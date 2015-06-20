@@ -39,7 +39,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
                 result = new UserLoginResponse();
                 result.setSessionID(sessionId);
                 result.setName(name);
-                result.setFirstName(firstname);
+                result.setFirstname(firstname);
                 return result;
             }
             else {

@@ -68,8 +68,8 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
             // Persistierung
             SavePreferences("USER", "" + personid);
             SavePreferences("PASSWORD", "******");
-            SavePreferences("NAME", name);
-            SavePreferences("FIRSTNAME", firstname);
+            SavePreferences("NAME", result.getName());
+            SavePreferences("FIRSTNAME", result.getFirstname());
             SavePreferences("SESSIONID", "" + result.getSessionID());
             //Toast anzeigen
             CharSequence text = "Willkommen User " + personid;
