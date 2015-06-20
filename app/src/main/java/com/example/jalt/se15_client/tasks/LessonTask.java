@@ -57,24 +57,13 @@ public class LessonTask  extends AsyncTask<Object, Void, LessonResponse>{
     {
         if(result != null)
         {
-            //Toast anzeigen
-            LessonTO lesson = new LessonTO();
-            lesson = result.getLesson();
-            int lessonId = lesson.getLessonID();
-            int lessonHour = lesson.getLessonHour();
-            String date = lesson.getDate();
-            String genderT = "" + lesson.getTeacher().getGender();
-            String nameT = lesson.getTeacher().getName();
-            String subjectDescription = lesson.getSubject().getDescription();
-            int subjectId = lesson.getSubject().getSubjectID();
-            String room = lesson.getRoom();
-            String text = "LessonID: " + lessonId + " LessonHour: " + lessonHour + " Date: " + date + " GenderT: " + genderT + " NameT: " + nameT + " SubjectD: " + subjectDescription + " SubjectId: " + subjectId + " Room: " + room;
-            Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+           Toast.makeText(context, "Lesson Abfrage erfolgreich.", Toast.LENGTH_LONG).show();
+
             }
         else
         {
             //Toast anzeigen
-            Toast.makeText(context, "nöööööö", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Lesson Abfrage fehlgeschlagen.", Toast.LENGTH_LONG).show();
         }
     }
 }
