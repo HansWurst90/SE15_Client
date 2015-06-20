@@ -68,6 +68,7 @@ public class LogoutTask extends AsyncTask<Integer, Void, Boolean> {
             SavePreferences("USER", null);
             SavePreferences("PASSWORD", null);
             SavePreferences("SESSIONID", null);
+            SavePreferences("TEACHER", "false");
             //Toast anzeigen
             CharSequence text = "Erfolgreich ausgeloggt";
             int duration = Toast.LENGTH_SHORT;
