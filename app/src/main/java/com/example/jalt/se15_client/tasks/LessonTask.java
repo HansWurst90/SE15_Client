@@ -2,8 +2,12 @@ package com.example.jalt.se15_client.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jalt.se15_client.MainActivity;
+import com.example.jalt.se15_client.R;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
 
 import common.LessonResponse;
@@ -16,7 +20,7 @@ import common.LessonTO;
  * @author Lukas Erfkämper
  */
 
-public class LessonTask  extends AsyncTask<Object, Void, LessonResponse>{
+public class LessonTask  extends AsyncTask<Object, LessonResponse, LessonResponse>{
 
     private Context context;
     private StudeasyScheduleApplication myApp;
@@ -37,6 +41,7 @@ public class LessonTask  extends AsyncTask<Object, Void, LessonResponse>{
         lessonID = (int) params[0];
         try {
             LessonResponse myResponse = myApp.getStudeasyScheduleService().findLessonById(lessonID);
+            publishProgress(myResponse);
             return myResponse;
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,7 +49,7 @@ public class LessonTask  extends AsyncTask<Object, Void, LessonResponse>{
         return null;
     }
 
-    protected void onProgessUpdate(Integer... values)
+    protected void onProgressUpdate(LessonResponse result)
     {
 
     }
@@ -57,8 +62,7 @@ public class LessonTask  extends AsyncTask<Object, Void, LessonResponse>{
     {
         if(result != null)
         {
-           Toast.makeText(context, "Lesson Abfrage erfolgreich.", Toast.LENGTH_LONG).show();
-
+           // Toast.makeText(context, "Lesson Abfrage Fertig.", Toast.LENGTH_LONG).show();
             }
         else
         {
