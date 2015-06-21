@@ -11,7 +11,7 @@ import common.LessonResponse;
 import common.LessonTO;
 
 /**
- *
+ * AsyncTask um alle Lessons zu einem bestimmten Date zu bekommen
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class LessonByDateTask extends AsyncTask<Object, Void, LessonResponse> {
@@ -52,7 +52,9 @@ public class LessonByDateTask extends AsyncTask<Object, Void, LessonResponse> {
     }
 
     /**
-     * result Auswertung, bei Erfolg werden die Lessons angezeigt, ansonsten Fehlermeldung
+     * result Auswertung
+     * Wenn im result etwas enthalten ist, wird dies zur einer LessonTo umgebaut
+     * bei Erfolg werden die Lessons angezeigt, ansonsten Fehlermeldung
      * @param result
      */
     protected void onPostExecute(LessonResponse result)

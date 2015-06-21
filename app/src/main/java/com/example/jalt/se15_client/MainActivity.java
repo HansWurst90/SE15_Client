@@ -118,7 +118,6 @@ public class MainActivity extends ActionBarActivity {
             // Abfrage eines Tagesplan für den gegebenen Tag.
             // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, date);
             // List<LessonTO> lessonList = lessonListResponse.getLessonList()
-            List<LessonTO> lessonList = TestLessons.getLessons1();
 
             // Hier wird das Datum für die Anzeige im Kopf der Tabelle aufbereitet und blau gefärbt, wenn es das heutige Datum ist.
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);

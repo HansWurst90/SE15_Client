@@ -23,13 +23,12 @@ import common.LessonResponse;
 import common.LessonTO;
 
 /**
- *
+ * Die Fachansicht zu jeder Lesson
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class SubjectActivity extends ActionBarActivity {
 
     CheckBox homeworkButton;
-    TextView homeworkText;
     String saveKey;
     String teacherLogin;
     String teacherName;
@@ -43,6 +42,7 @@ public class SubjectActivity extends ActionBarActivity {
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         teacherLogin = sharedPreferences.getString("TEACHER", "");
+        // Überprüfung ob ein Teacher oder Schüler sich anmeldet, wenn Teacher wird CheckButton ausgeblendet
         teacherLogin();
 
         // Empfangen der lessonId auf die geklickt wurde
@@ -83,6 +83,7 @@ public class SubjectActivity extends ActionBarActivity {
         }.execute(lessonId);
     }
 
+    //Überprüfungsmethode
     private void teacherLogin()
     {
         if (teacherLogin.equals("true"))
@@ -91,6 +92,7 @@ public class SubjectActivity extends ActionBarActivity {
         }
     }
 
+    //Teacher Methode um neue Hausaufgaben anlegen zu können
     public void homeworkTextClick(View view) {
         if (teacherLogin.equals("true") && teacherName.equals(sharedPreferences.getString("NAME", "")))
         {
@@ -101,6 +103,7 @@ public class SubjectActivity extends ActionBarActivity {
         }
     }
 
+    //Aus der List werden alle Elemente zu einem String umgewandelt
     private String HomeworkArrayToString(List<HomeworkTO> list)
     {
         StringBuilder homeworkString = new StringBuilder();
@@ -114,6 +117,7 @@ public class SubjectActivity extends ActionBarActivity {
         return homeworkString.toString();
     }
 
+    //Toast für die Schüler wenn Hausaufgaben gemacht oder nicht gemacht
     public void homeworkToast(View view) {
         boolean checked = homeworkButton.isChecked();
         if (checked) {
@@ -131,12 +135,14 @@ public class SubjectActivity extends ActionBarActivity {
         startActivity(getMainIntent);
     }
 
+    //Um den Zustand vom Checkbutton zu speichern, selbst wenn die App geschlossen wurde
     @Override
     public void onPause() {
         super.onPause();
         save(homeworkButton.isChecked());
     }
 
+    //Zustand vom Checkbutton aufrufen
     @Override
     public void onResume() {
         super.onResume();

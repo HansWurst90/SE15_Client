@@ -19,7 +19,7 @@ import com.example.jalt.se15_client.tasks.LoginTask;
 import com.example.jalt.se15_client.tasks.LogoutTask;
 
 /**
- *
+ * SettingsActivity behandelt das ein- und ausloggen
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class SettingsActivity extends Activity{
@@ -32,6 +32,7 @@ public class SettingsActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //initialsierung der Variablen
         setContentView(R.layout.activity_settings);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
@@ -44,6 +45,7 @@ public class SettingsActivity extends Activity{
         username.setText(User);
         password.setText(Password);
 
+        //Wenn man angemeldet ist, werden Benutzererkennung und Passwort Eingabe auf nicht bearbeitbar gesetzt
         if(User.equals("")  && Password.equals("")){
             loginButton.setText(R.string.login);
             username.setEnabled(true);
@@ -61,11 +63,13 @@ public class SettingsActivity extends Activity{
         String buttonText = loginButton.getText().toString();
         String login = getResources().getString(R.string.login);
 
+        //Wenn Button auf Login stand
         if(buttonText.equals(login))
         {
             String user = username.getText().toString();
             String pass = password.getText().toString();
 
+            //Falls etwas bei den Eingaben fehlte
             if(user.equals("") && pass.equals(""))
                 Toast.makeText(this, R.string.missingBoth, Toast.LENGTH_SHORT).show();
             else if(user.equals("") && !pass.equals(""))
@@ -74,6 +78,7 @@ public class SettingsActivity extends Activity{
                 Toast.makeText(this, R.string.missingPasswort, Toast.LENGTH_SHORT).show();
             else if (!user.equals("") && !pass.equals(""))
             {
+                //Neuer Task wird gestartet
                 StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
                 LoginTask loginTask = new LoginTask(this, myApp);
                 loginTask.execute(Integer.parseInt(user), pass);
@@ -91,13 +96,6 @@ public class SettingsActivity extends Activity{
     public void onBackPressed()
     {
         Intent getMainIntent = new Intent(this, MainActivity.class);
-        startActivity(getMainIntent);
-    }
-
-    private void backToMain(View view, String button)
-    {
-        Intent getMainIntent = new Intent(this, MainActivity.class);
-        getMainIntent.putExtra("origin", button);
         startActivity(getMainIntent);
     }
 }

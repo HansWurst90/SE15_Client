@@ -15,7 +15,7 @@ import common.LessonTO;
 
 
 /**
- *
+ * AsyncTask um eine Lesson abzuholen
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class LessonTask  extends AsyncTask<Object, LessonResponse, LessonResponse>{
@@ -54,7 +54,8 @@ public class LessonTask  extends AsyncTask<Object, LessonResponse, LessonRespons
     }
 
     /**
-     * result Auswertung, bei Erfolg werden die Lessons angezeigt, ansonsten Fehlermeldung
+     * onPostExecute wird bei Methodenaufruf überschrieben, um in der jeweiligen Activity die Daten
+     * einzufügen
      * @param result
      */
     protected void onPostExecute(LessonResponse result)

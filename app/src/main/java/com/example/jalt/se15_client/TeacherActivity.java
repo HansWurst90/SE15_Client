@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.jalt.se15_client.tasks.AddHomeworkTask;
 
 /**
- *
+ * Spezielle Teacher Ansicht zum Anlegen der Hausaufgaben
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class TeacherActivity extends Activity {
@@ -24,6 +24,7 @@ public class TeacherActivity extends Activity {
     String teacherName;
     SharedPreferences sharedPreferences;
 
+    //Spezielles PopUpWindow, liegt über der SubjectActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
