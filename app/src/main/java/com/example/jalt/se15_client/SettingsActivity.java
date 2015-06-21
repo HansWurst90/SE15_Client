@@ -18,12 +18,10 @@ import android.widget.Toast;
 import com.example.jalt.se15_client.tasks.LoginTask;
 import com.example.jalt.se15_client.tasks.LogoutTask;
 
-
 /**
- * Login und Logout
- * @author Lukas Erfkämper
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
-
 public class SettingsActivity extends Activity{
     EditText username;
     EditText password;
@@ -32,9 +30,6 @@ public class SettingsActivity extends Activity{
     SharedPreferences sharedPreferences;
 
     @Override
-    /**
-     *
-     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -59,7 +54,6 @@ public class SettingsActivity extends Activity{
             username.setEnabled(false);
             password.setEnabled(false);
         }
-
     }
 
     public void loginButtonPress(View view)
@@ -99,7 +93,6 @@ public class SettingsActivity extends Activity{
         Intent getMainIntent = new Intent(this, MainActivity.class);
         startActivity(getMainIntent);
     }
-
 
     private void backToMain(View view, String button)
     {

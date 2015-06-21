@@ -15,11 +15,9 @@ import common.LessonTO;
 
 
 /**
- * Created by ErfiMac on 19.06.15.
- * AsyncTask zum Abrufen der Lessons
- * @author Lukas Erfkämper
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
-
 public class LessonTask  extends AsyncTask<Object, LessonResponse, LessonResponse>{
 
     private Context context;

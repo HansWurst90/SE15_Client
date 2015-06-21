@@ -1,6 +1,5 @@
 package com.example.jalt.se15_client;
 
-
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
@@ -21,15 +20,17 @@ import common.ReturncodeResponse;
 import common.SubjectTO;
 import common.UserLoginResponse;
 
-
-
-public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
-
+/**
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
+ */
+public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
+{
     private static final String NAMESPACE = "http://schedulemanager.studeasy.de/";
     private static final String URL = "http://10.60.70.6:8080/studeasy/StudeasyScheduleService?WSDL";
 
     @Override
-    public UserLoginResponse login(int personID, String password) throws Exception{
+    public UserLoginResponse login(int personID, String password) throws Exception {
         UserLoginResponse result = null;
         String METHOD_NAME = "login";
         SoapObject response = null;
@@ -44,40 +45,38 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
                 result.setName(name);
                 result.setFirstname(firstname);
                 return result;
-            }
-            else {
+            } else {
                 throw new Exception("Login not successful!");
             }
         } catch (SoapFault e) {
             throw new Exception(e.getMessage());
         }
     }
+
     @Override
     public ReturncodeResponse logout(int sessionID) throws Exception {
         ReturncodeResponse result;
         String METHOD_NAME = "logout";
         SoapObject response = null;
         try {
-                response = executeSoapAction(METHOD_NAME, sessionID);
-                int returnCode;
-                result = new ReturncodeResponse();
-                returnCode = Integer.parseInt(response.getPrimitivePropertySafelyAsString("returnCode"));
-                if (returnCode == 0) {
-                    result.setReturnCode(returnCode);
-                    return result;
-                }
-                    else{
-                    result.setReturnCode(1);
-                    return result;
-                }
+            response = executeSoapAction(METHOD_NAME, sessionID);
+            int returnCode;
+            result = new ReturncodeResponse();
+            returnCode = Integer.parseInt(response.getPrimitivePropertySafelyAsString("returnCode"));
+            if (returnCode == 0) {
+                result.setReturnCode(returnCode);
+                return result;
+            } else {
+                result.setReturnCode(1);
+                return result;
             }
-        catch (SoapFault e) {
+        } catch (SoapFault e) {
             throw new Exception(e.getMessage());
         }
     }
+
     @Override
-    public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)  throws Exception
-    {
+    public ReturncodeResponse createHomework(int sessionID, int lessonID, String description) throws Exception {
         ReturncodeResponse result = null;
         String METHOD_NAME = "createHomework";
         SoapObject response = null;
@@ -89,28 +88,26 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             if (returnCode == 0) {
                 result.setReturnCode(returnCode);
                 return result;
-            }
-            else{
+            } else {
                 result.setReturnCode(1);
                 return result;
             }
-        }
-        catch (SoapFault e) {
+        } catch (SoapFault e) {
             throw new Exception(e.getMessage());
         }
     }
+
     @Override
-    public BooleanResponse removeHomework(int sessionID, int homeworkID)
-    {
+    public BooleanResponse removeHomework(int sessionID, int homeworkID) {
         return new BooleanResponse();
     }
+
     @Override
-    public LessonResponse getLessonByDate(int sessionID, String date, int hour) throws Exception
-    {
+    public LessonResponse getLessonByDate(int sessionID, String date, int hour) throws Exception {
         LessonResponse result = null;
         String METHOD_NAME = "getLessonByDate";
         SoapObject response = null;
-        try{
+        try {
             // Lesson abholen
             response = executeSoapAction(METHOD_NAME, sessionID, date, hour);
             if (response != null)
@@ -124,8 +121,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
     }
 
     @Override
-    public LessonResponse findLessonById(int lessonID) throws Exception
-    {
+    public LessonResponse findLessonById(int lessonID) throws Exception {
         LessonResponse result = null;
         String METHOD_NAME = "findLessonById"; // <------ACHTUNG
         SoapObject response = null;
@@ -134,8 +130,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             response = executeSoapAction(METHOD_NAME, lessonID);
             if (response != null) {
                 return Soap2Object.soap2lesson(response);
-            }
-            else {
+            } else {
                 throw new Exception("findLessonById fehlgeschlagen!");
             }
         } catch (SoapFault e) {
@@ -146,13 +141,12 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
     // public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) {return new LessonListResponse();}
 
     @Override
-    public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate)
-    {
+    public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate) {
         return new HomeworkListResponse();
     }
+
     @Override
-    public BooleanResponse isUserTeacher(int sessionID) throws Exception
-    {
+    public BooleanResponse isUserTeacher(int sessionID) throws Exception {
         BooleanResponse result = null;
         String METHOD_NAME = "isUserTeacher"; // <------ACHTUNG
         SoapObject response = null;
@@ -162,8 +156,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
                 result = new BooleanResponse();
                 result.setSuccessfull(Boolean.parseBoolean(response.getPropertySafelyAsString("successfull")));
                 return result;
-            }
-            else {
+            } else {
                 throw new Exception("isUserTeacher not successful!");
             }
         } catch (SoapFault e) {
@@ -181,7 +174,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         SoapObject request = new SoapObject(NAMESPACE, methodName);
 	    
 	    /* The array of arguments is copied into properties of the SOAP request using the addProperty method. */
-        for (int i=0; i<args.length; i++) {
+        for (int i = 0; i < args.length; i++) {
             request.addProperty("arg" + i, args[i]);
         }
 	    
@@ -205,8 +198,8 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 
             @SuppressWarnings({"unused", "unchecked"})
             //List<HeaderProperty> respHeaders = androidHttpTransport.call(NAMESPACE + methodName, envelope, reqHeaders);
-            //fuehrt zu CXF-Fehler! neue Version ohne SOAP-Action funktioniert:
-            List<HeaderProperty> respHeaders = androidHttpTransport.call("", envelope, reqHeaders);
+                    //fuehrt zu CXF-Fehler! neue Version ohne SOAP-Action funktioniert:
+                    List<HeaderProperty> respHeaders = androidHttpTransport.call("", envelope, reqHeaders);
 	
 	        /* Get the web service response using the getResponse method of the SoapSerializationEnvelope object.
 	         * The result has to be cast to SoapPrimitive, the class used to encapsulate primitive types, or to SoapObject.
@@ -216,24 +209,13 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
             if (result instanceof SoapFault) {
                 throw (SoapFault) result;
             }
-        }
-        catch (SoapFault e) {
+        } catch (SoapFault e) {
             e.printStackTrace();
             throw e;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return (SoapObject) result;
-    }
-
-    Date makeStringToDate(String date) {
-        int day = Integer.parseInt(date.substring(0, 2));
-        int month = Integer.parseInt(date.substring(2, 4));
-        int year = Integer.parseInt(date.substring(4));
-
-        Date d = new Date(year, month, day);
-        return d;
     }
 }

@@ -1,7 +1,8 @@
 package com.example.jalt.se15_client;
 
 /**
- * Created by Jan on 20.06.15.
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class HourChooser {
 

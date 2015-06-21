@@ -7,7 +7,7 @@
 
     <!--subject_activity -->
     <string name="title_activity_subject">Fachansicht</string>
-    <string name="free_lesson_value">Freistunde</string>
+    <string name="free_lesson_value">"???"</string>
     <string name="free_lesson_sign">---</string>
     <string name="school_break">Pause</string>
     <string name="subject_value">Fachplatzhalter</string>
@@ -74,5 +74,8 @@
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
     <string name="refresh">Aktualisieren</string>
+    <string name="missungHomework">Hausaufgaben eintragen</string>
+    <string name="Submit">Absenden</string>
+>>>>>>> master
 
 </resources>

@@ -11,8 +11,8 @@ import common.LessonResponse;
 import common.LessonTO;
 
 /**
- * Created by ErfiMac on 20.06.15.
- * @author Lukas Erfkämper
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class LessonByDateTask extends AsyncTask<Object, Void, LessonResponse> {
     private Context context;
