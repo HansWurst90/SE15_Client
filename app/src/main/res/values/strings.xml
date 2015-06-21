@@ -73,7 +73,9 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+    <string name="refresh">Aktualisieren</string>
     <string name="missungHomework">Hausaufgaben eintragen</string>
     <string name="Submit">Absenden</string>
+>>>>>>> master
 
 </resources>

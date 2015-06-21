@@ -6,7 +6,6 @@ package common;
  * @author Andreas Prischep
  *
  */
-
 public class BooleanResponse extends ReturncodeResponse {
 
 	

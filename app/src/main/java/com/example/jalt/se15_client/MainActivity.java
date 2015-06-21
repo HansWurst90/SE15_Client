@@ -190,6 +190,7 @@ public class MainActivity extends ActionBarActivity {
                         }
                         else
                         {
+                            textMap.get(j).setText("Freistunde");
                             Log.i("LessonTask", "fehlgeschlagen");
                         }
                     }
@@ -306,7 +307,6 @@ public class MainActivity extends ActionBarActivity {
                             }
                             else
                             {
-                                textMap.get(k).setText("Freistunde");
                                 Log.i("LessonByDateTask", "fehlgeschlagen oder Freistunde");
                             }
                         }
