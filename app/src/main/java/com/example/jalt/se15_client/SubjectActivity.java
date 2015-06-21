@@ -33,7 +33,8 @@ public class SubjectActivity extends ActionBarActivity {
     TextView homeworkText;
     String saveKey;
     String teacherLogin;
-    static int lessonId;
+    String teacherName;
+    int lessonId;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -49,6 +50,7 @@ public class SubjectActivity extends ActionBarActivity {
         // Empfangen der lessonId auf die geklickt wurde
         Intent whichSubjectId = getIntent();
         lessonId = whichSubjectId.getExtras().getInt("lessonId");
+        teacherName = whichSubjectId.getExtras().getString("name");
         Toast.makeText(this, "LessonId: " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
         saveKey = "lesson"+lessonId+sharedPreferences.getString("USER", "");
 
@@ -89,7 +91,7 @@ public class SubjectActivity extends ActionBarActivity {
     }
 
     public void homeworkTextClick(View view) {
-        if (teacherLogin.equals("true"))
+        if (teacherLogin.equals("true") && teacherName.equals(sharedPreferences.getString("NAME", "")))
         {
             Intent getSubjectIntent = new Intent(this, TeacherActivity.class);
             getSubjectIntent.putExtra("lessonId", lessonId);
