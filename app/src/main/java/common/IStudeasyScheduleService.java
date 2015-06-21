@@ -19,7 +19,7 @@ public interface IStudeasyScheduleService {
 	
 	public ReturncodeResponse logout(int sessionID) throws Exception ;
 	
-	public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)  ;
+	public ReturncodeResponse createHomework(int sessionID, int lessonID, String description) throws Exception ;
 	
 	public BooleanResponse removeHomework(int sessionID, int homeworkID) ;// auch ReturncodeResonse
 	

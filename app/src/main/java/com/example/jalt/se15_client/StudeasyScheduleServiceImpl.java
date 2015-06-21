@@ -76,9 +76,28 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         }
     }
     @Override
-    public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)
+    public ReturncodeResponse createHomework(int sessionID, int lessonID, String description)  throws Exception
     {
-        return new ReturncodeResponse();
+        ReturncodeResponse result = null;
+        String METHOD_NAME = "createHomework";
+        SoapObject response = null;
+        try {
+            response = executeSoapAction(METHOD_NAME, sessionID);
+            int returnCode;
+            result = new ReturncodeResponse();
+            returnCode = Integer.parseInt(response.getPrimitivePropertySafelyAsString("returnCode"));
+            if (returnCode == 0) {
+                result.setReturnCode(returnCode);
+                return result;
+            }
+            else{
+                result.setReturnCode(1);
+                return result;
+            }
+        }
+        catch (SoapFault e) {
+            throw new Exception(e.getMessage());
+        }
     }
     @Override
     public BooleanResponse removeHomework(int sessionID, int homeworkID)
