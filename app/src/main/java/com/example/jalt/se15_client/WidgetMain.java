@@ -24,11 +24,11 @@ import common.LessonTO;
 public class WidgetMain extends AppWidgetProvider {
 
     RemoteViews views;
-    public static String REFRESH = "com.example.jalt.se15_client.REFRESH";
+    public static String REFRESH = "com.example.jalt.se15_client.action.REFRESH";
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
-        Intent intent = new Intent(REFRESH);
+        Intent intent = new Intent(context, WidgetMain.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.REFRESH, pendingIntent );
     }
@@ -39,6 +39,8 @@ public class WidgetMain extends AppWidgetProvider {
         if (REFRESH.equals(intent.getAction())) {
             views.setTextViewText(R.id.widgetRow1, "Hat geklappt");
         }
+        else
+            views.setTextViewText(R.id.widgetRow1, "nooooo");
     }
 
 
