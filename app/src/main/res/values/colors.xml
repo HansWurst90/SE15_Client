@@ -23,6 +23,7 @@
     <!-- Design Farben -->
     <color name="Grey">#9E9E9E</color>
     <color name="SuperLight_Blue">#E3F2FD</color>
+    <color name="trans">#ffEEEEEE</color>
 
 
 </resources>

@@ -44,7 +44,7 @@ public class TeacherActivity extends Activity {
         int width = dm.widthPixels;
         int heigth = dm.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (heigth*.6));
+        getWindow().setLayout((int) (width*.8),(int) (heigth*.35));
 
     }
 

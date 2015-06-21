@@ -26,10 +26,7 @@
             android:name=".SubjectActivity"
             android:label="@string/title_activity_subject" >
         </activity>
-        <activity
-            android:name=".TeacherActivity"
-            android:theme="@style/AppTheme.TeacherTheme" >
-        </activity>
+        <activity android:name=".TeacherActivity" android:theme="@style/Theme.TeacherTheme"></activity>
 
         <receiver android:name=".activity_main_widget" >
             <intent-filter>
