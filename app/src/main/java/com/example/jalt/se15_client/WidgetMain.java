@@ -23,26 +23,21 @@ import common.LessonTO;
  */
 public class WidgetMain extends AppWidgetProvider {
 
-    public static String REFRESH = "android.appwidget.action.REFRESH";
+    RemoteViews views;
+    public static String REFRESH = "com.example.jalt.se15_client.REFRESH";
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
-        final int N = appWidgetIds.length;
-        for (int i = 0; i < N; i++) {
-            updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
-        }
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
+        views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
         Intent intent = new Intent(REFRESH);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        views.setOnClickPendingIntent(R.id.refresh_button, pendingIntent );
+        views.setOnClickPendingIntent(R.id.REFRESH, pendingIntent );
     }
 
     @Override
     public void onReceive (Context context, Intent intent)
     {
         if (REFRESH.equals(intent.getAction())) {
-
-
+            views.setTextViewText(R.id.widgetRow1, "Hat geklappt");
         }
     }
 
@@ -57,36 +52,5 @@ public class WidgetMain extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
-        // Construct the RemoteViews object
-        /** RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
-
-
-        new LessonTask(this, myApp) {
-            @Override
-            public void onPostExecute(LessonResponse result) {
-                if(result != null)
-                {
-                    final LessonTO lesson = result.getLesson();
-                    textMap.get(k).setBackgroundResource(BorderChooser.getBorderFromId(lesson.getSubject().getSubjectID()));
-                    textMap.get(k).setText(lesson.getSubject().getDescription());
-                    textMap.get(k).setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
-                        }
-                    });
-                    Log.i(" Zelle: " + k + " : ", " ( " + dateMap.get(l / 10) + ", " + m + " ) ");
-                }
-                else
-                {
-                    Log.i("LessonByDateTask", "fehlgeschlagen");
-                }
-            }
-        }.execute(5);
-
-        // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views); */
-    }
 }
 
