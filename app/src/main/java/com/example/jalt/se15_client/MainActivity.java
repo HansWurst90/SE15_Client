@@ -69,6 +69,7 @@ public class MainActivity extends ActionBarActivity {
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
 
 
+
         // LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp);
         // lessonByDate.execute(52,"22062015", 4);
 

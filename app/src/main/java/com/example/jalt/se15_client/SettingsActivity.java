@@ -93,6 +93,12 @@ public class SettingsActivity extends Activity{
         }
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent getMainIntent = new Intent(this, MainActivity.class);
+        startActivity(getMainIntent);
+    }
 
 
     private void backToMain(View view, String button)
