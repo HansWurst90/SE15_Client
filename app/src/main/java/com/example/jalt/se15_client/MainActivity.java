@@ -37,20 +37,16 @@ import common.IStudeasyScheduleService;
 import common.LessonResponse;
 import common.LessonTO;
 
-
 /**
  *
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
-
 public class MainActivity extends ActionBarActivity {
 
     SharedPreferences sharedPreferences;
     Calendar dateTo;
     Calendar date;
     long dateInMillis;
-    boolean login;
-    private Toast dToast = null;
     SparseArray<LessonTO> lessonMap;
     SparseArray<TableLayout> cellMap;
     SparseArray<TextView> teacherMap;
@@ -68,9 +64,7 @@ public class MainActivity extends ActionBarActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
 
-
-
-        // LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp);
+        // LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp); <--------------------- LÖSCHEN
         // lessonByDate.execute(52,"22062015", 4);
 
         // Logik zum Überspringen des Wochenendes für das HEUTIGE DATUM
@@ -115,18 +109,6 @@ public class MainActivity extends ActionBarActivity {
                         this.overridePendingTransition(R.anim.slide_in_left, 17432577);
                     }
                 }
-                /** Wenn man sich grade eingeloggt hat, wird man mit Namen gegrüßt.
-                if (intent.getExtras().getString("origin").equals("login")) {
-                    String savedUser = sharedPreferences.getString("USER", "");
-                    String welcome = getResources().getString(R.string.welcome);
-
-                    Toast.makeText(this, welcome + " " + savedUser, Toast.LENGTH_SHORT).show();
-                    // Wenn man sich grade ausgeloggt hat, wird man verabschiedet.
-                } else if (intent.getExtras().getString("origin").equals("logout")) {
-                    String goodbye = getResources().getString(R.string.goodbye);
-
-                    Toast.makeText(this, goodbye, Toast.LENGTH_SHORT).show();
-                } */
             }
         }
 
@@ -222,23 +204,22 @@ public class MainActivity extends ActionBarActivity {
             DateFormat ttmmjjjj = new SimpleDateFormat("ddMMyyyy", Locale.GERMAN);
             Calendar dateMo = (Calendar) date.clone();
             dateMo.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            dateMap.put(1, ttmmjjjj.format(dateMo.getTime()).toString());
+            dateMap.put(1, ttmmjjjj.format(dateMo.getTime()));
             Calendar dateTu = (Calendar) date.clone();
             dateTu.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-            dateMap.put(2, ttmmjjjj.format(dateTu.getTime()).toString());
+            dateMap.put(2, ttmmjjjj.format(dateTu.getTime()));
             Calendar dateWe = (Calendar) date.clone();
             dateWe.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-            dateMap.put(3, ttmmjjjj.format(dateWe.getTime()).toString());
+            dateMap.put(3, ttmmjjjj.format(dateWe.getTime()));
             Calendar dateTh = (Calendar) date.clone();
             dateTh.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-            dateMap.put(4, ttmmjjjj.format(dateTh.getTime()).toString());
+            dateMap.put(4, ttmmjjjj.format(dateTh.getTime()));
             Calendar dateFr = (Calendar) date.clone();
             dateFr.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-            dateMap.put(5, ttmmjjjj.format(dateFr.getTime()).toString());
+            dateMap.put(5, ttmmjjjj.format(dateFr.getTime()));
             // Overlay Info zur Woche (Datum: Von - Bis)
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
-            dToast = Toast.makeText(this, dfmt.format(dateMo.getTime()).toString() + " - " + dfmt.format(dateFr.getTime()).toString(), Toast.LENGTH_SHORT);
-            dToast.show();
+            Toast.makeText(this, dfmt.format(dateMo.getTime()) + " - " + dfmt.format(dateFr.getTime()), Toast.LENGTH_SHORT).show();
 
 
             // Map und Array zum einfachen Adressieren
@@ -325,7 +306,8 @@ public class MainActivity extends ActionBarActivity {
                             }
                             else
                             {
-                                Log.i("LessonByDateTask", "fehlgeschlagen");
+                                textMap.get(k).setText("Freistunde");
+                                Log.i("LessonByDateTask", "fehlgeschlagen oder Freistunde");
                             }
                         }
                     }.execute(5); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i

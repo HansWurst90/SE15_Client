@@ -11,7 +11,8 @@ import common.PersonTO;
 import common.SubjectTO;
 
 /**
- * Created by ErfiMac on 10.06.15.
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class TestLessons {
 

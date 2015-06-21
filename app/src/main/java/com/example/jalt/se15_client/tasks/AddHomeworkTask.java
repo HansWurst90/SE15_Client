@@ -15,7 +15,8 @@ import com.example.jalt.se15_client.SubjectActivity;
 import common.UserLoginResponse;
 
 /**
- * Created by Jan on 21.06.15.
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
 

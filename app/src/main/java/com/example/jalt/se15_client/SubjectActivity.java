@@ -24,9 +24,8 @@ import common.LessonTO;
 
 /**
  *
- * @author Mußenbrock
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
-
 public class SubjectActivity extends ActionBarActivity {
 
     CheckBox homeworkButton;
@@ -42,7 +41,6 @@ public class SubjectActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
-        homeworkText = (TextView) findViewById(R.id.homework_value);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         teacherLogin = sharedPreferences.getString("TEACHER", "");
         teacherLogin();
@@ -64,19 +62,23 @@ public class SubjectActivity extends ActionBarActivity {
         final TextView descriptionTextView = (TextView) findViewById(R.id.description_value);
         // Abruf der Lesson und befüllung der Felder
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
-        new LessonTask(this, myApp){
+        new LessonTask(this, myApp) {
             @Override
-            public void onPostExecute(LessonResponse result)
-            {
-                LessonTO lesson = result.getLesson();
-                headerRow1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                headerRow2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                descriptionTextView.setText(lesson.getSubject().getDescription());
-                teacherTextView.setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
-                fromTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[0]);
-                toTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[1]);
-                roomTextView.setText(lesson.getRoom());
-                homeworkTextView.setText(HomeworkArrayToString(lesson.getHomeworks()));
+            public void onPostExecute(LessonResponse result) {
+                if (result != null) {
+                    LessonTO lesson = result.getLesson();
+                    headerRow1.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    headerRow2.setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                    descriptionTextView.setText(lesson.getSubject().getDescription());
+                    teacherTextView.setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
+                    fromTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[0]);
+                    toTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[1]);
+                    roomTextView.setText(lesson.getRoom());
+                    homeworkTextView.setText(HomeworkArrayToString(lesson.getHomeworks()));
+                    {
+                        Log.i("LessonTask", "fehlgeschlagen");
+                    }
+                }
             }
         }.execute(lessonId);
     }

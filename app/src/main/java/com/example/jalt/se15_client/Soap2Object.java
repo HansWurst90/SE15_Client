@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Jan on 20.06.15.
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class Soap2Object {
 
