@@ -1,7 +1,7 @@
 package com.example.jalt.se15_client;
 
 /**
- *
+ * Auslagerung der Wahl der Feldfarbe für die Mainactivity im Hochformat.
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class ColorChooser {

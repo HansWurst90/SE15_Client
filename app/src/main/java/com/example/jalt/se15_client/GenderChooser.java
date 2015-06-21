@@ -1,7 +1,7 @@
 package com.example.jalt.se15_client;
 
 /**
- *
+ * Auslagerung der Auflösung des Gender-Chars für die Anrede der Lehrer
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class GenderChooser {

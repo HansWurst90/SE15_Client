@@ -15,7 +15,7 @@ import com.example.jalt.se15_client.SubjectActivity;
 import common.UserLoginResponse;
 
 /**
- *
+ * AsynkTask zum hinzufüge einer Hausaufgabe zur Hausaufgabenliste einer Unterichtsstunde
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
@@ -32,12 +32,12 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
     }
 
     @Override
-    /**
-     * myResponse wird vorbereitet
-     */
     protected Boolean doInBackground(Object... params){
         if(params.length != 4)
+        {
             return false;
+        }
+        // Empfangen der Parameter und Cast
         int sessionID = (int) params[0];
         lessonID = (int) params[1];
         String description = (String) params[2];
@@ -57,16 +57,10 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         //wird in diesem Beispiel nicht verwendet
     }
 
-    /**
-     * result Auswertung und sharedPreference erzeugen.
-     * Bei Erfolg werden User und SessionId und Passwort wieder gelöscht
-     * Ebenfalls wird ein Toast angezeigt um den User zu verabschieden.
-     * Bei Misserfolg wird darauf hingewiesen, dass das Logout nicht funktioniert hat.
-     * @param result
-     */
+    // Nach Erfolgreicher Anlage der Hausaufgaben soll zur SubjectActivity zurückgekehrt werden
+    // Dazu sind lessonID und teacherName nötig. Siehe SubjectActivity.
     protected void onPostExecute(Boolean result)
     {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result)
         {
             Log.i("AddHomeworkTask", "erfolgreich");

@@ -21,11 +21,13 @@ import common.SubjectTO;
 import common.UserLoginResponse;
 
 /**
- *
+ * Implementierung des StundenplanService für die Client Seite.
+ * Dieser implementiert den "IStudeasyScheduleService" der den Service auf der Serverseite abbildet.
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
 {
+    //
     private static final String NAMESPACE = "http://schedulemanager.studeasy.de/";
     private static final String URL = "http://10.60.70.6:8080/studeasy/StudeasyScheduleService?WSDL";
 
