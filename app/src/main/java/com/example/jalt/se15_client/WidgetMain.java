@@ -9,9 +9,9 @@ import android.widget.RemoteViews;
 /**
  * Implementation of App Widget functionality.
  */
-public class main_widget extends AppWidgetProvider {
+public class WidgetMain extends AppWidgetProvider {
 
-    /**@Override
+    /** @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         final int N = appWidgetIds.length;
@@ -36,7 +36,7 @@ public class main_widget extends AppWidgetProvider {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.main_widget);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
         views.setTextViewText(R.id.appwidget_text, widgetText);
 
         // Instruct the widget manager to update the widget

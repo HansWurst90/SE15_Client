@@ -4,9 +4,9 @@
     android:minHeight="110dp"
     android:updatePeriodMillis="86400000"
     android:previewImage="@drawable/calendar_icon"
-    android:initialLayout="@layout/main_widget"
+    android:initialLayout="@layout/widget_main"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen|keyguard"
-    android:initialKeyguardLayout="@layout/main_widget">
+    android:initialKeyguardLayout="@layout/widget_main">
 
 </appwidget-provider>
