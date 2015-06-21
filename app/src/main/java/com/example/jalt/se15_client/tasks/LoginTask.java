@@ -14,7 +14,7 @@ import com.example.jalt.se15_client.StudeasyScheduleApplication;
 import common.UserLoginResponse;
 
 /**
- * Login as AsyncTask
+ * AsyncTask zum Einloggen der User
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
@@ -30,9 +30,7 @@ public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {
     }
 
     @Override
-    /**
-     * myResponse wird vorbereitet
-     */
+    // Empfangen der Parameter und Cast
     protected UserLoginResponse doInBackground(Object... params){
         if(params.length != 2)
             return null;

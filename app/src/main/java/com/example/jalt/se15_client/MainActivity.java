@@ -63,10 +63,11 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
-
-        // LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp); <--------------------- LÖSCHEN
-        // lessonByDate.execute(52,"22062015", 4);
-
+        DateFormat ttmmjjjj = new SimpleDateFormat("ddMMyyyy", Locale.GERMAN);
+        if (!sharedPreferences.getString("SESSIONID", "").equals(""))
+        {
+            sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
+        }
         // Logik zum Überspringen des Wochenendes für das HEUTIGE DATUM
         dateTo = Calendar.getInstance();
         date = Calendar.getInstance();
@@ -115,11 +116,6 @@ public class MainActivity extends ActionBarActivity {
         // AB HIER NUR PORTRAIT LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
-            // Abfrage eines Tagesplan für den gegebenen Tag.
-            // LessonListResponse lessonListResponse = IStudeasyScheduleService.getLessonsByDate(sessionId, date);
-            // List<LessonTO> lessonList = lessonListResponse.getLessonList()
-            List<LessonTO> lessonList = TestLessons.getLessons1();
-
             // Hier wird das Datum für die Anzeige im Kopf der Tabelle aufbereitet und blau gefärbt, wenn es das heutige Datum ist.
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
             final TextView dateText = (TextView) findViewById(R.id.daytoday);
@@ -127,6 +123,8 @@ public class MainActivity extends ActionBarActivity {
             if (date.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)){
                 dateText.setBackgroundResource(R.color.Light_Blue);
             }
+
+            String dateString = ttmmjjjj.format(date.getTime());
 
             // Map/Arrays zum einfachen Addressieren der Verschiedenen TextViews in unserem Tabellenlayout
             lessonMap = new SparseArray<>();
@@ -173,36 +171,41 @@ public class MainActivity extends ActionBarActivity {
             // Hinweis: LessonMap befüllen und OnClick setzten. Kann nicht mit in die Schleife, da in Methodenaufruf Int Final sein muss.
 
             //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
-            for (int i=1; i<7; i++) {
-                final int j = i;
-                new LessonTask(this, myApp) {
-                    @Override
-                    public void onPostExecute(LessonResponse result) {
-                        if(result != null)
-                        {
-                        Log.i("LessonTask", "erfolgreich");
-                        final LessonTO lesson = result.getLesson();
-                        cellMap.get(j).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
-                        subjectMap.get(j).setText(lesson.getSubject().getDescription());
-                        teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
-                        roomMap.get(j).setText(lesson.getRoom());
-                        cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());}});
+            if (!sharedPreferences.getString("SESSIONID", "").equals(""))
+            {
+                for (int i=1; i<7; i++) {
+                    final int j = i;
+                    final String dateStringF = dateString;
+                    new LessonByDateTask(this, myApp) {
+                        @Override
+                        public void onPostExecute(LessonResponse result) {
+                            if(result != null)
+                            {
+                            Log.i("LessonByDateTask","( " + sessionId + ", " + dateStringF + ", " + j + " ) ");
+                            Log.i("LessonByDateTask", "erfolgreich");
+                            final LessonTO lesson = result.getLesson();
+                            cellMap.get(j).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
+                            subjectMap.get(j).setText(lesson.getSubject().getDescription());
+                            teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
+                            roomMap.get(j).setText(lesson.getRoom());
+                            cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());}});
+                            }
+                            else
+                            {
+                                subjectMap.get(j).setText("Freistunde");
+                                Log.i("LessonByDateTask", "fehlgeschlagen");
+                            }
                         }
-                        else
-                        {
-                            subjectMap.get(j).setText("Freistunde");
-                            Log.i("LessonTask", "fehlgeschlagen");
-                        }
-                    }
-                }.execute(5); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                    }.execute(sessionId, dateString, i); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                }
             }
         }
+
 
         // AB HIER NUR LANDSCAPE LOGIK
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Es werden alle Wochentage der Woche des genannten Datums ermittelt
             dateMap = new SparseArray<>();
-            DateFormat ttmmjjjj = new SimpleDateFormat("ddMMyyyy", Locale.GERMAN);
             Calendar dateMo = (Calendar) date.clone();
             dateMo.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
             dateMap.put(1, ttmmjjjj.format(dateMo.getTime()));
@@ -285,32 +288,33 @@ public class MainActivity extends ActionBarActivity {
                 textMap.get(50).setBackgroundResource(R.color.Light_Blue);
             }
             //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
-            for (int i=10; i<60; i=i+10) {
-                for (int j = 1; j < 7; j++) {
-                    final int l = i;
-                    final int m = j;
-                    final int k = i+j;
-                    new LessonTask(this, myApp) {
-                        @Override
-                        public void onPostExecute(LessonResponse result) {
-                            if(result != null)
-                            {
-                                final LessonTO lesson = result.getLesson();
-                                textMap.get(k).setBackgroundResource(BorderChooser.getBorderFromId(lesson.getSubject().getSubjectID()));
-                                textMap.get(k).setText(lesson.getSubject().getDescription());
-                                textMap.get(k).setOnClickListener(new View.OnClickListener() {
-                                    public void onClick(View v) {
-                                        onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
-                                    }
-                                });
-                                Log.i(" Zelle: " + k +" : ", " ( " + dateMap.get(l/10) + ", " + m + " ) ");
+            if (!sharedPreferences.getString("SESSIONID", "").equals("")) {
+                for (int i = 10; i < 60; i = i + 10) {
+                    for (int j = 1; j < 7; j++) {
+                        final int l = i;
+                        final int m = j;
+                        final int k = i + j;
+                        new LessonByDateTask(this, myApp) {
+                            @Override
+                            public void onPostExecute(LessonResponse result) {
+                                if (result != null) {
+                                    final LessonTO lesson = result.getLesson();
+                                    textMap.get(k).setBackgroundResource(BorderChooser.getBorderFromId(lesson.getSubject().getSubjectID()));
+                                    textMap.get(k).setText(lesson.getSubject().getDescription());
+                                    textMap.get(k).setOnClickListener(new View.OnClickListener() {
+                                        public void onClick(View v) {
+                                            onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
+                                        }
+                                    });
+                                    Log.i(" Zelle: " + k + " : ", " ( " + sessionId + ", " + dateMap.get(l / 10) + ", " + m + " ) ");
+                                } else {
+                                    Log.i(" Zelle: " + k + " : ", " ( " + sessionId + ", " + dateMap.get(l / 10) + ", " + m + " ) ");
+                                    Log.i("LessonByDateTask", "fehlgeschlagen oder Freistunde");
+                                    textMap.get(k).setText("Frei");
+                                }
                             }
-                            else
-                            {
-                                Log.i("LessonByDateTask", "fehlgeschlagen oder Freistunde");
-                            }
-                        }
-                    }.execute(5); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                        }.execute(sessionId, dateMap.get(l / 10), m); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                    }
                 }
             }
         }

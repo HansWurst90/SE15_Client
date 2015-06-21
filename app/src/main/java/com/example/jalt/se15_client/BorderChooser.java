@@ -1,7 +1,7 @@
 package com.example.jalt.se15_client;
 
 /**
- *
+ * Auslagerung der Wahl der Feldfarbe mit Rahmen für die Mainactivity im Querformat.
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class BorderChooser {
