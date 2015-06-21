@@ -209,9 +209,9 @@ public class MainActivity extends ActionBarActivity {
                         subjectMap.get(j).setText(lesson.getSubject().getDescription());
                         teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
                         roomMap.get(j).setText(lesson.getRoom());
-                        cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID());}});
+                        cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());}});
                     }
-                }.execute(5); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                }.execute(2); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
             }
         }
 
@@ -316,7 +316,7 @@ public class MainActivity extends ActionBarActivity {
                             textMap.get(k).setText(lesson.getSubject().getDescription());
                             textMap.get(k).setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    onSubjectClick(v, lesson.getLessonID());
+                                    onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
                                 }
                             });
                             Log.i(" Zelle: " + k +" : ", " ( " + dateMap.get(l/10) + ", " + m + " ) ");
@@ -366,9 +366,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     // Methode für Fachauswahl
-    public void onSubjectClick(View view, int lessonId) {
+    public void onSubjectClick(View view, int lessonId, String name) {
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
         getSubjectIntent.putExtra("lessonId", lessonId);
+        getSubjectIntent.putExtra("name", name);
         startActivity(getSubjectIntent);
     }
     // Methode nächster TAG

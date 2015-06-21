@@ -3,16 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/border"
     android:gravity="center_horizontal">
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="24dp" />
     <EditText
         android:layout_width="445dp"
-        android:layout_height="164dp"
-        android:background="@color/Grey"
+        android:layout_height="129dp"
         android:hint="@string/homework_label"
         android:gravity="top" />
     <Space
@@ -23,5 +21,6 @@
         android:layout_height="wrap_content"
         android:text="@string/finish"
         android:id="@+id/finish_button"
-        android:onClick="finishButtonPress"/>
+        android:onClick="finishButtonPress"
+        android:alpha="1" />
 </LinearLayout>
