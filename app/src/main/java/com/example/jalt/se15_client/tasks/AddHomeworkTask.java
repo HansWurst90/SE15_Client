@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.jalt.se15_client.MainActivity;
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
+import com.example.jalt.se15_client.SubjectActivity;
 
 import common.UserLoginResponse;
 
@@ -20,6 +21,8 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
     private Context context;
     private StudeasyScheduleApplication myApp;
     SharedPreferences sharedPreferences;
+    int lessonID;
+    String teacherName;
 
     public AddHomeworkTask (Context context, StudeasyScheduleApplication myApp) {
         this.context = context;
@@ -31,11 +34,12 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
      * myResponse wird vorbereitet
      */
     protected Boolean doInBackground(Object... params){
-        if(params.length != 3)
+        if(params.length != 4)
             return false;
         int sessionID = (int) params[0];
-        int lessonID = (int) params[1];
+        lessonID = (int) params[1];
         String description = (String) params[2];
+        teacherName = (String) params[3];
         try {
             myApp.getStudeasyScheduleService().createHomework(sessionID, lessonID, description);
             return true;
@@ -62,15 +66,20 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result)
         {
+
             CharSequence text = "Hausaufgaben angelegt";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+            Intent getSubjectIntent = new Intent(context, SubjectActivity.class);
+            getSubjectIntent.putExtra("lessonId", lessonID);
+            getSubjectIntent.putExtra("name", teacherName);
+            context.startActivity(getSubjectIntent);
         }
         else
         {
             //Toast anzeigen
-            CharSequence text = "Hausaufgaben anlegen fehlgeschlagen";
+            CharSequence text = "Hausaufgabe anlegen fehlgeschlagen";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();

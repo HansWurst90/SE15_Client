@@ -51,7 +51,6 @@ public class SubjectActivity extends ActionBarActivity {
         Intent whichSubjectId = getIntent();
         lessonId = whichSubjectId.getExtras().getInt("lessonId");
         teacherName = whichSubjectId.getExtras().getString("name");
-        Toast.makeText(this, "LessonId: " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
         saveKey = "lesson"+lessonId+sharedPreferences.getString("USER", "");
 
         // Vorbereiten der Felder zum befüllen
@@ -93,9 +92,10 @@ public class SubjectActivity extends ActionBarActivity {
     public void homeworkTextClick(View view) {
         if (teacherLogin.equals("true") && teacherName.equals(sharedPreferences.getString("NAME", "")))
         {
-            Intent getSubjectIntent = new Intent(this, TeacherActivity.class);
-            getSubjectIntent.putExtra("lessonId", lessonId);
-            startActivity(getSubjectIntent);
+            Intent getTeacherIntent = new Intent(this, TeacherActivity.class);
+            getTeacherIntent.putExtra("lessonId", lessonId);
+            getTeacherIntent.putExtra("name", teacherName);
+            startActivity(getTeacherIntent);
         }
     }
 
