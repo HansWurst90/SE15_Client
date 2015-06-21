@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.tasks.IsTeacherTask;
+import com.example.jalt.se15_client.tasks.LessonByDateTask;
 import com.example.jalt.se15_client.tasks.LessonTask;
 import com.example.jalt.se15_client.tasks.LoginTask;
 import com.example.jalt.se15_client.tasks.LogoutTask;
@@ -64,9 +65,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+
+
+        LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp);
+        lessonByDate.execute(52,"22062015", 4);
 
         // Abfrage des aktuell gespeicherten Users
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         String userTrue = sharedPreferences.getString("USER", "");
         // Ist ein User gespeichert? davon hängt die Gruß/Abschiedsnachricht ab
         if (userTrue.equals(""))
@@ -192,7 +199,6 @@ public class MainActivity extends ActionBarActivity {
             // Hinweis: LessonMap befüllen und OnClick setzten. Kann nicht mit in die Schleife, da in Methodenaufruf Int Final sein muss.
 
             //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
-            StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
             for (int i=1; i<7; i++) {
                 final int j = i;
                 new LessonTask(this, myApp) {
@@ -297,7 +303,6 @@ public class MainActivity extends ActionBarActivity {
                 textMap.get(50).setBackgroundResource(R.color.Light_Blue);
             }
             //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
-            final StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
             for (int i=10; i<60; i=i+10) {
                 for (int j = 1; j < 7; j++) {
                     final int l = i;

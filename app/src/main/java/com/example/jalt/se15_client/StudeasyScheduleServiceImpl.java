@@ -86,9 +86,22 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         return new BooleanResponse();
     }
     @Override
-    public LessonResponse getLessonByDate(int sessionID, String date, int hour)
+    public LessonResponse getLessonByDate(int sessionID, String date, int hour) throws Exception
     {
-        return new LessonResponse();
+        LessonResponse result = null;
+        String METHOD_NAME = "getLessonByDate";
+        SoapObject response = null;
+        try{
+            // Lesson abholen
+            response = executeSoapAction(METHOD_NAME, sessionID, date, hour);
+            if (response != null)
+                return Soap2Object.soap2lesson(response);
+            else {
+                throw new Exception("getLessonByDate fehlgeschlagen!");
+            }
+        } catch (SoapFault e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
