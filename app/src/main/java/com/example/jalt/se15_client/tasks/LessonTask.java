@@ -40,6 +40,7 @@ public class LessonTask  extends AsyncTask<Object, LessonResponse, LessonRespons
             return null;
         lessonID = (int) params[0];
         try {
+            Log.i("LessonTask", "ID: " + lessonID);
             LessonResponse myResponse = myApp.getStudeasyScheduleService().findLessonById(lessonID);
             publishProgress(myResponse);
             return myResponse;
@@ -59,15 +60,5 @@ public class LessonTask  extends AsyncTask<Object, LessonResponse, LessonRespons
      * @param result
      */
     protected void onPostExecute(LessonResponse result)
-    {
-        if(result != null)
-        {
-           // Toast.makeText(context, "Lesson Abfrage Fertig.", Toast.LENGTH_LONG).show();
-            }
-        else
-        {
-            //Toast anzeigen
-            Toast.makeText(context, "Lesson Abfrage fehlgeschlagen.", Toast.LENGTH_LONG).show();
-        }
-    }
+    {    }
 }

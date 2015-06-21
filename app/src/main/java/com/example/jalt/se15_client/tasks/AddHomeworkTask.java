@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.MainActivity;
@@ -41,6 +42,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         String description = (String) params[2];
         teacherName = (String) params[3];
         try {
+            Log.i("AddHomeworkTask", "sessionID: " + sessionID + "lessonID: " + lessonID + "description: " + description + "teacherName: " + teacherName);
             myApp.getStudeasyScheduleService().createHomework(sessionID, lessonID, description);
             return true;
         } catch (Exception e) {
@@ -66,7 +68,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result)
         {
-
+            Log.i("AddHomeworkTask", "erfolgreich");
             CharSequence text = "Hausaufgaben angelegt";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
@@ -78,6 +80,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         }
         else
         {
+            Log.i("AddHomeworkTask", "fehlgeschlagen");
             //Toast anzeigen
             CharSequence text = "Hausaufgabe anlegen fehlgeschlagen";
             int duration = Toast.LENGTH_SHORT;

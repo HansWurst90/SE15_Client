@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.MainActivity;
@@ -39,6 +40,7 @@ public class LogoutTask extends AsyncTask<Integer, Void, Boolean> {
             return false;
         int sessionID = (int) params[0];
         try {
+            Log.i("LogoutTask", "Session: " + sessionID);
             myApp.getStudeasyScheduleService().logout(sessionID);
             return true;
         } catch (Exception e) {
@@ -64,6 +66,7 @@ public class LogoutTask extends AsyncTask<Integer, Void, Boolean> {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result)
         {
+            Log.i("LogoutTask", "erfolgreich");
             // Login Daten wieder löschen
             SavePreferences("USER", null);
             SavePreferences("PASSWORD", null);
@@ -78,6 +81,7 @@ public class LogoutTask extends AsyncTask<Integer, Void, Boolean> {
         }
         else
         {
+            Log.i("LogoutTask", "fehlgeschlagen");
             //Toast anzeigen
             CharSequence text = "Logout fehlgeschlagen!";
             int duration = Toast.LENGTH_SHORT;
