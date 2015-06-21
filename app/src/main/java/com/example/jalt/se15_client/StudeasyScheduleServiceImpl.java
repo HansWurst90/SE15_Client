@@ -82,7 +82,7 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
         String METHOD_NAME = "createHomework";
         SoapObject response = null;
         try {
-            response = executeSoapAction(METHOD_NAME, sessionID);
+            response = executeSoapAction(METHOD_NAME, sessionID, lessonID, description);
             int returnCode;
             result = new ReturncodeResponse();
             returnCode = Integer.parseInt(response.getPrimitivePropertySafelyAsString("returnCode"));
