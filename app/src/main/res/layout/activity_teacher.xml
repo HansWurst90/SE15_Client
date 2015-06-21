@@ -25,7 +25,7 @@
     <Button
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="@string/finish"
+        android:text="Absenden"
         android:id="@+id/finish_button"
         android:onClick="finishButtonPress"/>
 

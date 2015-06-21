@@ -51,11 +51,17 @@ public class TeacherActivity extends Activity {
     //Abrufen der Lesson mit dazugehörigen ID und Methode addHomework
     public void finishButtonPress(View view) {
         String homework = homeworkText.getText().toString();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        int sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
-        StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
-        AddHomeworkTask homeworkTask = new AddHomeworkTask(this, myApp);
-        homeworkTask.execute(sessionId, lessonID, homework, teacherName);
-        /** TestLessons.getLessonById(lessonID).getHomeworks().add(homeworkto); */
+        if (homework.equals(""))
+        {
+            Toast.makeText(this, getString(R.string.missungHomework), Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            int sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
+            StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+            AddHomeworkTask homeworkTask = new AddHomeworkTask(this, myApp);
+            homeworkTask.execute(sessionId, lessonID, homework, teacherName);
+        }
     }
 }
