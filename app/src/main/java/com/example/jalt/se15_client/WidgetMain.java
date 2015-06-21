@@ -1,9 +1,21 @@
 package com.example.jalt.se15_client;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.util.SparseArray;
+import android.view.View;
 import android.widget.RemoteViews;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.jalt.se15_client.tasks.LessonTask;
+
+import common.LessonResponse;
+import common.LessonTO;
 
 
 /**
@@ -11,12 +23,26 @@ import android.widget.RemoteViews;
  */
 public class WidgetMain extends AppWidgetProvider {
 
-    /** @Override
+    public static String REFRESH = "android.appwidget.action.REFRESH";
+    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
             updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+        }
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
+        Intent intent = new Intent(REFRESH);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.refresh_button, pendingIntent );
+    }
+
+    @Override
+    public void onReceive (Context context, Intent intent)
+    {
+        if (REFRESH.equals(intent.getAction())) {
+
+
         }
     }
 
@@ -33,14 +59,34 @@ public class WidgetMain extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        /** RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_main);
+
+
+        new LessonTask(this, myApp) {
+            @Override
+            public void onPostExecute(LessonResponse result) {
+                if(result != null)
+                {
+                    final LessonTO lesson = result.getLesson();
+                    textMap.get(k).setBackgroundResource(BorderChooser.getBorderFromId(lesson.getSubject().getSubjectID()));
+                    textMap.get(k).setText(lesson.getSubject().getDescription());
+                    textMap.get(k).setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
+                        }
+                    });
+                    Log.i(" Zelle: " + k + " : ", " ( " + dateMap.get(l / 10) + ", " + m + " ) ");
+                }
+                else
+                {
+                    Log.i("LessonByDateTask", "fehlgeschlagen");
+                }
+            }
+        }.execute(5);
 
         // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views);
-    }*/
+        appWidgetManager.updateAppWidget(appWidgetId, views); */
+    }
 }
 

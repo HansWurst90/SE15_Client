@@ -5,14 +5,34 @@
     android:gravity="center"
     android:weightSum="1"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Grey"
+        android:layout_weight=".1"
+        android:gravity="center"
+        >
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/refresh"
+            android:id="@+id/refresh_button"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="@string/refresh"/>
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
-        android:id="@+id/dayclass1subject"
-        android:layout_weight=".15"
+        android:id="@+id/widgetRow1"
+        android:layout_weight=".14"
         android:gravity="center" />
 
     <TextView
@@ -21,7 +41,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
         android:id="@+id/dayclass2subject"
-        android:layout_weight=".15"
+        android:layout_weight=".14"
         android:gravity="center" />
 
     <TextView
@@ -29,7 +49,7 @@
         android:layout_height="wrap_content"
         android:text="@string/school_break"
         android:id="@+id/textView9"
-        android:layout_weight=".05"
+        android:layout_weight=".03"
         android:gravity="center" />
 
     <TextView
@@ -38,7 +58,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
         android:id="@+id/dayclass3subject"
-        android:layout_weight=".15"
+        android:layout_weight=".14"
         android:gravity="center" />
 
     <TextView
@@ -47,7 +67,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
         android:id="@+id/dayclass4subject"
-        android:layout_weight=".15"
+        android:layout_weight=".14"
         android:gravity="center" />
 
     <TextView
@@ -55,7 +75,7 @@
         android:layout_height="wrap_content"
         android:text="@string/school_break"
         android:id="@+id/textView15"
-        android:layout_weight=".05"
+        android:layout_weight=".03"
         android:gravity="center" />
 
     <TextView
@@ -64,7 +84,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
         android:id="@+id/dayclass5subject"
-        android:layout_weight=".15"
+        android:layout_weight=".14"
         android:gravity="center" />
 
     <TextView
@@ -73,7 +93,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
         android:id="@+id/dayclass6subject"
-        android:layout_weight=".15"
+        android:layout_weight=".14"
         android:gravity="center" />
 
 </LinearLayout>

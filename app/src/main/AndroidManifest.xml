@@ -35,6 +35,7 @@
         <receiver android:name=".WidgetMain" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.REFRESH" />
             </intent-filter>
 
             <meta-data
