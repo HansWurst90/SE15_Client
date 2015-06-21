@@ -24,9 +24,8 @@ import common.LessonTO;
 
 /**
  *
- * @author Mußenbrock
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
-
 public class SubjectActivity extends ActionBarActivity {
 
     CheckBox homeworkButton;
@@ -42,7 +41,6 @@ public class SubjectActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
         homeworkButton = (CheckBox) findViewById(R.id.homework_checkbutton);
-        homeworkText = (TextView) findViewById(R.id.homework_value);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         teacherLogin = sharedPreferences.getString("TEACHER", "");
         teacherLogin();

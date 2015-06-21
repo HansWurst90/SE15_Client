@@ -14,7 +14,7 @@ import com.example.jalt.se15_client.StudeasyScheduleApplication;
 import common.UserLoginResponse;
 
 /**
- * Logout as AsyncTask
+ * Login as AsyncTask
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class LoginTask extends AsyncTask<Object, Void, UserLoginResponse> {

@@ -3,7 +3,12 @@ package com.example.jalt.se15_client;
 import android.app.Application;
 import common.IStudeasyScheduleService;
 
-public class StudeasyScheduleApplication extends Application{
+/**
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
+ */
+public class StudeasyScheduleApplication extends Application
+{
     private IStudeasyScheduleService studeasyScheduleService;
 
     public StudeasyScheduleApplication() {

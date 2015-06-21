@@ -1,11 +1,9 @@
 package com.example.jalt.se15_client;
 
 /**
- * Created by Jan on 10.06.15.
- * Auslagerung der Farbwahl anhand der Fach-Nr.
- * @author Jan Mußenbrock
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
-
 public class ColorChooser {
 
     static int getColorFromId(int subjectId){

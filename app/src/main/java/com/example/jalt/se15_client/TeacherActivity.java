@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.jalt.se15_client.tasks.AddHomeworkTask;
 
 /**
- * Created by ErfiMac on 15.06.15.
+ *
+ * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class TeacherActivity extends Activity {
 
@@ -23,7 +23,6 @@ public class TeacherActivity extends Activity {
     int lessonID;
     String teacherName;
     SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +35,9 @@ public class TeacherActivity extends Activity {
         teacherName = teacherIntent.getExtras().getString("name");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        /** View backgroundView = findViewById(R.id.ksdjfös);
-        Drawable background = backgroundView.getBackground();
-        background.setAlpha(80);*/
-
         int width = dm.widthPixels;
         int heigth = dm.heightPixels;
-
         getWindow().setLayout((int) (width*.8),(int) (heigth*.35));
-
     }
 
     //Abrufen der Lesson mit dazugehörigen ID und Methode addHomework
