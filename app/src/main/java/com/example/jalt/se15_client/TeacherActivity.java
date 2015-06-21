@@ -3,6 +3,8 @@ package com.example.jalt.se15_client;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jalt.se15_client.tasks.AddHomeworkTask;
 import com.example.jalt.se15_client.tasks.LessonByDateTask;
 
 import common.HomeworkTO;
@@ -36,6 +39,10 @@ public class TeacherActivity extends Activity {
         lessonID = subjectIntent.getExtras().getInt("lessonId");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        /** View backgroundView = findViewById(R.id.ksdjfös);
+        Drawable background = backgroundView.getBackground();
+        background.setAlpha(80);*/
 
         int width = dm.widthPixels;
         int heigth = dm.heightPixels;

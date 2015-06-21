@@ -11,6 +11,7 @@
     <EditText
         android:layout_width="445dp"
         android:layout_height="129dp"
+        android:background="@drawable/roundcorners"
         android:hint="@string/homework_label"
         android:gravity="top" />
     <Space

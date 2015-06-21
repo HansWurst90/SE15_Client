@@ -3,8 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/border"
-    android:gravity="center_horizontal">
+    android:background="@drawable/roundcornerswhite"
+    android:gravity="center_horizontal"
+    >
 
     <Space
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
     <EditText
         android:layout_width="229dp"
         android:layout_height="214dp"
-        android:background="@color/Grey"
+        android:background="@drawable/roundcorners"
         android:hint="@string/homework_label"
         android:gravity="top"
         android:id="@+id/teacher_editText"/>
