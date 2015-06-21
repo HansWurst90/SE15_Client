@@ -50,7 +50,7 @@ public class SubjectActivity extends ActionBarActivity {
         Intent whichSubjectId = getIntent();
         lessonId = whichSubjectId.getExtras().getInt("lessonId");
         Toast.makeText(this, "LessonId: " + String.valueOf(lessonId), Toast.LENGTH_SHORT).show();
-        saveKey = "lesson"+lessonId;
+        saveKey = "lesson"+lessonId+sharedPreferences.getString("USER", "");
 
         // Vorbereiten der Felder zum befüllen
         final TableRow headerRow1 = (TableRow) findViewById(R.id.headerRow1);
@@ -75,6 +75,7 @@ public class SubjectActivity extends ActionBarActivity {
                 fromTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[0]);
                 toTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[1]);
                 roomTextView.setText(lesson.getRoom());
+                homeworkTextView.setText(HomeworkArrayToString(lesson.getHomeworks()));
             }
         }.execute(lessonId);
     }

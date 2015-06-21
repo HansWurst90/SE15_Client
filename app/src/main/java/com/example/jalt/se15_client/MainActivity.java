@@ -211,7 +211,7 @@ public class MainActivity extends ActionBarActivity {
                         roomMap.get(j).setText(lesson.getRoom());
                         cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID());}});
                     }
-                }.execute(5); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                }.execute(2); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
             }
         }
 

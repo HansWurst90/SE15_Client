@@ -49,6 +49,7 @@ public class Soap2Object {
         lesson.setRoom(room);
         lesson.setSubject(subject);
         lesson.setTeacher(teacher);
+        lesson.setHomeworks(homeworkTOList);
         LessonResponse output = new LessonResponse();
         output.setLesson(lesson);
         return output;
