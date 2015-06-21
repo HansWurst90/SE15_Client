@@ -14,7 +14,7 @@ import com.example.jalt.se15_client.StudeasyScheduleApplication;
 import common.BooleanResponse;
 
 /**
- *
+ * AsyncTask zur Überprüfung, ob Teacher oder nicht
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class IsTeacherTask extends AsyncTask<Object, Void, BooleanResponse> {
