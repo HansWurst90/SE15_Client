@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/roundcornerswhite"
     android:gravity="center_horizontal">
 
     <Space
@@ -13,7 +14,8 @@
         android:layout_height="129dp"
         android:background="@drawable/roundcorners"
         android:hint="@string/homework_label"
-        android:gravity="top" />
+        android:gravity="top"
+        android:id="@+id/teacher_editText"/>
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp" />
@@ -22,6 +24,5 @@
         android:layout_height="wrap_content"
         android:text="@string/finish"
         android:id="@+id/finish_button"
-        android:onClick="finishButtonPress"
-        android:alpha="1" />
+        android:onClick="finishButtonPress" />
 </LinearLayout>
