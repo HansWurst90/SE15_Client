@@ -1,0 +1,217 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/daytoday"
+        android:id="@+id/daytoday"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/from_1"
+        android:id="@+id/dayclass1from"
+        android:textSize="@dimen/info_text_size"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/free_lesson_value"
+        android:id="@+id/dayclass1subject"
+        android:layout_column="4"
+        android:textSize="@dimen/subject_text_size"
+        android:layout_below="@+id/dayclass1from"
+        android:layout_alignLeft="@+id/daytoday"
+        android:layout_alignStart="@+id/daytoday" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_1"
+        android:id="@+id/dayclass1to"
+        android:textSize="@dimen/info_text_size"
+        android:layout_alignLeft="@+id/dayclass1from"
+        android:layout_alignStart="@+id/dayclass1from"
+        android:layout_below="@+id/dayclass1subject"
+        android:layout_alignRight="@+id/dayclass1from"
+        android:layout_alignEnd="@+id/dayclass1from" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/from_2"
+        android:id="@+id/dayclass2from"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass1to"
+        android:layout_alignLeft="@+id/dayclass1to"
+        android:layout_alignStart="@+id/dayclass1to"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/free_lesson_value"
+        android:id="@+id/dayclass2subject"
+        android:layout_column="4"
+        android:textSize="@dimen/subject_text_size"
+        android:layout_below="@+id/dayclass2from"
+        android:layout_alignLeft="@+id/dayclass1subject"
+        android:layout_alignStart="@+id/dayclass1subject" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_2"
+        android:id="@+id/dayclass2to"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass2subject"
+        android:layout_alignLeft="@+id/dayclass2from"
+        android:layout_alignStart="@+id/dayclass2from"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/school_break"
+        android:id="@+id/textView9"
+        android:layout_below="@+id/dayclass2to"
+        android:layout_alignLeft="@+id/dayclass2to"
+        android:layout_alignStart="@+id/dayclass2to" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/from_3"
+        android:id="@+id/dayclass3from"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/textView9"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/free_lesson_value"
+        android:id="@+id/dayclass3subject"
+        android:layout_column="6"
+        android:textSize="@dimen/subject_text_size"
+        android:layout_below="@+id/dayclass3from"
+        android:layout_alignLeft="@+id/dayclass2subject"
+        android:layout_alignStart="@+id/dayclass2subject" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_3"
+        android:id="@+id/dayclass3to"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass3subject"
+        android:layout_alignLeft="@+id/dayclass3from"
+        android:layout_alignStart="@+id/dayclass3from" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/from_4"
+        android:id="@+id/dayclass4from"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass3to"
+        android:layout_alignLeft="@+id/dayclass3to"
+        android:layout_alignStart="@+id/dayclass3to" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/free_lesson_value"
+        android:id="@+id/dayclass4subject"
+        android:layout_column="4"
+        android:textSize="@dimen/subject_text_size"
+        android:layout_below="@+id/dayclass4from"
+        android:layout_alignLeft="@+id/dayclass3subject"
+        android:layout_alignStart="@+id/dayclass3subject" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_4"
+        android:id="@+id/dayclass4to"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass4subject"
+        android:layout_alignLeft="@+id/dayclass4from"
+        android:layout_alignStart="@+id/dayclass4from" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/school_break"
+        android:id="@+id/textView15"
+        android:layout_below="@+id/dayclass4to"
+        android:layout_alignLeft="@+id/dayclass4to"
+        android:layout_alignStart="@+id/dayclass4to" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/from_5"
+        android:id="@+id/dayclass5from"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/textView15"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/free_lesson_value"
+        android:id="@+id/dayclass5subject"
+        android:layout_column="6"
+        android:textSize="@dimen/subject_text_size"
+        android:layout_below="@+id/dayclass5from"
+        android:layout_alignLeft="@+id/dayclass4subject"
+        android:layout_alignStart="@+id/dayclass4subject" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_5"
+        android:id="@+id/dayclass5to"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass5subject"
+        android:layout_alignLeft="@+id/dayclass5from"
+        android:layout_alignStart="@+id/dayclass5from" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/from_6"
+        android:id="@+id/dayclass6from"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass5to"
+        android:layout_alignLeft="@+id/dayclass5to"
+        android:layout_alignStart="@+id/dayclass5to" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/free_lesson_value"
+        android:id="@+id/dayclass6subject"
+        android:layout_column="4"
+        android:textSize="@dimen/subject_text_size"
+        android:layout_below="@+id/dayclass6from"
+        android:layout_alignLeft="@+id/dayclass5subject"
+        android:layout_alignStart="@+id/dayclass5subject" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_6"
+        android:id="@+id/dayclass6to"
+        android:textSize="@dimen/info_text_size"
+        android:layout_below="@+id/dayclass6subject"
+        android:layout_alignLeft="@+id/dayclass6from"
+        android:layout_alignStart="@+id/dayclass6from" />
+
+</RelativeLayout>

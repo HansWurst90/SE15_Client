@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jalt.se15_client" >
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".StudeasyScheduleApplication"
@@ -31,22 +32,15 @@
             android:theme="@style/AppTheme.TeacherTheme" >
         </activity>
 
-        <receiver android:name=".activity_main_widget" >
+        <receiver android:name=".main_widget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/activity_main_widget_info" />
+                android:resource="@xml/main_widget_info" />
         </receiver>
-
-        <activity android:name=".activity_main_widgetConfigureActivity" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
-
     </application>
 
 </manifest>
