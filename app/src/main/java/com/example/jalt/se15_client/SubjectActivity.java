@@ -123,6 +123,13 @@ public class SubjectActivity extends ActionBarActivity {
     }
 
     @Override
+    public void onBackPressed()
+    {
+        Intent getMainIntent = new Intent(this, MainActivity.class);
+        startActivity(getMainIntent);
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         save(homeworkButton.isChecked());
