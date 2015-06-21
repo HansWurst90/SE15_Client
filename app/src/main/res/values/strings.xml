@@ -26,7 +26,7 @@
     <string name="homework_hint">Hier bitte Hausaufgaben eintragen</string>
 
 
-    <!--Logging -->
+    <!--Login -->
     <string name="username">Benutzerkennung</string>
     <string name="password">Passwort</string>
     <string name="submit">Einloggen</string>
@@ -35,6 +35,7 @@
     <string name="missingPasswort">Bitte geben Sie noch ihr Passwort ein</string>
     <string name="missingUsername">Bitte geben Sie noch ihre Benutzerkennung ein</string>
     <string name="missingBoth">Bitte geben Sie noch ihre Benutzerkennung und ihr Passwort ein</string>
+    <string name="account">Konto</string>
 
     <!--days -->
     <string name="monday">Montag</string>

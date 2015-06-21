@@ -69,17 +69,9 @@ public class MainActivity extends ActionBarActivity {
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
 
 
-        /** LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp);
-        lessonByDate.execute(52,"22062015", 4); */
 
-        // Abfrage des aktuell gespeicherten Users
-
-        String userTrue = sharedPreferences.getString("USER", "");
-        // Ist ein User gespeichert? davon hängt die Gruß/Abschiedsnachricht ab
-        if (userTrue.equals(""))
-            login = true;
-        else
-            login = false;
+        // LessonByDateTask lessonByDate = new LessonByDateTask(this, myApp);
+        // lessonByDate.execute(52,"22062015", 4);
 
         // Logik zum Überspringen des Wochenendes für das HEUTIGE DATUM
         dateTo = Calendar.getInstance();
@@ -204,14 +196,22 @@ public class MainActivity extends ActionBarActivity {
                 new LessonTask(this, myApp) {
                     @Override
                     public void onPostExecute(LessonResponse result) {
+                        if(result != null)
+                        {
+                        Log.i("LessonTask", "erfolgreich");
                         final LessonTO lesson = result.getLesson();
                         cellMap.get(j).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                         subjectMap.get(j).setText(lesson.getSubject().getDescription());
                         teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
                         roomMap.get(j).setText(lesson.getRoom());
                         cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());}});
+                        }
+                        else
+                        {
+                            Log.i("LessonTask", "fehlgeschlagen");
+                        }
                     }
-                }.execute(2); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                }.execute(5); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
             }
         }
 
@@ -311,15 +311,22 @@ public class MainActivity extends ActionBarActivity {
                     new LessonTask(this, myApp) {
                         @Override
                         public void onPostExecute(LessonResponse result) {
-                            final LessonTO lesson = result.getLesson();
-                            textMap.get(k).setBackgroundResource(BorderChooser.getBorderFromId(lesson.getSubject().getSubjectID()));
-                            textMap.get(k).setText(lesson.getSubject().getDescription());
-                            textMap.get(k).setOnClickListener(new View.OnClickListener() {
-                                public void onClick(View v) {
-                                    onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
-                                }
-                            });
-                            Log.i(" Zelle: " + k +" : ", " ( " + dateMap.get(l/10) + ", " + m + " ) ");
+                            if(result != null)
+                            {
+                                final LessonTO lesson = result.getLesson();
+                                textMap.get(k).setBackgroundResource(BorderChooser.getBorderFromId(lesson.getSubject().getSubjectID()));
+                                textMap.get(k).setText(lesson.getSubject().getDescription());
+                                textMap.get(k).setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
+                                    }
+                                });
+                                Log.i(" Zelle: " + k +" : ", " ( " + dateMap.get(l/10) + ", " + m + " ) ");
+                            }
+                            else
+                            {
+                                Log.i("LessonByDateTask", "fehlgeschlagen");
+                            }
                         }
                     }.execute(5); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
                 }
@@ -331,18 +338,6 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.action_settings);
-        String loginText = getResources().getString(R.string.login);
-        String logoutText = getResources().getString(R.string.logout);
-        if(login)
-            item.setTitle(loginText);
-        else
-            item.setTitle(logoutText);
         return true;
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.MainActivity;
@@ -37,6 +38,7 @@ public class IsTeacherTask extends AsyncTask<Object, Void, BooleanResponse> {
             return null;
         sessionID = (int) params[0];
         try {
+            Log.i("IsTeacherTask", "ID: " + sessionID);
             BooleanResponse myResponse = myApp.getStudeasyScheduleService().isUserTeacher(sessionID);
             return myResponse;
         } catch (Exception e) {
@@ -61,6 +63,7 @@ public class IsTeacherTask extends AsyncTask<Object, Void, BooleanResponse> {
     {
         if(result != null)
         {
+            Log.i("IsTeacherTask", "erfolgreich");
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             boolean teacher = result.isSuccessfull();
             String teachertext = String.valueOf(teacher);
@@ -68,6 +71,7 @@ public class IsTeacherTask extends AsyncTask<Object, Void, BooleanResponse> {
         }
         else
         {
+            Log.i("IsTeacherTask", "fehlgeschlagen");
             CharSequence text = "Lehrerabfrage fehlgeschlagen!";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);

@@ -21,6 +21,7 @@ public class TeacherActivity extends Activity {
     EditText homeworkText;
     Button finishButton;
     int lessonID;
+    String teacherName;
     SharedPreferences sharedPreferences;
 
 
@@ -30,8 +31,9 @@ public class TeacherActivity extends Activity {
         setContentView(R.layout.activity_teacher);
         homeworkText = (EditText) findViewById(R.id.teacher_editText);
         finishButton = (Button) findViewById(R.id.finish_button);
-        Intent subjectIntent = getIntent();
-        lessonID = subjectIntent.getExtras().getInt("lessonId");
+        Intent teacherIntent = getIntent();
+        lessonID = teacherIntent.getExtras().getInt("lessonId");
+        teacherName = teacherIntent.getExtras().getString("name");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -53,9 +55,7 @@ public class TeacherActivity extends Activity {
         int sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
         AddHomeworkTask homeworkTask = new AddHomeworkTask(this, myApp);
-        homeworkTask.execute(sessionId, lessonID, homework);
-        Toast.makeText(this, homework + " " + lessonID, Toast.LENGTH_SHORT).show();
-
+        homeworkTask.execute(sessionId, lessonID, homework, teacherName);
         /** TestLessons.getLessonById(lessonID).getHomeworks().add(homeworkto); */
     }
 }

@@ -2,6 +2,7 @@ package com.example.jalt.se15_client.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.StudeasyScheduleApplication;
@@ -36,6 +37,7 @@ public class LessonByDateTask extends AsyncTask<Object, Void, LessonResponse> {
         date = (String) params[1];
         hour = (int) params[2];
         try {
+            Log.i("LessonByDateTask", "ID: " + sessionID + ", date: " + date + ", hour: " + hour);
             LessonResponse myResponse = myApp.getStudeasyScheduleService().getLessonByDate(sessionID, date, hour);
             return myResponse;
         } catch (Exception e) {
@@ -57,6 +59,7 @@ public class LessonByDateTask extends AsyncTask<Object, Void, LessonResponse> {
     {
         if(result != null)
         {
+            Log.i("LessonByDateTask", "erfolgreich");
             LessonTO lesson = new LessonTO();
             lesson = result.getLesson();
             int lessonId = lesson.getLessonID();
@@ -74,7 +77,8 @@ public class LessonByDateTask extends AsyncTask<Object, Void, LessonResponse> {
         }
         else
         {
-            //Toast anzeigen
+
+            Log.i("LessonByDateTask", "fehlgeschlagen");
             Toast.makeText(context, "LessonByDate Abfrage fehlgeschlagen.", Toast.LENGTH_LONG).show();
         }
     }
