@@ -3,8 +3,6 @@ package com.example.jalt.se15_client;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
@@ -14,9 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jalt.se15_client.tasks.AddHomeworkTask;
-import com.example.jalt.se15_client.tasks.LessonByDateTask;
-
-import common.HomeworkTO;
 
 /**
  * Created by ErfiMac on 15.06.15.

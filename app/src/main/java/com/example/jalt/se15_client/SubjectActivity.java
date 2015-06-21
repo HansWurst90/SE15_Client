@@ -93,11 +93,7 @@ public class SubjectActivity extends ActionBarActivity {
     public void homeworkTextClick(View view) {
         if (teacherLogin.equals("true") && teacherName.equals(sharedPreferences.getString("NAME", "")))
         {
-            /** Intent getSubjectIntent = new Intent(this, TeacherActivity.class);
-            getSubjectIntent.putExtra("lessonId", lessonId);
-            startActivity(getSubjectIntent);*/
-
-            Intent getSubjectIntent = new Intent(this, poptest.class);
+            Intent getSubjectIntent = new Intent(this, TeacherActivity.class);
             getSubjectIntent.putExtra("lessonId", lessonId);
             startActivity(getSubjectIntent);
         }
