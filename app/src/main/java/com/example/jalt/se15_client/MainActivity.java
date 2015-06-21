@@ -190,7 +190,7 @@ public class MainActivity extends ActionBarActivity {
                         }
                         else
                         {
-                            textMap.get(j).setText("Freistunde");
+                            subjectMap.get(j).setText("Freistunde");
                             Log.i("LessonTask", "fehlgeschlagen");
                         }
                     }
