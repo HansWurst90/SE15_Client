@@ -35,12 +35,11 @@ public class Soap2Object {
         int lessonID = Integer.parseInt(SoapLesson.getPrimitivePropertySafelyAsString("lessonID"));
         // Hausaufgaben abholen
        List<HomeworkTO> homeworkTOList = new ArrayList<>();
-        SoapObject SoapHomework = (SoapObject) SoapLesson.getProperty("homeworks");
-        for (int i = 0; i < SoapHomework.getPropertyCount(); i++) {
+        for (int i = 0; i < SoapLesson.getPropertyCount(); i++) {
             PropertyInfo info = new PropertyInfo();
-            input.getPropertyInfo(i, info);
-            if(info.getName().equals("lesson")) {
-                homeworkTOList.add(soap2homework((SoapObject) input.getProperty(i)));
+            SoapLesson.getPropertyInfo(i, info);
+            if(info.getName().equals("homeworks")) {
+                homeworkTOList.add(soap2homework((SoapObject) SoapLesson.getProperty(i)));
             }
         }
         LessonTO lesson = new LessonTO();
