@@ -12,12 +12,16 @@ import com.jalt.studeasy.client.R;
 
 
 /**
- * Implementation of App Widget functionality.
+ * Klasse des Widgets
+ * @author Lukas Erfkämper und Jan Mußenbrock
  */
 public class WidgetMain extends AppWidgetProvider {
 
-    //RemoteViews views;
-
+    /**
+     * @param context
+     * @param appWidgetManager
+     * @param appWidgetIds
+     */
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_main);
@@ -25,38 +29,26 @@ public class WidgetMain extends AppWidgetProvider {
         pushWidgetUpdate(context, remoteViews);
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     */
     public static PendingIntent buildButtonPendingIntent(Context context) {
         Intent intent = new Intent();
         intent.setAction("pl.looksok.intent.action.REFRESH");
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    /**
+     *
+     * @param context
+     * @param remoteViews
+     */
     public static void pushWidgetUpdate(Context context, RemoteViews remoteViews) {
         ComponentName myWidget = new ComponentName(context, WidgetMain.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(myWidget, remoteViews);
     }
-
-    /** @Override
-    public void onReceive (Context context, Intent intent)
-    {
-        if ("Refresh".equals(intent.getAction())) {
-            views.setTextViewText(R.id.widgetRow1, "Hat geklappt");
-        }
-        else
-            views.setTextViewText(R.id.widgetRow1, "nooooo");
-    } */
-
-
-    /** @Override
-    public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
-    } */
-
 }
 

@@ -28,7 +28,11 @@ public class TeacherActivity extends Activity {
     String teacherId;
     SharedPreferences sharedPreferences;
 
-    //Spezielles PopUpWindow, liegt über der SubjectActivity
+
+    /**
+     * Spezielles PopUpWindow für den Teacher, wird über der SubjectActivity eingeblendet
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +50,10 @@ public class TeacherActivity extends Activity {
         getWindow().setLayout((int) (width*.8),(int) (heigth*.35));
     }
 
-    //Abrufen der Lesson mit dazugehörigen ID und Methode addHomework
+    /**
+     * Abrufen der Lesson mit dazugehörigen ID und Methode addHomework
+     * @param view
+     */
     public void finishButtonPress(View view) {
         String homework = homeworkText.getText().toString();
         if (homework.equals(""))

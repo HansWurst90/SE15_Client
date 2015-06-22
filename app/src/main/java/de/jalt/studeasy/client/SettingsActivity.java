@@ -26,6 +26,10 @@ public class SettingsActivity extends Activity{
     int sessionId;
     SharedPreferences sharedPreferences;
 
+    /**
+     * Bei der onCreate Methode wird die Activity aufgebaut, unterscheidung bei ob angemeldet oder nicht
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,10 @@ public class SettingsActivity extends Activity{
         }
     }
 
+    /**
+     * Die Methode für den Login/Logout Button
+     * @param view
+     */
     public void loginButtonPress(View view)
     {
         String buttonText = loginButton.getText().toString();
@@ -81,7 +89,7 @@ public class SettingsActivity extends Activity{
                 loginTask.execute(Integer.parseInt(user), pass);
             }
         }
-        else {
+        else { //Button steht auf Ausloggen
             StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
             LogoutTask logoutTask = new LogoutTask(this, myApp);
             sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
@@ -89,6 +97,9 @@ public class SettingsActivity extends Activity{
         }
     }
 
+    /**
+     * Methode für den BackButton des Android Smartphones
+     */
     @Override
     public void onBackPressed()
     {
