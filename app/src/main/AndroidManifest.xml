@@ -32,13 +32,24 @@
         <receiver android:name=".WidgetMain" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                 />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_main_info" />
         </receiver>
+        <receiver
+            android:name=".WidgetMainIntentReceiver"
+            android:label="widgetBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="pl.looksok.intent.action.REFRESH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_main_info" />
+        </receiver>
+
     </application>
 
 </manifest>
