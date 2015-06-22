@@ -5,7 +5,7 @@ android {
     buildToolsVersion '22.0.1'
 
     defaultConfig {
-        applicationId "com.example.jalt.se15_client"
+        applicationId "de.jalt.studeasy.client"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1

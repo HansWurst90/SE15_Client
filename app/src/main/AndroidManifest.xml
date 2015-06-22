@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jalt.se15_client" >
+    package="com.jalt.studeasy.client" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".StudeasyScheduleApplication"
+        android:name="de.jalt.studeasy.client.StudeasyScheduleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/calendar_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="de.jalt.studeasy.client.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,16 +20,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="de.jalt.studeasy.client.SettingsActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".SubjectActivity"
+            android:name="de.jalt.studeasy.client.SubjectActivity"
             android:label="@string/title_activity_subject" >
         </activity>
-        <activity android:name=".TeacherActivity" android:theme="@style/Theme.TeacherTheme"></activity>
+        <activity android:name="de.jalt.studeasy.client.TeacherActivity" android:theme="@style/Theme.TeacherTheme"></activity>
 
-        <receiver android:name=".WidgetMain" >
+        <receiver android:name="de.jalt.studeasy.client.WidgetMain" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -39,7 +39,7 @@
                 android:resource="@xml/widget_main_info" />
         </receiver>
         <receiver
-            android:name=".WidgetMainIntentReceiver"
+            android:name="de.jalt.studeasy.client.WidgetMainIntentReceiver"
             android:label="widgetBroadcastReceiver" >
             <intent-filter>
                 <action android:name="pl.looksok.intent.action.REFRESH" />

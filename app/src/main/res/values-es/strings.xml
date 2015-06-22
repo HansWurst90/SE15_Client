@@ -1,15 +1,13 @@
 <resources>
+    <!--main_activity -->
     <string name="app_name">Studeasy</string>
-    <string name="login">Iniciar sesión</string>
-    <string name="logout">Cerrar sesión</string>
-    <string name="SV_Title">Sobrevista de asignaturas</string>
     <string name="daytoday">dd.mm.yy</string>
+    <string name="free_lesson_value">"???"</string>
+    <string name="free_lesson_sign">---</string>
+    <string name="school_break">Descanso</string>
 
     <!--subject_activity -->
     <string name="title_activity_subject">Sobrevista de asignaturas</string>
-    <string name="free_lesson_value">Hora libre</string>
-    <string name="free_lesson_sign">---</string>
-    <string name="school_break">Descanso</string>
     <string name="subject_value">Fachplatzhalter</string>
     <string name="subject_label">Asignatura:</string>
     <string name="teacher_label">Profesor:</string>
@@ -23,32 +21,20 @@
     <string name="homework_label">Deberes:</string>
     <string name="homeworkDone">Muy bien!</string>
     <string name="homeworkUndone">Que pena!</string>
-    <string name="homework_value">
-        Hier kommen später eine Menge Hausaufgaben rein:\n
-        - Buch lesen\n
-        - Aufgaben rechnen\n
-        - Aufsatz schreiben\n
-        - Vokabeln üben\n
-        - Experiment durchführen\n
-        - Sportübungen machen\n
-        - Buch lesen\n
-        - Aufgaben rechnen\n
-        - Aufsatz schreiben\n
-        - Vokabeln üben\n
-        - Experiment durchführen\n
-        - Sportübungen machen\n
-    </string>
+    <string name="homework_hint">Apunta deberes aquí</string>
 
 
-    <!--Logging -->
+    <!--Settings_activity -->
     <string name="username">Nombre</string>
     <string name="password">Contraseña</string>
-    <string name="submit">Entrar</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="logout">Cerrar sesión</string>
     <string name="welcome">Bienvenidos</string>
     <string name="goodbye">Adiós!</string>
     <string name="missingPasswort">Todavía falta introducir contraseña</string>
     <string name="missingUsername">Todavía falta introducir nombre del usuario</string>
     <string name="missingBoth">Todavía falta introducir nombre del usuario y contraseña</string>
+    <string name="account">Cuenta</string>
 
     <!--days -->
     <string name="monday">Lunes</string>
@@ -79,5 +65,14 @@
     <string name="from_6">12:45</string>
     <string name="to_6">13:00</string>
 
-    <!-- subjects -->
+    <!--teacher_activity-->
+    <string name="missingHomework">Apunta deberes!</string>
+    <string name="submit">Subir</string>
+
+    <!--widget_activity-->
+    <string name="refresh">Actualizar</string>
+
+    <!--Copyright-->
+    <string name="copyright">"&#169; Team JALT"</string>
+    <string name="app_version">Studeasy 1.0</string>
 </resources>

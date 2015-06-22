@@ -1,15 +1,13 @@
 <resources>
+    <!--main_activity -->
     <string name="app_name">Studeasy</string>
-    <string name="login">Anmelden</string>
-    <string name="logout">Ausloggen</string>
-    <string name="SV_Title">Fachansicht</string>
     <string name="daytoday">dd.mm.yy</string>
-
-    <!--subject_activity -->
-    <string name="title_activity_subject">Fachansicht</string>
     <string name="free_lesson_value">"???"</string>
     <string name="free_lesson_sign">---</string>
     <string name="school_break">Pause</string>
+
+    <!--subject_activity -->
+    <string name="title_activity_subject">Fachansicht</string>
     <string name="subject_value">Fachplatzhalter</string>
     <string name="subject_label">Fach:</string>
     <string name="teacher_label">Lehrer:</string>
@@ -25,12 +23,13 @@
     <string name="homeworkUndone">Schade!</string>
     <string name="homework_hint">Hier bitte Hausaufgaben eintragen</string>
 
-    <!--Login -->
+    <!--settings_activity -->
     <string name="username">Benutzerkennung</string>
     <string name="password">Passwort</string>
-    <string name="submit">Einloggen</string>
+    <string name="login">Einloggen</string>
+    <string name="logout">Ausloggen</string>
     <string name="welcome">Willkommen</string>
-    <string name="goodbye">Auf Wiedersehen!</string>
+    <string name="goodbye">Auf Wiedersehen</string>
     <string name="missingPasswort">Bitte geben Sie noch ihr Passwort ein</string>
     <string name="missingUsername">Bitte geben Sie noch ihre Benutzerkennung ein</string>
     <string name="missingBoth">Bitte geben Sie noch ihre Benutzerkennung und ihr Passwort ein</string>
@@ -44,7 +43,6 @@
     <string name="friday">Freitag</string>
 
     <!--days shortcut -->
-
     <string name="monday_shortcut">Mo</string>
     <string name="tuesday_shortcut">Di</string>
     <string name="wednesday_shortcut">Mi</string>
@@ -65,16 +63,14 @@
     <string name="from_6">12:45</string>
     <string name="to_6">13:00</string>
 
-    <!-- subjects -->
+    <!--teacher_activity-->
+    <string name="missingHomework">Hausaufgaben eintragen!</string>
+    <string name="submit">Absenden</string>
 
-    <!--teacher-->
-    <string name="finish">Fertig</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="configure">Configure</string>
-    <string name="add_widget">Add widget</string>
+    <!--widget_activity-->
     <string name="refresh">Aktualisieren</string>
-    <string name="missingHomework">Hausaufgaben eintragen</string>
-    <string name="Submit">Absenden</string>
+
+    <!--Copyright-->
     <string name="copyright">"&#169; Team JALT"</string>
     <string name="app_version">Studeasy 1.0</string>
 
