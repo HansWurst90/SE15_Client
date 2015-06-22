@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntegerRes;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ import com.example.jalt.se15_client.SubjectActivity;
 import common.UserLoginResponse;
 
 /**
- *
+ * AsynkTask zum hinzufüge einer Hausaufgabe zur Hausaufgabenliste einer Unterichtsstunde
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
@@ -24,7 +25,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
     private StudeasyScheduleApplication myApp;
     SharedPreferences sharedPreferences;
     int lessonID;
-    String teacherName;
+    String teacherId;
 
     public AddHomeworkTask (Context context, StudeasyScheduleApplication myApp) {
         this.context = context;
@@ -32,18 +33,18 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
     }
 
     @Override
-    /**
-     * myResponse wird vorbereitet
-     */
     protected Boolean doInBackground(Object... params){
         if(params.length != 4)
+        {
             return false;
+        }
+        // Empfangen der Parameter und Cast
         int sessionID = (int) params[0];
         lessonID = (int) params[1];
         String description = (String) params[2];
-        teacherName = (String) params[3];
+        teacherId = (String) params[3];
         try {
-            Log.i("AddHomeworkTask", "sessionID: " + sessionID + "lessonID: " + lessonID + "description: " + description + "teacherName: " + teacherName);
+            Log.i("AddHomeworkTask", "sessionID: " + sessionID + ", lessonID: " + lessonID + ", description: " + description + ", teacherId: " + teacherId);
             myApp.getStudeasyScheduleService().createHomework(sessionID, lessonID, description);
             return true;
         } catch (Exception e) {
@@ -57,16 +58,10 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         //wird in diesem Beispiel nicht verwendet
     }
 
-    /**
-     * result Auswertung und sharedPreference erzeugen.
-     * Bei Erfolg werden User und SessionId und Passwort wieder gelöscht
-     * Ebenfalls wird ein Toast angezeigt um den User zu verabschieden.
-     * Bei Misserfolg wird darauf hingewiesen, dass das Logout nicht funktioniert hat.
-     * @param result
-     */
+    // Nach Erfolgreicher Anlage der Hausaufgaben soll zur SubjectActivity zurückgekehrt werden
+    // Dazu sind lessonID und teacherName nötig. Siehe SubjectActivity.
     protected void onPostExecute(Boolean result)
     {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if(result)
         {
             Log.i("AddHomeworkTask", "erfolgreich");
@@ -76,7 +71,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
             toast.show();
             Intent getSubjectIntent = new Intent(context, SubjectActivity.class);
             getSubjectIntent.putExtra("lessonId", lessonID);
-            getSubjectIntent.putExtra("name", teacherName);
+            getSubjectIntent.putExtra("name", teacherId);
             context.startActivity(getSubjectIntent);
         }
         else

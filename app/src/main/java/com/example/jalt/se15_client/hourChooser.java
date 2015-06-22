@@ -1,7 +1,7 @@
 package com.example.jalt.se15_client;
 
 /**
- *
+ * Auslagerng der Auflösung der LessonHour zu Stundenbeginn und -Ende für verschiedene Anwendungszwecke.
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class HourChooser {

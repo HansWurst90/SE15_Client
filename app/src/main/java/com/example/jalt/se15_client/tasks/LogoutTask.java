@@ -17,7 +17,7 @@ import common.ReturncodeResponse;
 import common.UserLoginResponse;
 
 /**
- * Logout as AsyncTask
+ * AsyncTask zum ausloggen der User und beenden der Session.
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class LogoutTask extends AsyncTask<Integer, Void, Boolean> {
@@ -32,9 +32,6 @@ public class LogoutTask extends AsyncTask<Integer, Void, Boolean> {
     }
 
     @Override
-    /**
-     * myResponse wird vorbereitet
-     */
     protected Boolean doInBackground(Integer... params){
         if(params.length != 1)
             return false;
