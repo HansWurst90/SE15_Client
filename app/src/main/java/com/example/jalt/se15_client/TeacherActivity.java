@@ -21,6 +21,7 @@ public class TeacherActivity extends Activity {
     EditText homeworkText;
     Button finishButton;
     int lessonID;
+    int dateInMillis;
     String teacherId;
     SharedPreferences sharedPreferences;
 
@@ -34,6 +35,7 @@ public class TeacherActivity extends Activity {
         Intent teacherIntent = getIntent();
         lessonID = teacherIntent.getExtras().getInt("lessonId");
         teacherId = teacherIntent.getExtras().getString("teacherId");
+        dateInMillis = teacherIntent.getExtras().getInt("dateInMillis");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
@@ -46,7 +48,7 @@ public class TeacherActivity extends Activity {
         String homework = homeworkText.getText().toString();
         if (homework.equals(""))
         {
-            Toast.makeText(this, getString(R.string.missungHomework), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.missingHomework), Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -54,7 +56,7 @@ public class TeacherActivity extends Activity {
             int sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
             StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
             AddHomeworkTask homeworkTask = new AddHomeworkTask(this, myApp);
-            homeworkTask.execute(sessionId, lessonID, homework, teacherId);
+            homeworkTask.execute(sessionId, lessonID, homework, teacherId, dateInMillis);
         }
     }
 }

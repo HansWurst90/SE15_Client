@@ -33,6 +33,7 @@ public class SubjectActivity extends ActionBarActivity {
     String teacherLogin;
     String teacherId;
     int lessonId;
+    int dateInMillis;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -49,6 +50,7 @@ public class SubjectActivity extends ActionBarActivity {
         Intent whichSubjectId = getIntent();
         lessonId = whichSubjectId.getExtras().getInt("lessonId");
         teacherId = whichSubjectId.getExtras().getString("teacherId");
+        dateInMillis = whichSubjectId.getExtras().getInt("dateInMillis");
         saveKey = "lesson"+lessonId+sharedPreferences.getString("USER", "");
 
         // Vorbereiten der Felder zum befüllen
@@ -98,6 +100,7 @@ public class SubjectActivity extends ActionBarActivity {
             Intent getTeacherIntent = new Intent(this, TeacherActivity.class);
             getTeacherIntent.putExtra("lessonId", lessonId);
             getTeacherIntent.putExtra("teacherId", teacherId);
+            getTeacherIntent.putExtra("dateInMillis", dateInMillis);
             startActivity(getTeacherIntent);
         }
     }
@@ -131,6 +134,7 @@ public class SubjectActivity extends ActionBarActivity {
     public void onBackPressed()
     {
         Intent getMainIntent = new Intent(this, MainActivity.class);
+        getMainIntent.putExtra("dateInMillis", dateInMillis);
         startActivity(getMainIntent);
     }
 

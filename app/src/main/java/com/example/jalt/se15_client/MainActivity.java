@@ -352,6 +352,7 @@ public class MainActivity extends ActionBarActivity {
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
         getSubjectIntent.putExtra("lessonId", lessonId);
         getSubjectIntent.putExtra("teacherId", teacherId);
+        getSubjectIntent.putExtra("dateInMillis", date.getTimeInMillis());
         startActivity(getSubjectIntent);
     }
     // Methode nächster TAG

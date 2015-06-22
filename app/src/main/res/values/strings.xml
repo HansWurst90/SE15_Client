@@ -25,7 +25,6 @@
     <string name="homeworkUndone">Schade!</string>
     <string name="homework_hint">Hier bitte Hausaufgaben eintragen</string>
 
-
     <!--Login -->
     <string name="username">Benutzerkennung</string>
     <string name="password">Passwort</string>
@@ -74,7 +73,7 @@
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
     <string name="refresh">Aktualisieren</string>
-    <string name="missungHomework">Hausaufgaben eintragen</string>
+    <string name="missingHomework">Hausaufgaben eintragen</string>
     <string name="Submit">Absenden</string>
     <string name="copyright">"&#169; Team JALT"</string>
     <string name="app_version">Studeasy 1.0</string>
