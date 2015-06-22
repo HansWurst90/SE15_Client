@@ -188,12 +188,12 @@ public class MainActivity extends ActionBarActivity {
                             subjectMap.get(j).setText(lesson.getSubject().getDescription());
                             teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
                             roomMap.get(j).setText(lesson.getRoom());
-                            cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());}});
+                            cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), String.valueOf(lesson.getTeacher().getPersonID()));}});
                             }
                             else
                             {
                                 subjectMap.get(j).setText("Freistunde");
-                                Log.i("LessonByDateTask", "fehlgeschlagen");
+                                Log.i("LessonByDateTask", "Freistunde");
                             }
                         }
                     }.execute(sessionId, dateString, i); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
@@ -275,16 +275,16 @@ public class MainActivity extends ActionBarActivity {
             if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 textMap.get(10).setBackgroundResource(R.color.Light_Blue);
             }
-            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+            if (dateTu.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 textMap.get(20).setBackgroundResource(R.color.Light_Blue);
             }
-            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+            if (dateWe.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 textMap.get(30).setBackgroundResource(R.color.Light_Blue);
             }
-            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+            if (dateTh.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 textMap.get(40).setBackgroundResource(R.color.Light_Blue);
             }
-            if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
+            if (dateFr.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 textMap.get(50).setBackgroundResource(R.color.Light_Blue);
             }
             //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
@@ -309,7 +309,7 @@ public class MainActivity extends ActionBarActivity {
                                     Log.i(" Zelle: " + k + " : ", " ( " + sessionId + ", " + dateMap.get(l / 10) + ", " + m + " ) ");
                                 } else {
                                     Log.i(" Zelle: " + k + " : ", " ( " + sessionId + ", " + dateMap.get(l / 10) + ", " + m + " ) ");
-                                    Log.i("LessonByDateTask", "fehlgeschlagen oder Freistunde");
+                                    Log.i("LessonByDateTask", "Freistunde");
                                     textMap.get(k).setText("Frei");
                                 }
                             }
@@ -347,10 +347,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     // Methode für Fachauswahl
-    public void onSubjectClick(View view, int lessonId, String name) {
+    public void onSubjectClick(View view, int lessonId, String teacherId) {
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
         getSubjectIntent.putExtra("lessonId", lessonId);
-        getSubjectIntent.putExtra("name", name);
+        getSubjectIntent.putExtra("teacherId", teacherId);
         startActivity(getSubjectIntent);
     }
     // Methode nächster TAG

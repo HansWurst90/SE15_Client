@@ -21,7 +21,7 @@ public class TeacherActivity extends Activity {
     EditText homeworkText;
     Button finishButton;
     int lessonID;
-    String teacherName;
+    String teacherId;
     SharedPreferences sharedPreferences;
 
     //Spezielles PopUpWindow, liegt über der SubjectActivity
@@ -33,7 +33,7 @@ public class TeacherActivity extends Activity {
         finishButton = (Button) findViewById(R.id.finish_button);
         Intent teacherIntent = getIntent();
         lessonID = teacherIntent.getExtras().getInt("lessonId");
-        teacherName = teacherIntent.getExtras().getString("name");
+        teacherId = teacherIntent.getExtras().getString("teacherId");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
@@ -54,7 +54,7 @@ public class TeacherActivity extends Activity {
             int sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
             StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
             AddHomeworkTask homeworkTask = new AddHomeworkTask(this, myApp);
-            homeworkTask.execute(sessionId, lessonID, homework, teacherName);
+            homeworkTask.execute(sessionId, lessonID, homework, teacherId);
         }
     }
 }

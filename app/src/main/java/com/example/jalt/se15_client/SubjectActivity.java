@@ -31,7 +31,7 @@ public class SubjectActivity extends ActionBarActivity {
     CheckBox homeworkButton;
     String saveKey;
     String teacherLogin;
-    String teacherName;
+    String teacherId;
     int lessonId;
     SharedPreferences sharedPreferences;
 
@@ -48,7 +48,7 @@ public class SubjectActivity extends ActionBarActivity {
         // Empfangen der lessonId auf die geklickt wurde
         Intent whichSubjectId = getIntent();
         lessonId = whichSubjectId.getExtras().getInt("lessonId");
-        teacherName = whichSubjectId.getExtras().getString("name");
+        teacherId = whichSubjectId.getExtras().getString("teacherId");
         saveKey = "lesson"+lessonId+sharedPreferences.getString("USER", "");
 
         // Vorbereiten der Felder zum befüllen
@@ -75,9 +75,8 @@ public class SubjectActivity extends ActionBarActivity {
                     toTexView.setText(HourChooser.getTimesbyHour(lesson.getLessonHour())[1]);
                     roomTextView.setText(lesson.getRoom());
                     homeworkTextView.setText(HomeworkArrayToString(lesson.getHomeworks()));
-                    {
-                        Log.i("LessonTask", "fehlgeschlagen");
-                    }
+                } else {
+                    Log.i("LessonTask", "fehlgeschlagen");
                 }
             }
         }.execute(lessonId);
@@ -94,11 +93,11 @@ public class SubjectActivity extends ActionBarActivity {
 
     //Teacher Methode um neue Hausaufgaben anlegen zu können
     public void homeworkTextClick(View view) {
-        if (teacherLogin.equals("true") && teacherName.equals(sharedPreferences.getString("NAME", "")))
+        if (teacherLogin.equals("true") && teacherId.equals(sharedPreferences.getString("USER", "")))
         {
             Intent getTeacherIntent = new Intent(this, TeacherActivity.class);
             getTeacherIntent.putExtra("lessonId", lessonId);
-            getTeacherIntent.putExtra("name", teacherName);
+            getTeacherIntent.putExtra("teacherId", teacherId);
             startActivity(getTeacherIntent);
         }
     }
