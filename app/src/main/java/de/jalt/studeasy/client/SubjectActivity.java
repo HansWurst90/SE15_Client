@@ -40,6 +40,10 @@ public class SubjectActivity extends ActionBarActivity {
     long dateInMillis;
     SharedPreferences sharedPreferences;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +92,9 @@ public class SubjectActivity extends ActionBarActivity {
         }.execute(lessonId);
     }
 
-    //Überprüfungsmethode
+    /**
+     * Überprüfungsmethode ob Lehrer oder nicht
+     */
     private void teacherLogin()
     {
         if (teacherLogin.equals("true"))
@@ -97,7 +103,10 @@ public class SubjectActivity extends ActionBarActivity {
         }
     }
 
-    //Teacher Methode um neue Hausaufgaben anlegen zu können
+    /**
+     * Teacher Methode um neue Hausaufgaben anlegen zu können
+     * @param view
+     */
     public void homeworkTextClick(View view) {
         if (teacherLogin.equals("true") && teacherId.equals(sharedPreferences.getString("USER", "")))
         {
@@ -109,7 +118,11 @@ public class SubjectActivity extends ActionBarActivity {
         }
     }
 
-    //Aus der List werden alle Elemente zu einem String umgewandelt
+    /**
+     * Aus der List werden alle Elemente zu einem String umgewandelt
+     * @param list
+     * @return
+     */
     private String HomeworkArrayToString(List<HomeworkTO> list)
     {
         StringBuilder homeworkString = new StringBuilder();
@@ -123,7 +136,10 @@ public class SubjectActivity extends ActionBarActivity {
         return homeworkString.toString();
     }
 
-    //Toast für die Schüler wenn Hausaufgaben gemacht oder nicht gemacht
+    /**
+     * Toast für die Schüler wenn Hausaufgaben gemacht oder nicht gemacht
+     * @param view
+     */
     public void homeworkToast(View view) {
         boolean checked = homeworkButton.isChecked();
         if (checked) {
@@ -134,6 +150,11 @@ public class SubjectActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * Methode für den BackButton des Android Smartphones
+     * Man muss das DateInMillis mitgeben, damit man auch auf den richtigen Tag/Woche in der MainActivity zurückkommt
+     * von der man das Fach angeklickt hat
+     */
     @Override
     public void onBackPressed()
     {
@@ -143,20 +164,28 @@ public class SubjectActivity extends ActionBarActivity {
         startActivity(getMainIntent);
     }
 
-    //Um den Zustand vom Checkbutton zu speichern, selbst wenn die App geschlossen wurde
+    /**
+     * Um den Zustand vom Checkbutton zu speichern, selbst wenn die App geschlossen wurde
+     */
     @Override
     public void onPause() {
         super.onPause();
         save(homeworkButton.isChecked());
     }
 
-    //Zustand vom Checkbutton aufrufen
+    /**
+     * Zustand vom Checkbutton aufrufen
+     */
     @Override
     public void onResume() {
         super.onResume();
         homeworkButton.setChecked(load());
     }
 
+    /**
+     * Speichern vom Zustand des Checkbuttons aus der xml Datei
+     * @param isChecked
+     */
     private void save(final boolean isChecked) {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -164,6 +193,10 @@ public class SubjectActivity extends ActionBarActivity {
         editor.commit();
     }
 
+    /**
+     * Laden des Zustandes vom Checkbutton aus der xml Datei
+     * @return
+     */
     private boolean load() {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(saveKey, false);
