@@ -34,7 +34,8 @@
         android:text="@string/free_lesson_value"
         android:id="@+id/widgetRow1"
         android:layout_weight=".14"
-        android:gravity="center" />
+        android:gravity="center"
+        android:autoText="false" />
 
     <TextView
         android:layout_width="match_parent"
