@@ -24,7 +24,10 @@ import de.jalt.studeasy.common.LessonResponse;
 import de.jalt.studeasy.common.LessonTO;
 
 /**
- * Die Fachansicht zu jeder Lesson
+ * Diese Aktivität bildet eine Unterichtsstunde ab.
+ * Es können Informationen zu Fach, Lehrer, Zeiten und Hausaufgaben entnommen werden.
+ * Lehrer können neue Hausaufgaben anlegen.
+ * Schüler können ein Häkchen setzten für erledigte Hausaufgaben welches Lokal gespeichert wird.
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class SubjectActivity extends ActionBarActivity {

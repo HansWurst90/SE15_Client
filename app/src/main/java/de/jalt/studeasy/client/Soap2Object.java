@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Auslagerung der Extrahierung von LessonTO aus einer LessonResponse
+ * Auslagerung der Umwandlung eines empfangenen SoapObjects zu einer LessonResponse (die eine LessonTO enhält)
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class Soap2Object {
-
+    /**
+     * Wandelt eine SoapObjects die von einer Soapabfrage stammt in ein LessonResponse-Objekt um.
+     * @param input SoapObjects
+     * @return output LessonResponse
+     */
     static LessonResponse soap2lesson(SoapObject input){
         LessonResponse output = new LessonResponse();
         try {
@@ -68,7 +72,7 @@ public class Soap2Object {
         }
     }
 
-    // Auslagerung der Umwandlung von HomeworkTO zu einem SoapObject
+    // Auslagerung der Umwandlung von SoapObject zu einem HomeworkTO-Objekt
     static HomeworkTO soap2homework(SoapObject input) {
         int homeworkID = Integer.parseInt(input.getPropertyAsString("homeworkID"));
         String description = input.getPropertyAsString("description");
