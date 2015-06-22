@@ -3,7 +3,6 @@ package com.example.jalt.se15_client;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -13,32 +12,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jalt.se15_client.tasks.IsTeacherTask;
 import com.example.jalt.se15_client.tasks.LessonByDateTask;
-import com.example.jalt.se15_client.tasks.LessonTask;
-import com.example.jalt.se15_client.tasks.LoginTask;
-import com.example.jalt.se15_client.tasks.LogoutTask;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
-import common.IStudeasyScheduleService;
 import common.LessonResponse;
 import common.LessonTO;
 
 /**
- *
+ * Startansich der Applikation
+ * Portraitansicht: Stundenplan für den heutigen Tag mit Vor- und Zurück-Button für Tage
+ * Queransicht: Stundenplan für die aktuelle Woche mit Vor- und Zurück-Button für Wochen
  * @author Jan Mußenbrock und Lukas Erfkämper
  */
 public class MainActivity extends ActionBarActivity {
@@ -47,7 +37,6 @@ public class MainActivity extends ActionBarActivity {
     Calendar dateTo;
     Calendar date;
     long dateInMillis;
-    SparseArray<LessonTO> lessonMap;
     SparseArray<TableLayout> cellMap;
     SparseArray<TextView> teacherMap;
     SparseArray<TextView> roomMap;
@@ -63,11 +52,16 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         StudeasyScheduleApplication myApp = (StudeasyScheduleApplication) getApplication();
+
+        // Festlegung des genormten Datestring zur Kommunikation mit dem Server
         DateFormat ttmmjjjj = new SimpleDateFormat("ddMMyyyy", Locale.GERMAN);
+
+        // Abfrage der gespeicherten SessionID. Wird für einige Anfragen an den Server benötigt.
         if (!sharedPreferences.getString("SESSIONID", "").equals(""))
         {
             sessionId = Integer.parseInt(sharedPreferences.getString("SESSIONID", ""));
         }
+
         // Logik zum Überspringen des Wochenendes für das HEUTIGE DATUM
         dateTo = Calendar.getInstance();
         date = Calendar.getInstance();
@@ -113,7 +107,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-        // AB HIER NUR PORTRAIT LOGIK
+        //-----------------------------------           Logik für die PORTRAITANSICHT           -----------------------------------
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
             // Hier wird das Datum für die Anzeige im Kopf der Tabelle aufbereitet und blau gefärbt, wenn es das heutige Datum ist.
@@ -124,10 +118,7 @@ public class MainActivity extends ActionBarActivity {
                 dateText.setBackgroundResource(R.color.Light_Blue);
             }
 
-            String dateString = ttmmjjjj.format(date.getTime());
-
             // Map/Arrays zum einfachen Addressieren der Verschiedenen TextViews in unserem Tabellenlayout
-            lessonMap = new SparseArray<>();
             cellMap = new SparseArray<>();
             teacherMap = new SparseArray<>();
             subjectMap = new SparseArray<>();
@@ -164,13 +155,10 @@ public class MainActivity extends ActionBarActivity {
             subjectMap.put(6, (TextView) findViewById(R.id.dayclass6subject));
             roomMap.put(6, (TextView) findViewById(R.id.dayclass6room));
 
-            // Lessons werden nach Unterichtsstunde Sortiert in die LessonMap gespeichert.
-            // Zellen 1-6 werden entsprechend mit verlinkt um später die SessionId mitgeben zu können.
-            // Wenn die erste Stunde angeklickt wurde bekommt die OnClick-Methode eine 1 mitgeliefert und kann sich so mit "lessonMap.get(1).getLessonId()" der folgenden Activity die Id mitliefern.
-            // Hinweis: Die Id kann nicht variabel eingefügt werden, da in Methodenaufruf Int Final sein muss.
-            // Hinweis: LessonMap befüllen und OnClick setzten. Kann nicht mit in die Schleife, da in Methodenaufruf Int Final sein muss.
+            String dateString = ttmmjjjj.format(date.getTime());
 
-            //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
+            //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der empfangenen LessonObjekte befüllt.
+            // Ist überhaupt ein User eingeloggt?
             if (!sharedPreferences.getString("SESSIONID", "").equals(""))
             {
                 for (int i=1; i<7; i++) {
@@ -186,7 +174,7 @@ public class MainActivity extends ActionBarActivity {
                             final LessonTO lesson = result.getLesson();
                             cellMap.get(j).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                             subjectMap.get(j).setText(lesson.getSubject().getDescription());
-                             SavePreferences("LESSONROW" + j, lesson.getSubject().getDescription()); // <-------- LÖSCHEN
+                            SavePreferences("LESSONROW" + j, lesson.getSubject().getDescription()); // <-------- LÖSCHEN
                             teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
                             roomMap.get(j).setText(lesson.getRoom());
                             cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), String.valueOf(lesson.getTeacher().getPersonID()));}});
@@ -197,13 +185,12 @@ public class MainActivity extends ActionBarActivity {
                                 Log.i("LessonByDateTask", "Freistunde");
                             }
                         }
-                    }.execute(sessionId, dateString, i); // <-------- hier muss später der getLessonBydate()-task hin mit ttmmjjjj und hour als i
+                    }.execute(sessionId, dateString, i);
                 }
             }
         }
 
-
-        // AB HIER NUR LANDSCAPE LOGIK
+        //-----------------------------------           Logik für die QUERANSICHT           -----------------------------------
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Es werden alle Wochentage der Woche des genannten Datums ermittelt
             dateMap = new SparseArray<>();
@@ -222,13 +209,12 @@ public class MainActivity extends ActionBarActivity {
             Calendar dateFr = (Calendar) date.clone();
             dateFr.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
             dateMap.put(5, ttmmjjjj.format(dateFr.getTime()));
-            // Overlay Info zur Woche (Datum: Von - Bis)
+
+            // Overlay-Info zur Woche (Datum: Von - Bis)
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
-            Toast.makeText(this, dfmt.format(dateMo.getTime()) + " - " + dfmt.format(dateFr.getTime()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, dfmt.format(dateMo.getTime()) + " - " + dfmt.format(dateFr.getTime()), Toast.LENGTH_LONG).show();
 
-
-            // Map und Array zum einfachen Adressieren
-            lessonMap = new SparseArray<>();
+            // Array zum einfachen Adressieren
             textMap = new SparseArray();
             // Befüllen der Map mit allen Zellen: Einerstelle Tag (Mo = 1, Di = 2, ...), Zehnerstelle Stunde (1, 2, ...)
             textMap.put(10, (TextView) findViewById(R.id.mo0));
@@ -271,7 +257,6 @@ public class MainActivity extends ActionBarActivity {
             textMap.put(55, (TextView) findViewById(R.id.fr5));
             textMap.put(56, (TextView) findViewById(R.id.fr6));
 
-            // MONTAG
             // Färben des Spaltenkopfs wenn das Datum HEUTE ist.
             if (dateMo.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 textMap.get(10).setBackgroundResource(R.color.Light_Blue);
@@ -288,7 +273,9 @@ public class MainActivity extends ActionBarActivity {
             if (dateFr.get(Calendar.DAY_OF_YEAR) == dateTo.get(Calendar.DAY_OF_YEAR)) {
                 textMap.get(50).setBackgroundResource(R.color.Light_Blue);
             }
-            //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der lessonMap eingetragen.
+
+            //Fächerfarben, Lehrernamen, Fachnamen und Raumnummer werden per Schleife anhand der empfangenen LessonObjekte befüllt.
+            // Ist überhaupt ein User eingeloggt?
             if (!sharedPreferences.getString("SESSIONID", "").equals("")) {
                 for (int i = 10; i < 60; i = i + 10) {
                     for (int j = 1; j < 7; j++) {
@@ -303,10 +290,7 @@ public class MainActivity extends ActionBarActivity {
                                     textMap.get(k).setBackgroundResource(BorderChooser.getBorderFromId(lesson.getSubject().getSubjectID()));
                                     textMap.get(k).setText(lesson.getSubject().getDescription());
                                     textMap.get(k).setOnClickListener(new View.OnClickListener() {
-                                        public void onClick(View v) {
-                                            onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());
-                                        }
-                                    });
+                                    public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());}});
                                     Log.i(" Zelle: " + k + " : ", " ( " + sessionId + ", " + dateMap.get(l / 10) + ", " + m + " ) ");
                                 } else {
                                     Log.i(" Zelle: " + k + " : ", " ( " + sessionId + ", " + dateMap.get(l / 10) + ", " + m + " ) ");
@@ -323,7 +307,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -331,11 +314,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

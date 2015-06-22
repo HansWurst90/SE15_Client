@@ -75,6 +75,8 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
             getSubjectIntent.putExtra("lessonId", lessonID);
             getSubjectIntent.putExtra("name", teacherId);
             getSubjectIntent.putExtra("dateInMillis", dateInMillis);
+            getSubjectIntent.putExtra("teacherId", teacherId);
+
             context.startActivity(getSubjectIntent);
         }
         else
