@@ -188,7 +188,8 @@ public class MainActivity extends ActionBarActivity {
                             subjectMap.get(j).setText(lesson.getSubject().getDescription());
                             teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
                             roomMap.get(j).setText(lesson.getRoom());
-                            cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), lesson.getTeacher().getName());}});
+                            cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), String.valueOf(lesson.getTeacher().getPersonID()));}});
+                            Log.i("Lesson", String.valueOf(lesson.getTeacher().getPersonID()));
                             }
                             else
                             {
@@ -347,10 +348,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     // Methode für Fachauswahl
-    public void onSubjectClick(View view, int lessonId, String name) {
+    public void onSubjectClick(View view, int lessonId, String teacherId) {
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
         getSubjectIntent.putExtra("lessonId", lessonId);
-        getSubjectIntent.putExtra("name", name);
+        getSubjectIntent.putExtra("teacherId", teacherId);
         startActivity(getSubjectIntent);
     }
     // Methode nächster TAG

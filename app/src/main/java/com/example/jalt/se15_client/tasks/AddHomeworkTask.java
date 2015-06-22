@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntegerRes;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
     private StudeasyScheduleApplication myApp;
     SharedPreferences sharedPreferences;
     int lessonID;
-    String teacherName;
+    String teacherId;
 
     public AddHomeworkTask (Context context, StudeasyScheduleApplication myApp) {
         this.context = context;
@@ -41,9 +42,9 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         int sessionID = (int) params[0];
         lessonID = (int) params[1];
         String description = (String) params[2];
-        teacherName = (String) params[3];
+        teacherId = (String) params[3];
         try {
-            Log.i("AddHomeworkTask", "sessionID: " + sessionID + "lessonID: " + lessonID + "description: " + description + "teacherName: " + teacherName);
+            Log.i("AddHomeworkTask", "sessionID: " + sessionID + ", lessonID: " + lessonID + ", description: " + description + ", teacherId: " + teacherId);
             myApp.getStudeasyScheduleService().createHomework(sessionID, lessonID, description);
             return true;
         } catch (Exception e) {
@@ -70,7 +71,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
             toast.show();
             Intent getSubjectIntent = new Intent(context, SubjectActivity.class);
             getSubjectIntent.putExtra("lessonId", lessonID);
-            getSubjectIntent.putExtra("name", teacherName);
+            getSubjectIntent.putExtra("name", teacherId);
             context.startActivity(getSubjectIntent);
         }
         else

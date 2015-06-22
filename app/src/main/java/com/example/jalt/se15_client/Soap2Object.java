@@ -18,8 +18,10 @@ public class Soap2Object {
             //Teacher abholen und "entpacken"
             SoapObject SoapTeacher = (SoapObject) SoapLesson.getProperty("teacher");
                 String teacherLastname = SoapTeacher.getPropertySafelyAsString("name");
+                int teacherId = Integer.parseInt(SoapTeacher.getPrimitivePropertySafelyAsString("personID"));
                 int teacherGender = Integer.parseInt(SoapTeacher.getPrimitivePropertySafelyAsString("gender"));
                 PersonTO teacher = new PersonTO();
+                teacher.setPersonID(teacherId);
                 teacher.setName(teacherLastname);
                 teacher.setGender((char) teacherGender);
             // Subject abholen und "entpacken
