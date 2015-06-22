@@ -11,12 +11,13 @@
         android:background="@color/Grey"
         android:layout_weight=".1"
         android:gravity="center"
+
         >
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/refresh"
-            android:id="@+id/REFRESH"
+            android:id="@+id/refresh_button"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
-        android:id="@+id/dayclass2subject"
+        android:id="@+id/widgetRow2"
         android:layout_weight=".14"
         android:gravity="center" />
 
@@ -57,7 +58,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
-        android:id="@+id/dayclass3subject"
+        android:id="@+id/widgetRow3"
         android:layout_weight=".14"
         android:gravity="center" />
 
@@ -66,7 +67,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
-        android:id="@+id/dayclass4subject"
+        android:id="@+id/widgetRow4"
         android:layout_weight=".14"
         android:gravity="center" />
 
@@ -83,7 +84,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
-        android:id="@+id/dayclass5subject"
+        android:id="@+id/widgetRow5"
         android:layout_weight=".14"
         android:gravity="center" />
 
@@ -92,7 +93,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/free_lesson_value"
-        android:id="@+id/dayclass6subject"
+        android:id="@+id/widgetRow6"
         android:layout_weight=".14"
         android:gravity="center" />
 
