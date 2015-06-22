@@ -28,6 +28,13 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
     private static final String NAMESPACE = "http://schedulemanager.studeasy.de/";
     private static final String URL = "http://10.60.70.6:8080/studeasy/StudeasyScheduleService?WSDL";
 
+    /**
+     *
+     * @param personID
+     * @param password
+     * @return result UserLoginResponse enthält SessionId
+     * @throws Exception
+     */
     @Override
     public UserLoginResponse login(int personID, String password) throws Exception {
         UserLoginResponse result = null;
@@ -52,6 +59,12 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
         }
     }
 
+    /**
+     *
+     * @param sessionID
+     * @return ReturncodeResponse enthält Returncode
+     * @throws Exception
+     */
     @Override
     public ReturncodeResponse logout(int sessionID) throws Exception {
         ReturncodeResponse result;
@@ -74,6 +87,14 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
         }
     }
 
+    /**
+     * Anlegen einer Hausaufgabe zu einer Untereichtsstunde
+     * @param sessionID
+     * @param lessonID
+     * @param description
+     * @return ReturncodeResponse enthält Returncode
+     * @throws Exception
+     */
     @Override
     public ReturncodeResponse createHomework(int sessionID, int lessonID, String description) throws Exception {
         ReturncodeResponse result = null;
@@ -96,11 +117,25 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
         }
     }
 
+    /**
+     * Entfernen einer Hausaufgabe
+     * @param sessionID
+     * @param homeworkID
+     * @return
+     */
     @Override
     public BooleanResponse removeHomework(int sessionID, int homeworkID) {
         return new BooleanResponse();
     }
 
+    /**
+     * Abfragen einer bestimmten Untereichtsstunde (Datum und Stunden-Nr.) aus einem persönlichem Stundenplan (sessionID -> Benutzer)
+     * @param sessionID
+     * @param date
+     * @param hour
+     * @return LessonResponse enthält LessonTO-Object
+     * @throws Exception
+     */
     @Override
     public LessonResponse getLessonByDate(int sessionID, String date, int hour) throws Exception {
         LessonResponse result = null;
@@ -119,6 +154,12 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
         }
     }
 
+    /**
+     * Abfrage einer bestimmten Unterrichtsstunde nach ID
+     * @param lessonID
+     * @return LessonResponse enthält LessonTO-Objekt
+     * @throws Exception
+     */
     @Override
     public LessonResponse findLessonById(int lessonID) throws Exception {
         LessonResponse result = null;
@@ -144,6 +185,12 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
         return new HomeworkListResponse();
     }
 
+    /**
+     * Abfrage ob die eingeloggte Person ein Lehrer ist ("Autorisierung zum Eintragen von Hausaufgaben)
+     * @param sessionID
+     * @return
+     * @throws Exception
+     */
     @Override
     public BooleanResponse isUserTeacher(int sessionID) throws Exception {
         BooleanResponse result = null;
@@ -163,6 +210,14 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService
         }
     }
 
+    /**
+     * Methode zum Aufruf entfernter Methoden auf dem Server. Der Methodenname und die Parameter werden mitgeliefert.
+     * Adresse und Namespace des Servers sind fest im Service implementiert.
+     * @param methodName Name der auf dem Server aufzurufenden Methode
+     * @param args  Mitgelieferte Parameter
+     * @return
+     * @throws SoapFault
+     */
     private SoapObject executeSoapAction(String methodName, Object... args) throws SoapFault {
 
         Object result = null;

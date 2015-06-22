@@ -319,7 +319,13 @@ public class MainActivity extends ActionBarActivity {
         startActivity(getSettingsIntent);
     }
 
-    // Methode für Fachauswahl
+    /**
+     * Wahl eines Fachs und Weiterleitung zur SubjectActivity
+     * @param view
+     * @param lessonId
+     * @param teacherId die gespeicherte ID muss mitgeliefert werden,
+     * da vor dem befüllen des Fachs, schon feststehen muss, ob der benutzer der Lehrer dieses Fachs ist.
+     */
     public void onSubjectClick(View view, int lessonId, String teacherId) {
         Intent getSubjectIntent = new Intent(this, SubjectActivity.class);
         getSubjectIntent.putExtra("lessonId", lessonId);
@@ -327,7 +333,11 @@ public class MainActivity extends ActionBarActivity {
         getSubjectIntent.putExtra("dateInMillis", date.getTimeInMillis());
         startActivity(getSubjectIntent);
     }
-    // Methode nächster TAG
+
+    /**
+     * Aufruf des nächsten Tages im Hochformat
+     * @param view
+     */
     public void onNextClickP(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
         // Datum der aktuellen Activity wird um einen Tag erhöht. Falls dies ein Wochenende ist wird zum Montag gesprungen
@@ -348,7 +358,11 @@ public class MainActivity extends ActionBarActivity {
         getNextIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getNextIntent);
     }
-    // Methode vorheriger TAG (Kommentare wie bei "nächster TAG")
+    /**
+     * Aufruf des vorherigen Tages im Hochformat
+     * (Kommentare wie bei "nächster TAG")
+     * @param view
+     */
     public void onPreviousClickP(View view){
         Intent getPreviousIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, -1);
@@ -365,7 +379,11 @@ public class MainActivity extends ActionBarActivity {
         getPreviousIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getPreviousIntent);
     }
-    // Methode nächste WOCHE (ähnlich wie "nächster TAG" jedoch mit 7 Tagen)
+    /**
+     * Aufruf der nächsten Woche im Querformat
+     * (ähnlich wie "nächster TAG" jedoch mit 7 Tagen)
+     * @param view
+     */
     public void onNextClickL(View view){
         Intent getNextIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, 7);
@@ -375,7 +393,11 @@ public class MainActivity extends ActionBarActivity {
         getNextIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getNextIntent);
     }
-    // Methode vorherige Woche (Kommentare wie bei "nächste "WOCHE")
+    /**
+     * Aufruf der nächsten Woche im Querformat
+     * (ähnlich wie "nächste WOCHE")
+     * @param view
+     */
     public void onPreviousClickL(View view){
         Intent getPreviousIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, -7);
@@ -386,6 +408,11 @@ public class MainActivity extends ActionBarActivity {
         startActivity(getPreviousIntent);
     }
 
+    /**
+     * Hilfmethode zum Speichern in die SavePreferences
+     * @param key
+     * @param value
+     */
     private void SavePreferences(String key, String value)
     {
         SharedPreferences.Editor editor = sharedPreferences.edit();

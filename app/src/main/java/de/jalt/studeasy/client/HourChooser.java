@@ -7,7 +7,7 @@ package de.jalt.studeasy.client;
 public class HourChooser {
 
     static String[] getTimesbyHour(int hour){
-        //Abhängig der Stunde werdne die Star- und Endzeiten gewählt
+        //Abhängig der Stunde werden die Star- und Endzeiten gewählt
         String[] times = new String[2];
         switch (hour) {
             default:
