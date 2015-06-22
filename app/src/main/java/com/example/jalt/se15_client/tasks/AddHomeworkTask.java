@@ -26,6 +26,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
     SharedPreferences sharedPreferences;
     int lessonID;
     String teacherId;
+    int dateInMillis;
 
     public AddHomeworkTask (Context context, StudeasyScheduleApplication myApp) {
         this.context = context;
@@ -34,7 +35,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(Object... params){
-        if(params.length != 4)
+        if(params.length != 5)
         {
             return false;
         }
@@ -43,6 +44,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         lessonID = (int) params[1];
         String description = (String) params[2];
         teacherId = (String) params[3];
+        dateInMillis = (int) params [4];
         try {
             Log.i("AddHomeworkTask", "sessionID: " + sessionID + ", lessonID: " + lessonID + ", description: " + description + ", teacherId: " + teacherId);
             myApp.getStudeasyScheduleService().createHomework(sessionID, lessonID, description);
@@ -71,7 +73,10 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
             toast.show();
             Intent getSubjectIntent = new Intent(context, SubjectActivity.class);
             getSubjectIntent.putExtra("lessonId", lessonID);
+            getSubjectIntent.putExtra("name", teacherId);
+            getSubjectIntent.putExtra("dateInMillis", dateInMillis);
             getSubjectIntent.putExtra("teacherId", teacherId);
+
             context.startActivity(getSubjectIntent);
         }
         else
