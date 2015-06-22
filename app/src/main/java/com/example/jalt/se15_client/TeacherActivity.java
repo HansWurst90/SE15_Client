@@ -21,7 +21,7 @@ public class TeacherActivity extends Activity {
     EditText homeworkText;
     Button finishButton;
     int lessonID;
-    int dateInMillis;
+    long dateInMillis;
     String teacherId;
     SharedPreferences sharedPreferences;
 
@@ -35,7 +35,7 @@ public class TeacherActivity extends Activity {
         Intent teacherIntent = getIntent();
         lessonID = teacherIntent.getExtras().getInt("lessonId");
         teacherId = teacherIntent.getExtras().getString("teacherId");
-        dateInMillis = teacherIntent.getExtras().getInt("dateInMillis");
+        dateInMillis = teacherIntent.getExtras().getLong("dateInMillis");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;

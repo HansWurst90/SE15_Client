@@ -26,7 +26,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
     SharedPreferences sharedPreferences;
     int lessonID;
     String teacherId;
-    int dateInMillis;
+    long dateInMillis;
 
     public AddHomeworkTask (Context context, StudeasyScheduleApplication myApp) {
         this.context = context;
@@ -44,7 +44,7 @@ public class AddHomeworkTask extends AsyncTask<Object, Void, Boolean> {
         lessonID = (int) params[1];
         String description = (String) params[2];
         teacherId = (String) params[3];
-        dateInMillis = (int) params [4];
+        dateInMillis = (long) params [4];
         try {
             Log.i("AddHomeworkTask", "sessionID: " + sessionID + ", lessonID: " + lessonID + ", description: " + description + ", teacherId: " + teacherId);
             myApp.getStudeasyScheduleService().createHomework(sessionID, lessonID, description);

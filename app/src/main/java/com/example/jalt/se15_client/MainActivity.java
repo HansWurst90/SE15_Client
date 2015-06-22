@@ -79,7 +79,7 @@ public class MainActivity extends ActionBarActivity {
             // Woher kommt der Activity-Aufruf? Davon hängt ab, welche extras mitgesandt wurden
             if (intent.getExtras().getString("origin") != null) {
                 // Wenn man von Main im Hochformat kommt kann man ein neues Datum erwarten. (Vorheriger oder folgender Tag wie in der Herkunfts-Aktivity)
-                if (intent.getExtras().getString("origin").equals("main_portrait")) {
+                if (intent.getExtras().getString("origin").equals("main")) {
                     dateInMillis = intent.getExtras().getLong("dateInMillis");
                     date.setTimeInMillis(dateInMillis);
                     // Übergabe der Animation abhängig von Next- oder Previous-Methode
@@ -91,18 +91,9 @@ public class MainActivity extends ActionBarActivity {
                         this.overridePendingTransition(R.anim.slide_in_left, 17432577);
                     }
                 }
-                // Wenn man von Main im Querformat kommt kann man ein neues Datum erwarten. (/ Tage vor oder nach dem Datum der Herkunfts-Aktivity)
-                if (intent.getExtras().getString("origin").equals("main_landscape")) {
+                if (intent.getExtras().getString("origin").equals("subject")) {
                     dateInMillis = intent.getExtras().getLong("dateInMillis");
                     date.setTimeInMillis(dateInMillis);
-                    // Übergabe der Animation abhängig von Next- oder Previous-Methode
-                    if (intent.getExtras().getString("direction").equals("right")) {
-                        this.overridePendingTransition(R.anim.slide_in_right, 17432577);
-                    }
-                    // Übergabe der Animation abhängig von Next- oder Previous-Methode
-                    if (intent.getExtras().getString("direction").equals("left")) {
-                        this.overridePendingTransition(R.anim.slide_in_left, 17432577);
-                    }
                 }
             }
         }
@@ -212,7 +203,7 @@ public class MainActivity extends ActionBarActivity {
 
             // Overlay-Info zur Woche (Datum: Von - Bis)
             DateFormat dfmt = new SimpleDateFormat("E dd.MM.yy", Locale.GERMAN);
-            Toast.makeText(this, dfmt.format(dateMo.getTime()) + " - " + dfmt.format(dateFr.getTime()), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, dfmt.format(dateMo.getTime()) + " - " + dfmt.format(dateFr.getTime()), Toast.LENGTH_SHORT).show();
 
             // Array zum einfachen Adressieren
             textMap = new SparseArray();
@@ -348,7 +339,7 @@ public class MainActivity extends ActionBarActivity {
         // Datum wird in Millisekunden umgewandelt, da per Intent kein Date-Objekt mitgeliefert werden kann.
         getNextIntent.putExtra("dateInMillis", date.getTimeInMillis());
         // Angabe der Herkunt zum Handeln der Extras
-        getNextIntent.putExtra("origin","main_portrait");
+        getNextIntent.putExtra("origin","main");
         // Angabe in welche Richtung die Animation ablaufen soll.
         getNextIntent.putExtra("direction","right");
         // Unterdrücken der Standardanimation
@@ -366,7 +357,7 @@ public class MainActivity extends ActionBarActivity {
             date.add(Calendar.DATE, -1);
         }
         getPreviousIntent.putExtra("dateInMillis", date.getTimeInMillis());
-        getPreviousIntent.putExtra("origin","main_portrait");
+        getPreviousIntent.putExtra("origin","main");
         getPreviousIntent.putExtra("direction","left");
 
         getPreviousIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -377,7 +368,7 @@ public class MainActivity extends ActionBarActivity {
         Intent getNextIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, 7);
         getNextIntent.putExtra("dateInMillis", date.getTimeInMillis());
-        getNextIntent.putExtra("origin","main_landscape");
+        getNextIntent.putExtra("origin","main");
         getNextIntent.putExtra("direction","right");
         getNextIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getNextIntent);
@@ -387,7 +378,7 @@ public class MainActivity extends ActionBarActivity {
         Intent getPreviousIntent = new Intent(this, MainActivity.class);
         date.add(Calendar.DATE, -7);
         getPreviousIntent.putExtra("dateInMillis", date.getTimeInMillis());
-        getPreviousIntent.putExtra("origin","main_landscape");
+        getPreviousIntent.putExtra("origin","main");
         getPreviousIntent.putExtra("direction","left");
         getPreviousIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(getPreviousIntent);
