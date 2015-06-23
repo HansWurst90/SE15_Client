@@ -167,7 +167,8 @@ public class MainActivity extends ActionBarActivity {
                             final LessonTO lesson = result.getLesson();
                             cellMap.get(j).setBackgroundResource(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID()));
                             subjectMap.get(j).setText(lesson.getSubject().getDescription());
-                            SavePreferences("LESSONROW" + j, lesson.getSubject().getDescription()); // <-------- LÖSCHEN
+                            SavePreferences("LESSONROW" + j, lesson.getSubject().getDescription());
+                            SavePreferences("LESSONCOLOR" + j, String.valueOf(ColorChooser.getColorFromId(lesson.getSubject().getSubjectID())));
                             teacherMap.get(j).setText(GenderChooser.getTitleByGender(lesson.getTeacher().getGender()) + " " + lesson.getTeacher().getName());
                             roomMap.get(j).setText(lesson.getRoom());
                             cellMap.get(j).setOnClickListener(new View.OnClickListener(){public void onClick(View v) {onSubjectClick(v, lesson.getLessonID(), String.valueOf(lesson.getTeacher().getPersonID()));}});
@@ -176,6 +177,7 @@ public class MainActivity extends ActionBarActivity {
                             {
                                 subjectMap.get(j).setText("Freistunde");
                                 Log.i("LessonByDateTask", "Freistunde");
+                                SavePreferences("LESSONROW" + j, "Freistunde");
                             }
                         }
                     }.execute(sessionId, dateString, i);
